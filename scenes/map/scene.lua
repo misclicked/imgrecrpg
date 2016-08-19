@@ -76,7 +76,7 @@ end
 
 function scene:enterFrame( event )
     if self.startMove then
-
+    end
 end
 
 -- show()
