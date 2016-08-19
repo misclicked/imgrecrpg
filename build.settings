@@ -1,0 +1,23 @@
+settings =
+{
+    android =
+    {
+        usesPermissions =
+        {
+         "android.permission.INTERNET",
+        },
+        orientation =
+        {
+            default = "landscapeRight",
+            supported = { "landscapeRight", "landscapeKeft" }
+        },
+    },
+    window = {
+      defaultViewWidth = 640,
+      defaultViewHeight = 960 
+    },
+    excludeFiles = 
+     {
+        all = { "doc"},
+     },
+}
