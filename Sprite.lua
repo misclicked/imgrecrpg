@@ -67,6 +67,19 @@ M.addSheet = function(tag, imgName, sheetInfoName)
         
         return sprite
     end
+
+
+    M[tag].newAnimation = function(anims, options)
+        local _tag = (options and options.tag) or tag
+        local sequence = {}
+        for i, v in ipairs(anims) do
+            for i = 1, #v.frames do
+                v.frames[i] = M.getFrameIndex(_tag, v.frames[i])
+            end
+        end
+        local sprite = display.newSprite( M.imageSheets[_tag] , anims )
+        return sprite
+    end
 end
 
 M.removeSheet = function()
@@ -82,5 +95,6 @@ M.myImageSheet = M.imageSheets.default
 
 --set default method
 M.new = M.default.new
+M.newAnimation = M.default.newAnimation
 
 return M

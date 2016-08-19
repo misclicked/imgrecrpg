@@ -9,7 +9,7 @@ settings =
         orientation =
         {
             default = "landscapeRight",
-            supported = { "landscapeRight", "landscapeKeft" }
+            supported = { "landscapeRight", "landscapeLeft" }
         },
     },
     window = {
