@@ -139,6 +139,8 @@ local function openCamera( event )
         busy=true
         camera:shoot(
             function (tags,isFace,faceAttr)
+                native.showAlert( "Corona", json.encode({tags,isFace,faceAttr}), { "OK" } )
+                return
                 -- tags is a table!! json.encode is used to convert it into String
                 print(#tags)
                 --sequenceCnt = 1
