@@ -7,6 +7,8 @@ local Sprite = require("Sprite")
 local Bubble = require("ui.GreyPanel")
 
 local YellowButton = require("ui.YellowButton")
+-----------------For Camera Module----------------------------
+local camera = require("cameraMod").new()
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -86,9 +88,19 @@ local function openInventory( event )
     end
 end
 
+local function print(  )
+    -- body
+end
+
 local function openCamera( event )
     if event.phase == "began" then
         busy=true
+        camera:shoot(
+            function (tags)
+                -- tags is a table!! json.encode is used to convert it into String
+                native.showAlert( "Corona", json.encode(tags), { "OK" } )
+            end
+            )
     elseif event.phase == "ended" or event.phase == "cancelled" then
         busy=false
     end
@@ -300,7 +312,9 @@ function scene:show( event )
 
         enemy = {
             hp = 5000,
+            maxhp = 5000,
             mp = 5000,
+            maxmp = 5000,
             name = "slime",
             path = "Enemies/slimeWalk1",
             status = "live"
@@ -308,7 +322,9 @@ function scene:show( event )
 
         player = {
             hp = 5000,
+            maxhp = 5000,
             mp = 5000,
+            maxmp = 5000,
             name = "player",
             path = "Enemies/slimeWalk1",
             status = "live"
@@ -384,6 +400,10 @@ function scene:hide( event )
         -- Code here runs when the scene is on screen (but is about to go off screen)
 
     elseif ( phase == "did" ) then
+        timer.cancell(moveTimer)
+        Runtime:removeEventListener("touch",scene)
+        inventoryImage:removeEventListener("touch",openInventory)
+        clearIcon:removeEventListener("touch",openCamera)
         -- Code here runs immediately after the scene goes entirely off screen
 
     end
