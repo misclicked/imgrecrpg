@@ -5,10 +5,6 @@ local Sprite = require("Sprite")
 local sfx = require("sfx")
 --local RedPotion = require("items.RedPotion")
 
-inventory:addItem("items.Food")
-inventory:addItem("items.Man")
-inventory:addItem("items.RedPotion")
-
 for i=1, #inventory.items do
     print(inventory.items[i])
 end
