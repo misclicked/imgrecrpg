@@ -92,4 +92,6 @@ Runtime:addEventListener("tap", onTap)
 
 --native.showAlert("Dusk", "Welcome to the Dusk Engine. Try double-tapping to load different example maps.", {"Got it!"})
 --]]
-composer.gotoScene("scenes.map.scene")
+
+--composer.gotoScene("scenes.map.scene")
+composer.gotoScene("scenes.testkev.testui")
