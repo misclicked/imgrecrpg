@@ -1,7 +1,6 @@
 local composer = require( "composer" )
 local GreyBox = require("ui.GreyBox")
 local GreyPanel = require("ui.GreyPanel")
-local inventory = require( "inventory" )
 local BlueButton = require("ui.BlueButton")
 local Sprite = require("Sprite")
 local inventory = require( "inventory" )
@@ -19,6 +18,7 @@ ItemBox.new = function (t)
 
 		if ( phase == "will" ) then
 			-- Call the "resumeGame()" function in the parent scene
+			
 		end
 	end
 	local myButtonHandler =  function ( event )
@@ -64,7 +64,7 @@ ItemBox.new = function (t)
 				 yStarting =  display.contentCenterY -(((x - 1) / 2)*gap)
 			end
 				
-		print("have"..tostring(#inventory.items).."items")
+		--print("have"..tostring(#inventory.items).."items")
 		local xCoordinate = xStarting
 		local yCoordinate = yStarting
 		local cnt = 1

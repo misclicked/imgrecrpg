@@ -187,7 +187,7 @@ function cameraMod.new()
 			self.apiInfo:getTags(cb)
 		end
 		if debug~=nil then
-			cb({"young","food","bottle","adult","pencil","glasses"})
+			cb({"young","food","bottle","adult","pencil","glasses"},true,{age=37.4,gender="male"})
 		elseif media.hasSource( media.Camera ) then
 		    media.capturePhoto( { listener=onComplete,
 			 destination ={

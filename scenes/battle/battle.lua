@@ -138,7 +138,7 @@ local function openCamera( event )
     if event.phase == "began" then
         busy=true
         camera:shoot(
-            function (tags)
+            function (tags,isFace,faceAttr)
                 -- tags is a table!! json.encode is used to convert it into String
                 print(#tags)
                 --sequenceCnt = 1
@@ -147,7 +147,16 @@ local function openCamera( event )
                 local targetFlag = false
                 local matchCnt = 1
                 local matchFlag = false
+                if isFace then
+                    if feceAttr.gender == "male" then
+                        showWord("我現在不需要"..tostring(faceAttr.age).."歲的男性")
+                    else
+                        showWord("我現在不需要"..tostring(faceAttr.age).."歲的女性")
+                    end
+                    return
+                end
                 for i = 1, #tags do
+                    print(tags[i])
                     if inventory.dictionary[tags[i]] ~= null then
                         if matchFlag == false then
                             matchCnt = i
@@ -165,18 +174,17 @@ local function openCamera( event )
                     end
                 end
                 if targetFlag then
-                    showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[targetCnt]],"Items.",""))
+                    showWord("我獲得了 "..inventory.translate[inventory.dictionary[tags[targetCnt]]])
                     inventory:addItem(inventory.dictionary[tags[targetCnt]])
                 elseif matchFlag then
-                    showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[matchCnt]],"Items.",""))
+                    showWord("我獲得了 "..inventory.translate[inventory.dictionary[tags[matchCnt]]])
                     inventory:addItem(inventory.dictionary[tags[matchCnt]])
                 else
-                    showWord("你不需要這項物品")
+                    showWord("我現在不需要這項物品")
                 end
                 
                 --native.showAlert( "Corona", json.encode(tags), { "OK" } )
-            end,
-            true
+            end
             )
     elseif event.phase == "ended" or event.phase == "cancelled" then
         busy=false
@@ -435,7 +443,7 @@ function scene:show( event )
         self.requestText = [[你需要一把劍
 才能打敗我!!]]
         
-        self.requestItem = "Items.Sword"
+        self.requestItem = "items.Sword"
 
         busy = false
 

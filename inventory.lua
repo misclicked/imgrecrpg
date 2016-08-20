@@ -1,6 +1,7 @@
 local inventory = {}
 inventory.items = {}
 inventory.dictionary = {}
+inventory.translate = {}
 function inventory:addItem(item)
     inventory.items[#inventory.items + 1] = item
 end
@@ -23,39 +24,49 @@ function inventory:hasItem(item)
 end
 
 function inventory:makeDictionary( )
-   inventory.dictionary["man"] = "Items.Man"
-   inventory.dictionary["girl"] = "Items.Woman"
-   inventory.dictionary["boy"] = "Items.Man"
-   inventory.dictionary["woman"] = "Items.Woman"
-   inventory.dictionary["old"] = "Items.Man"
-   inventory.dictionary["adult"] = "Items.Man"
-   inventory.dictionary["young"] = "Items.Man"
-   inventory.dictionary["male"] = "Items.Man"
-   inventory.dictionary["female"] = "Items.Woman"
+   inventory.dictionary["man"] = "items.Man"
+   inventory.dictionary["girl"] = "items.Woman"
+   inventory.dictionary["boy"] = "items.Man"
+   inventory.dictionary["woman"] = "items.Woman"
+   inventory.dictionary["old"] = "items.Man"
+   inventory.dictionary["adult"] = "items.Man"
+   inventory.dictionary["young"] = "items.Man"
+   inventory.dictionary["male"] = "items.Man"
+   inventory.dictionary["female"] = "items.Woman"
 
-   inventory.dictionary["sword"] = "Items.Sword"
-   inventory.dictionary["knife"] = "Items.Sword"
-   inventory.dictionary["sharp"] = "Items.Sword"
+   inventory.dictionary["sword"] = "items.Sword"
+   inventory.dictionary["knife"] = "items.Sword"
+   inventory.dictionary["sharp"] = "items.Sword"
+   inventory.dictionary["steel"] = "items.Sword"
 
-   inventory.dictionary["bottle"] = "Items.RedPotion"
-   inventory.dictionary["glasses"] = "Items.RedPotion"
-   inventory.dictionary["potion"] = "Items.RedPotion"
-   inventory.dictionary["can"] = "Items.RedPotion"
+   inventory.dictionary["bottle"] = "items.RedPotion"
+   inventory.dictionary["glasses"] = "items.RedPotion"
+   inventory.dictionary["potion"] = "items.RedPotion"
+   inventory.dictionary["can"] = "items.RedPotion"
+   inventory.dictionary["coffee"] = "items.RedPotion"
+   inventory.dictionary["container"] = "items.RedPotion"
+   inventory.dictionary["drink"] = "items.RedPotion"
+   inventory.dictionary["water"] = "items.RedPotion"
+   inventory.dictionary["soda"] = "items.RedPotion"
 
-   inventory.dictionary["food"] = "Items.Food"
-   inventory.dictionary["meat"] = "Items.Food"
-   inventory.dictionary["cookie"] = "Items.Food"
-   inventory.dictionary["cake"] = "Items.Food"
-   inventory.dictionary["pizza"] = "Items.Food"
-   inventory.dictionary["chicken"] = "Items.Food"
-   inventory.dictionary["pork"] = "Items.Food"
-   inventory.dictionary["beef"] = "Items.Food"
-   inventory.dictionary["lamb"] = "Items.Food"
-   inventory.dictionary["steak"] = "Items.Food"
-   inventory.dictionary["yummy"] = "Items.Food"
-   inventory.dictionary["potato"] = "Items.Food"
+   inventory.dictionary["food"] = "items.Food"
+   inventory.dictionary["meat"] = "items.Food"
+   inventory.dictionary["cookie"] = "items.Food"
+   inventory.dictionary["cake"] = "items.Food"
+   inventory.dictionary["pizza"] = "items.Food"
+   inventory.dictionary["chicken"] = "items.Food"
+   inventory.dictionary["pork"] = "items.Food"
+   inventory.dictionary["beef"] = "items.Food"
+   inventory.dictionary["lamb"] = "items.Food"
+   inventory.dictionary["steak"] = "items.Food"
+   inventory.dictionary["yummy"] = "items.Food"
+   inventory.dictionary["potato"] = "items.Food"
 
-
+   inventory.translate["items.Food"] = "食物"
+   inventory.translate["items.Man"] = "年輕男性"
+   inventory.translate["items.RedPotion"] = "藥水"
+   inventory.translate["items.Woman"] = "年輕女性"
+   inventory.translate["items.Sword"] = "一把劍"
 end
 
 return inventory

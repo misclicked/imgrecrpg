@@ -2,9 +2,13 @@ local composer = require( "composer" )
 local Sprite = require("Sprite")
 local scene = composer.newScene()
 local Kevin = require("npcs.Kevin")
+local inventory = require( "inventory" )
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
 local json = require("json")
+local icon
+local busy
+local inventoryOpened
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -16,8 +20,54 @@ local json = require("json")
 -- Scene event functions
 -- -----------------------------------------------------------------------------------
 
+local function openInventory( event )
+    if event.phase == "began" then
+        busy = true
+        local options = {
+            isModal = true,
+            params = {
+            onClose = function()
+                inventoryOpened = false
+                busy = true
+            end
+            }
+        }
+        if inventoryOpened then
+            composer.hideOverlay( "scenes.UI.Bag", options )
+            inventoryOpened = false
+        else
+            composer.showOverlay( "scenes.UI.Bag", options )
+            inventoryOpened = true
+        end
+    elseif event.phase == "ended" or event.phase == "cancelled" then
+        if inventoryOpened then
+            busy = true
+        else
+            busy = false
+        end
+    end
+
+end
+
+local function showWord( s )
+    sceneGroup = scene.view
+    local myText = display.newText( s, 100, 200, native.systemFont, 100 )
+        myText.x = display.contentWidth/2
+        myText.y = display.contentHeight/5
+        myText:setTextColor(255, 0, 0)
+        sceneGroup:insert(myText) 
+        transition.to(myText,{time=500,alpha=0, y=display.contentHeight/7,onComplete= function ()
+        if myText.removeSelf ~= nil then
+            myText:removeSelf()
+        end
+    end
+    })  
+end
+
 -- create()
 function scene:create( event )
+    inventoryOpened = false   
+    busy=false
     --local Background = Background.new()
     local sceneGroup = self.view
     clickCount = 70
@@ -49,7 +99,10 @@ function scene:create( event )
     })
     self.character.x = display.contentWidth / 2
     self.character.y = display.contentHeight / 2
-    
+
+
+
+
     --background add start
     local dusk = require("Dusk.Dusk")
     dusk.setPreference("enableRotatedMapCulling", true)
@@ -69,7 +122,7 @@ function scene:create( event )
     map.offsetX = display.contentWidth / 2 + 70
 
     --camera
-    local icon = Sprite.new("Items/62")
+    icon = Sprite.new("Items/62")
     icon.x = display.contentWidth - 100
     icon.y = display.contentHeight - 100
     icon:addEventListener("touch" , 
@@ -77,15 +130,48 @@ function scene:create( event )
 
         if event.x < icon.x + 50 and event.x > icon.x - 50 then
             self.startMove = false
-            if event.phase == "ended" then
+            if event.phase == "began" then
+                busy = true
+            elseif event.phase == "ended" then
+                busy = false
                 print("carema ended")
                 --call carema
                 camera:shoot(
                     function(tags)
-                        --tag decide
-                        print(tags)
+                        --sequenceCnt = 1
+                        --showSequenceWord(tags)
+                        local targetCnt = 1
+                        local targetFlag = false
+                        local matchCnt = 1
+                        local matchFlag = false
+                        for i = 1, #tags do
+                            if inventory.dictionary[tags[i]] ~= null then
+                                if matchFlag == false then
+                                    matchCnt = i
+                                end
+                                matchFlag = true
+                                if inventory.dictionary[tags[i]] == scene.requestItem then
+                                    print(tags[i])
+                                    targetFlag = true
+                                    targetCnt = i
+                                end
+                            end
+                            if targetFlag then
+                                print("hehe")
+                                break
+                            end
+                        end
+                        if targetFlag then
+                            showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[targetCnt]],"Items.",""))
+                            inventory:addItem(inventory.dictionary[tags[targetCnt]])
+                        elseif matchFlag then
+                            showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[matchCnt]],"Items.",""))
+                            inventory:addItem(inventory.dictionary[tags[matchCnt]])
+                        else
+                            showWord("你不需要這項物品")
+                        end
+
                     end
-                    ,true   
                 )
             else
                 print("carema began")
@@ -95,8 +181,8 @@ function scene:create( event )
         end
 
     end)
-    sceneGroup:insert(icon)
 
+    sceneGroup:insert(icon)
     --food
     mapkevin1 = Kevin.new()
     mapkevin1.x = self.offsetX + 200
@@ -142,6 +228,18 @@ function scene:create( event )
         end)
     sceneGroup:insert(mapkevin3)
 
+    --add inventory
+    inventory:makeDictionary()
+
+    inventoryImage = Sprite.new("Items/55")
+
+    inventoryImage.xScale = display.contentWidth * 0.08 / inventoryImage.contentWidth
+    inventoryImage.yScale = inventoryImage.xScale
+
+    inventoryImage:addEventListener("touch",openInventory)
+
+    inventoryImage:translate(icon.x-icon.contentWidth/2 - inventoryImage.contentWidth/2 ,icon.y)
+
 end
 
 
@@ -149,7 +247,6 @@ function scene:touch(event)
     if event.phase == "began" then
         print("Touch began!!")
         self.startMove =  true
-
         if event.x > display.contentWidth/2 then
             self.moveDir = 1
         else
@@ -171,6 +268,13 @@ function scene:touch(event)
 end
 
 function scene:enterFrame( event )
+    if inventoryOpened == false and busy then
+        busy = false
+        return
+    end
+    if busy then
+        return
+    end
     if self.startMove then
         self.offsetX = self.offsetX + 10 * self.moveDir
         map.x = map.x + 10 * self.moveDir * -1
@@ -200,12 +304,12 @@ if mapkevin1.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有食物可以交付?", {"交付 食物"})
-            if mapkevin1:isFinishQuest() == false then 
+            if mapkevin1:isFinishQuest("items.Food") == false then 
                 print("食物:false")
-                mapkevin1:setClear()
+                --mapkevin1:setClear()
             else
                 print("食物:true")
-                -- mapkevin1:setClear()
+                mapkevin1:setClear()
             end
         end
 else
@@ -227,12 +331,12 @@ if mapkevin2.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
-            if mapkevin2:isFinishQuest() == false then 
+            if mapkevin2:isFinishQuest("items.Man") == false then 
                 print("年輕人:false")
-                mapkevin2:setClear()
+                --mapkevin2:setClear()
             else
                 print("年輕人:true")
-                -- mapkevin2:setClear()
+                mapkevin2:setClear()
             end
         end
 else
@@ -254,12 +358,12 @@ if mapkevin3.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有藥水可以交付?", {"交付 藥水"})
-            if mapkevin3:isFinishQuest() == false then 
+            if mapkevin3:isFinishQuest("items.RedPotion") == false then 
                 print("藥水:false")
-                mapkevin3:setClear()
+                --mapkevin3:setClear()
             else
                 print("藥水:true")
-                -- mapkevin3:setClear()
+                mapkevin3:setClear()
             end
         end
 else
