@@ -63,6 +63,6 @@ composer.gotoScene("scenes.map.scene")
 
 --composer.gotoScene("scenes.camera.camera")
 
---composer.gotoScene( "scenes.battle.battle" )
+-- composer.gotoScene( "scenes.battle.battle" )
 
 sfx:play("bg", {loops = -1})
