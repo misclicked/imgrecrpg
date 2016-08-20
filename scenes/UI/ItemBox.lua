@@ -28,9 +28,9 @@ ItemBox.new = function (t)
 			print(event.target.index)
 			if event.target.success then
 				inventory:removeItem(event.target.index)
+				itemBox:removeSelf()
+				reflash()
 			end
-			itemBox:removeSelf()
-			reflash()
 		end
 	end
 	function reflash()

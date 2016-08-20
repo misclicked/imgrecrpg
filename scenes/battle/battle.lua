@@ -342,6 +342,8 @@ function scene:show( event )
 
         local options =
         {
+        x = _SCREEN_WIDTH/2,
+        y = _SCREEN_HEIGHT/2,
         sheetContentWidth = _SCREEN_WIDTH,
         sheetContentHeight = _SCREEN_HEIGHT 
         }
