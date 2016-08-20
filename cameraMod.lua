@@ -175,6 +175,7 @@ function cameraMod.new()
 		else
 		    native.showAlert( "Corona", "This device does not have a camera.", { "OK" } )
 		end
+	end
 	return cameraModule
 end
 return cameraMod
