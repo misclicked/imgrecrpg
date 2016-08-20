@@ -1,5 +1,6 @@
 local composer = require("composer")
 local Sprite = require("Sprite")
+local Scores = require("Scores")
 local scene = composer.newScene()
 local background= nil
 
@@ -32,6 +33,7 @@ function scene:show( event )
 	local function myButtonHandler(event)
 		 if ( event.phase == "ended" ) then
 			print("Hi")
+			Scores:start()
 			composer.gotoScene("scenes.map.scene", {effect = "slideLeft", time = 300})
 		 end
 	end
