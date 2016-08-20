@@ -1,7 +1,7 @@
 local composer = require( "composer" )
 local Sprite = require("Sprite")
 local scene = composer.newScene()
-
+local Kevin = require("npcs.Kevin")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -52,23 +52,36 @@ function scene:create( event )
     dusk.setPreference("enableRotatedMapCulling", true)
     local currMap = "grass_stone.json"
     map = dusk.buildMap("maps/" .. currMap)
+    sceneGroup:insert(map)
     --map.setTrackingLevel(0.3)
     --background add end
     sceneGroup:insert(self.character)
-    sceneGroup:insert(map)
 
-    self.offset = 30
+    self.offset = 0
     self.startMove = false
     self.moveDir = 1
     Runtime:addEventListener( "touch", self)
-    self.offsetX = 0
+    self.offsetX = display.contentWidth / 2
 
     map.offsetX = display.contentWidth / 2 + 70
 
-    local icon = Sprite.new("Items/1")
+    local icon = Sprite.new("Items/62")
     icon.x = display.contentWidth - 100
     icon.y = display.contentHeight - 100
     sceneGroup:insert(icon)
+
+    mapkevin1 = Kevin.new()
+    mapkevin1.x = self.offsetX + 200
+    mapkevin1.y = display.contentHeight/2
+    mapkevin1.offsetX = mapkevin1.x
+    mapkevin1:showBubble()
+    sceneGroup:insert(mapkevin1)
+    Runtime:addEventListener( "touch", mapkevin1)
+    timer.performWithDelay( 2000, 
+        function ()
+            mapkevin1:setClear()
+        end)
+    sceneGroup:insert(mapkevin1)
 
 end
 
@@ -99,16 +112,29 @@ end
 
 function scene:enterFrame( event )
     if self.startMove then
-        self.offsetX = self.offsetX + 10 * self.moveDir * -1
+        self.offsetX = self.offsetX + 10 * self.moveDir
         map.x = map.x + 10 * self.moveDir * -1
         map.offsetX = map.offsetX + 10 * self.moveDir * -1
-        print(map.offsetX)
 
         if map.offsetX < 0 then
             self.startMove = false
         elseif map.offsetX > display.contentWidth + 190 then
             self.startMove = false
         end    
+
+        mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
+        if self.offsetX > mapkevin1.x + 70 then
+            self.startMove = false
+            
+            if mapkevin1:isFinishQuest() == false then 
+                print("kevin1:false")
+            else
+                print("kevin1:true")
+            end
+            native.showAlert("Battle Message", "Fighting~~~~~~~~with kevin 1.", {"Got it!"})
+        end
+
+        
     end
 end
 

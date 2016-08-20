@@ -7,6 +7,9 @@ local Sprite = require("Sprite")
 local Bubble = require("ui.GreyPanel")
 
 local YellowButton = require("ui.YellowButton")
+-----------------For Camera Module----------------------------
+local camera = require("cameraMod").new()
+local json = require("json")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -75,10 +78,10 @@ local function openInventory( event )
             }
         }
     if inventoryOpened then
-        composer.hideOverlay( "scenes.UI.bag", options )
+        composer.hideOverlay( "scenes.UI.Bag", options )
         inventoryOpened = false
     else
-        composer.showOverlay( "scenes.UI.bag", options )
+        composer.showOverlay( "scenes.UI.Bag", options )
         inventoryOpened = true
     end
     elseif event.phase == "ended" or event.phase == "cancelled" then
@@ -86,9 +89,19 @@ local function openInventory( event )
     end
 end
 
+local function print(  )
+    -- body
+end
+
 local function openCamera( event )
     if event.phase == "began" then
         busy=true
+        camera:shoot(
+            function (tags)
+                -- tags is a table!! json.encode is used to convert it into String
+                native.showAlert( "Corona", json.encode(tags), { "OK" } )
+            end
+            )
     elseif event.phase == "ended" or event.phase == "cancelled" then
         busy=false
     end
@@ -139,7 +152,7 @@ end
 
 local function initEnemy( path )
 
-    enemyImage = Sprite.new(path) 
+    enemyImage = Sprite.new(path)
 
     --resize enemyImage
     enemyImage.xScale = ( _SCREEN_WIDTH * 0.25 ) / enemyImage.width
@@ -166,7 +179,7 @@ function scene:listenMove( )
         attackFlag = false
     end
     if moveLeftFlag or moveRightFlag then
-        if playerX >= playerTouchEnemyPosX and moveRightFlag or playerX <= playerTouchScreenPosX and moveLeftFlag then          
+        if playerX >= playerTouchEnemyPosX and moveRightFlag or playerX <= playerTouchScreenPosX and moveLeftFlag then
             playerImage:setSequence("stand")
             return
         end
@@ -195,7 +208,7 @@ function scene:touch( event )
                  y = playerY, rotation = 30, onComplete = function()
                     local damage = math.random(-30,-5)
                     enemy.hp = enemy.hp + damage
-                    local hitText = display.newText(tostring(damage) , 
+                    local hitText = display.newText(tostring(damage) ,
                         enemyX + math.random(_SCREEN_WIDTH*-0.01,_SCREEN_WIDTH*0.01),
                      enemyY - enemyImage.contentHeight/2,
                         native.systemFont, 100)
@@ -300,7 +313,9 @@ function scene:show( event )
 
         enemy = {
             hp = 5000,
+            maxhp = 5000,
             mp = 5000,
+            maxmp = 5000,
             name = "slime",
             path = "Enemies/slimeWalk1",
             status = "live"
@@ -308,7 +323,9 @@ function scene:show( event )
 
         player = {
             hp = 5000,
+            maxhp = 5000,
             mp = 5000,
+            maxmp = 5000,
             name = "player",
             path = "Enemies/slimeWalk1",
             status = "live"
@@ -318,19 +335,18 @@ function scene:show( event )
 
         requestFlag = false
 
-        floor = _SCREEN_HEIGHT*0.8
+        floor = _SCREEN_HEIGHT*0.825
 
         playerX = _SCREEN_WIDTH*0.1
 
         enemyX = _SCREEN_WIDTH*0.875
 
-        local options =
-        {
-        sheetContentWidth = _SCREEN_WIDTH,
-        sheetContentHeight = _SCREEN_HEIGHT 
-        }
+        local background = display.newImage("backgrounds/full-background.png")
 
-        local background = display.newImage("backgrounds/full-background.png",options)
+        background.x = _SCREEN_WIDTH/2
+        background.y = _SCREEN_HEIGHT/2
+        background.xScale = _SCREEN_WIDTH / background.width
+        background.yScale = background.xScale
 
         sceneGroup:insert(background)
 
@@ -352,7 +368,7 @@ function scene:show( event )
         sceneGroup:insert(bubble)
         --[[
         local yellowButton = YellowButton.new(_SCREEN_WIDTH*0.2,_SCREEN_HEIGHT*0.2)
-        
+
         yellowButton.x = _SCREEN_WIDTH / 2
         yellowButton.y = _SCREEN_HEIGHT / 2
         sceneGroup:insert(yellowButton)
@@ -384,6 +400,10 @@ function scene:hide( event )
         -- Code here runs when the scene is on screen (but is about to go off screen)
 
     elseif ( phase == "did" ) then
+        timer.cancell(moveTimer)
+        Runtime:removeEventListener("touch",scene)
+        inventoryImage:removeEventListener("touch",openInventory)
+        clearIcon:removeEventListener("touch",openCamera)
         -- Code here runs immediately after the scene goes entirely off screen
 
     end

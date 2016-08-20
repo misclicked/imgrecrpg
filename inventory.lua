@@ -9,6 +9,10 @@ function inventory:getItem(index)
     return inventory.items[index]   
 end
 
+function inventory:removeItem( index )
+    table.remove(inventory.items,index)
+end
+
 function inventory:hasItem(item)
     for i = #inventory.items,1,-1 do
         if item == inventory.items[i] then
