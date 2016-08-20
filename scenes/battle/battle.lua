@@ -1,12 +1,10 @@
 local composer = require( "composer" )
-
 local scene = composer.newScene()
-
 local Sprite = require("Sprite")
-
 local Bubble = require("ui.GreyPanel")
-
+local inventory = require( "inventory" )
 local YellowButton = require("ui.YellowButton")
+local widget = require( "widget" )
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
 local json = require("json")
@@ -41,6 +39,11 @@ local inventoryImage
 local cameraImage
 local busy
 local inventoryOpened
+local globalATKClock
+local playerHPBar
+local enemyHPBar
+local simpleSelf
+local existItem
 -- -----------------------------------------------------------------------------------
 -- local functions
 -- -----------------------------------------------------------------------------------
@@ -57,14 +60,31 @@ local function  Sleep( milliseconds )
     end
 end
 
+local function showWord( s )
+    sceneGroup = scene.view
+    local myText = display.newText( s, 100, 200, native.systemFont, 100 )
+        myText.x = display.contentWidth/2
+        myText.y = display.contentHeight/5
+        myText:setTextColor(255, 0, 0)
+        sceneGroup:insert(myText) 
+        transition.to(myText,{time=500,alpha=0, y=display.contentHeight/7,onComplete= function ()
+        if myText.removeSelf ~= nil then
+            myText:removeSelf()
+        end
+    end
+    })  
+end
+
 local function openInventory( event )
     if event.phase == "began" then
+        cameraImage.isVisible = false
         busy=true
         local options = {
             isModal = true,
             params = {
                 onClose = function ()
                     inventoryOpened = false
+                    cameraImage.isVisible = true
                 end,
                 effect = function ( item )
                     if item.effectSelf then
@@ -73,12 +93,14 @@ local function openInventory( event )
                         item:effect(enemy)
                     end
                     print(player.hp)
+                    busy = false
                 end
 
             }
         }
     if inventoryOpened then
         composer.hideOverlay( "scenes.UI.Bag", options )
+        cameraImage.isVisible = true
         inventoryOpened = false
     else
         composer.showOverlay( "scenes.UI.Bag", options )
@@ -89,8 +111,27 @@ local function openInventory( event )
     end
 end
 
-local function print(  )
-    -- body
+local sequenceCnt
+local function showSequenceWord (ss)
+    local sceneGroup = scene.view
+    print("hehe")
+    if sequenceCnt > #ss then
+        return
+    end    
+    local myText = display.newText( ss[sequenceCnt], 100, 200, native.systemFont, 100 )
+        myText.x = display.contentWidth/2
+        myText.y = display.contentHeight/5
+        myText:setTextColor(255, 0, 0)
+        sceneGroup:insert(myText)
+    transition.to(myText
+        ,{time=500,alpha=0, y=display.contentHeight/7,onComplete = function()
+        sequenceCnt = sequenceCnt + 1
+        if myText.removeSelf ~= nil then
+            myText:removeSelf()
+        end
+        showSequenceWord(ss)
+    end
+    }) 
 end
 
 local function openCamera( event )
@@ -99,8 +140,43 @@ local function openCamera( event )
         camera:shoot(
             function (tags)
                 -- tags is a table!! json.encode is used to convert it into String
-                native.showAlert( "Corona", json.encode(tags), { "OK" } )
-            end
+                print(#tags)
+                --sequenceCnt = 1
+                --showSequenceWord(tags)
+                local targetCnt = 1
+                local targetFlag = false
+                local matchCnt = 1
+                local matchFlag = false
+                for i = 1, #tags do
+                    if inventory.dictionary[tags[i]] ~= null then
+                        if matchFlag == false then
+                            matchCnt = i
+                        end
+                        matchFlag = true
+                        if inventory.dictionary[tags[i]] == scene.requestItem then
+                            print(tags[i])
+                            targetFlag = true
+                            targetCnt = i
+                        end
+                    end
+                    if targetFlag then
+                        print("hehe")
+                        break
+                    end
+                end
+                if targetFlag then
+                    showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[targetCnt]],"Items.",""))
+                    inventory:addItem(inventory.dictionary[tags[targetCnt]])
+                elseif matchFlag then
+                    showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[matchCnt]],"Items.",""))
+                    inventory:addItem(inventory.dictionary[tags[matchCnt]])
+                else
+                    showWord("你不需要這項物品")
+                end
+                
+                --native.showAlert( "Corona", json.encode(tags), { "OK" } )
+            end,
+            true
             )
     elseif event.phase == "ended" or event.phase == "cancelled" then
         busy=false
@@ -135,7 +211,7 @@ local function initPlayer(  )
         },
     })
     --resize playerImage
-    playerImage.xScale = ( _SCREEN_WIDTH * 0.2 ) / playerImage.width
+    playerImage.xScale = ( _SCREEN_WIDTH * 0.1 ) / playerImage.width
     playerImage.yScale = playerImage.xScale
 
     --calc playerPos
@@ -155,7 +231,7 @@ local function initEnemy( path )
     enemyImage = Sprite.new(path)
 
     --resize enemyImage
-    enemyImage.xScale = ( _SCREEN_WIDTH * 0.25 ) / enemyImage.width
+    enemyImage.xScale = ( _SCREEN_WIDTH * 0.15 ) / enemyImage.width
     enemyImage.yScale = enemyImage.xScale
 
     --calc enemyPos
@@ -171,7 +247,52 @@ local function initEnemy( path )
 end
 
 function scene:listenMove( )
-    if enemy.hp <= 4800 and requestFlag == false then
+    --print(tostring(globalATKClock).." "..tostring(system.getTimer()))
+    if playerHPBar.removeSelf ~= nil then
+        if player.hp > 0 then
+            transition.to(playerHPBar,{time=10,x=playerX,y=playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04})
+            playerHPBar.width = _SCREEN_WIDTH * 0.1 * player.hp/player.maxhp
+        else
+            playerHPBar:removeSelf()
+        end
+    end
+
+    if enemyHPBar.removeSelf ~= nil then
+        if enemy.hp > 0 then
+            transition.to(enemyHPBar,{time=10,x=enemyX,y=enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04})
+            enemyHPBar.width = _SCREEN_WIDTH * 0.1 * enemy.hp/enemy.maxhp
+        else
+            enemyHPBar:removeSelf()
+        end
+    end
+    --playerHPBar:translate(playerX, playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04 , 150, 50)
+    --enemyHPBar:translate(enemyX, enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04, 150, 50)
+    if (system.getTimer() - globalATKClock) >= 1000 then
+        if attackFlag and requestFlag == false then
+            transition.to(enemyImage,{time = 100, alpha = 1,
+             x = enemyX - _SCREEN_WIDTH*0.1,
+             y = enemyY, rotation = -30, onComplete = function()
+                local damage = math.random(-300,-200)
+                player.hp = player.hp + damage
+                local hitText = display.newText(tostring(damage) ,
+                    playerX + math.random(_SCREEN_WIDTH*-0.01,_SCREEN_WIDTH*0.01),
+                 playerY - enemyImage.contentHeight/2,
+                    native.systemFont, 100)
+                hitText:setTextColor(255, 0, 0)
+                sceneGroup:insert(hitText)
+                transition.to(hitText,{time = 300, alpha = 0,
+                    x = playerX, y=playerY - enemyImage.contentHeight,
+                    onComplete = function()
+                        hitText:removeSelf()
+                    end})
+                transition.to(enemyImage,{time = 100, alpha = 1,
+                 x = enemyX,
+                 y = enemyY, rotation = 0})
+             end})
+        end
+        globalATKClock = system.getTimer()
+    end
+    if enemy.hp <= 0 and requestFlag == false then
         requestFlag = true
         bubble:setText(self.requestText)
         bubble.alpha = 1
@@ -179,6 +300,9 @@ function scene:listenMove( )
         attackFlag = false
     end
     if moveLeftFlag or moveRightFlag then
+        if playerX >= playerTouchEnemyPosX and moveRightFlag then
+            attackFlag = true
+        end
         if playerX >= playerTouchEnemyPosX and moveRightFlag or playerX <= playerTouchScreenPosX and moveLeftFlag then
             playerImage:setSequence("stand")
             return
@@ -202,7 +326,18 @@ function scene:touch( event )
     self.touchEvent = event
     if event.phase == "began" then
         if event.x > _SCREEN_WIDTH/2 then
-            if playerX >= playerTouchEnemyPosX and attackFlag then
+            if playerX >= playerTouchEnemyPosX then
+                attackFlag = true
+            else
+                attackFlag = false
+            end
+            if playerX >= playerTouchEnemyPosX and requestFlag then
+                if inventory:hasItem(self.requestItem) then
+                    bubble:setText("")
+                    clearIcon.alpha = 1
+                end
+            end
+            if playerX >= playerTouchEnemyPosX and attackFlag and requestFlag == false then
                 transition.to(playerImage,{time = 100, alpha = 1,
                  x = playerX + _SCREEN_WIDTH*0.1,
                  y = playerY, rotation = 30, onComplete = function()
@@ -231,6 +366,7 @@ function scene:touch( event )
             moveRightFlag = true
             moveLeftFlag = false
         else
+            attackFlag = false
             if playerX <= playerTouchScreenPosX then
                 print("hehe")
                 return
@@ -282,13 +418,17 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Code here runs when the scene is still off screen (but is about to come on screen)
+        inventory:makeDictionary()
 
         inventoryOpened = false
 
         _SCREEN_HEIGHT = display.contentHeight
         _SCREEN_WIDTH = display.contentWidth
 
-        self.requestText = "我要雙刀~"
+        self.requestText = [[你需要一把劍
+才能打敗我!!]]
+        
+        self.requestItem = "Items.Sword"
 
         busy = false
 
@@ -312,26 +452,36 @@ function scene:show( event )
 
 
         enemy = {
-            hp = 5000,
-            maxhp = 5000,
-            mp = 5000,
-            maxmp = 5000,
+            hp = 20,
+            maxhp = 20,
+            mp = 1000,
+            maxmp = 1000,
             name = "slime",
             path = "Enemies/slimeWalk1",
             status = "live"
         }
 
         player = {
-            hp = 5000,
-            maxhp = 5000,
-            mp = 5000,
-            maxmp = 5000,
+            hp = 1000,
+            maxhp = 1000,
+            mp = 1000,
+            maxmp = 1000,
             name = "player",
-            path = "Enemies/slimeWalk1",
+            path = "Player/p1_stand",
             status = "live"
         }
 
-        attackFlag = true
+
+
+        local options = {
+            width = 64,
+            height = 64,
+            numFrames = 6,
+            sheetContentWidth = 384,
+            sheetContentHeight = 64
+        }
+
+        attackFlag = false
 
         requestFlag = false
 
@@ -357,8 +507,8 @@ function scene:show( event )
         sceneGroup:insert(enemyImage)
 
         clearIcon = Sprite.new("UI/Icon/check4")
-        bubble = Bubble.new(enemyImage.contentWidth*0.75,
-        enemyImage.contentHeight*0.5)
+        bubble = Bubble.new(enemyImage.contentWidth*0.9,
+        enemyImage.contentHeight*0.7)
         bubble.alpha = 0
         bubble:insert(clearIcon)
         bubble:setText("")
@@ -366,13 +516,29 @@ function scene:show( event )
         bubble.x = enemyX
         bubble.y = enemyY - enemyImage.contentHeight
         sceneGroup:insert(bubble)
+
+        playerHPBar = display.newRect( playerX, playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04 , 
+            _SCREEN_WIDTH * 0.1, _SCREEN_HEIGHT * 0.033 )
+        playerHPBar.strokeWidth = 3
+        playerHPBar:setFillColor( 0, 255, 0 )
+        playerHPBar:setStrokeColor( 0, 255, 0 )
+        sceneGroup:insert(playerHPBar)
+
+        playerHPBar.width = playerHPBar.width
+
+        enemyHPBar = display.newRect( enemyX, enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04, 
+            _SCREEN_WIDTH * 0.1, _SCREEN_HEIGHT * 0.033 )
+        enemyHPBar.strokeWidth = 3
+        enemyHPBar:setFillColor( 0, 255, 0 )
+        enemyHPBar:setStrokeColor( 0, 255, 0 )
+        sceneGroup:insert(enemyHPBar)
         --[[
         local yellowButton = YellowButton.new(_SCREEN_WIDTH*0.2,_SCREEN_HEIGHT*0.2)
 
         yellowButton.x = _SCREEN_WIDTH / 2
         yellowButton.y = _SCREEN_HEIGHT / 2
         sceneGroup:insert(yellowButton)
-
+r
         --]]
         --calc playerTouchEnemyPosX
         playerTouchEnemyPosX = enemyX - enemyImage.contentWidth/2 - playerImage.contentWidth/2
@@ -381,6 +547,7 @@ function scene:show( event )
         moveTimer = timer.performWithDelay( 1, function()
         self:listenMove()
         end, -1)
+        globalATKClock = system.getTimer()
 
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen

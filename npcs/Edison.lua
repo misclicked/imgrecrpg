@@ -9,7 +9,7 @@ Character.new = function()
     character.bubble = Bubble.new(character.sprite.contentWidth * 3, character.sprite.contentWidth)
     character.bubble.alpha = 0
     character:insert(character.bubble)
-    character.questionText = "我好餓 :("
+    character.questionText = "需要壯丁！"
     character.clearIcon = Sprite.new("UI/Icon/check4")
     character.bubble:insert(character.clearIcon)
     character.bubble:setText("")

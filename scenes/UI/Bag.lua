@@ -1,6 +1,7 @@
 local composer = require( "composer" )
 local GreyPanel = require("ui.GreyPanel")
 local scene = composer.newScene()
+local inventory = require( "inventory" )
 
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
@@ -38,20 +39,40 @@ function scene:show( event )
 		
 		print("Hello")
 		local I = require("scenes.UI.ItemBox")
-		 print("HI")
+		print("HI")
 		--local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
 		--background:setFillColor(1,0.2,0.2)
 		local greyPanel = GreyPanel.new(display.contentWidth , display.contentHeight)
 		greyPanel.x = display.contentWidth * 0.5
 		greyPanel.y = display.contentHeight * 0.5
 		
-		local items = {row= 3,
+        local bag = nil
+        local items = nil
+		items = {row= 3,
 				col=3,
-                onItemSelect = self.effect}
+                onItemSelect = self.effect,
+                clear = function ()
+                    bag:removeSelf()
+                    bag = I.new(items)
+                    sceneGroup:insert(bag)
+                end,
+                showWord = function (s)
+                    local myText = display.newText( s, 100, 200, native.systemFont, 100 )
+                    myText.x = display.contentWidth/2
+                    myText.y = display.contentHeight/5
+                    myText:setTextColor(255, 0, 0)
+                    sceneGroup:insert(myText) 
+                    transition.to(myText,{time=500,alpha=0,onComplete= function ()
+                            if myText.removeSelf ~= nil then
+                                myText:removeSelf()
+                            end
+                        end
+                        })  
+                end}
 				
 		print(items)
 				
-		local bag = I.new(items)
+		bag = I.new(items)
 		--bag.x = display.contentWidth / 2
 		--bag.y = display.contentHeight / 2
 		sceneGroup:insert(greyPanel)
