@@ -74,7 +74,9 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         -- Code here runs immediately after the scene goes entirely off screen
-		
+		if self.onClose then
+            self.onClose()
+        end
 	end
 end
 -- destroy()
