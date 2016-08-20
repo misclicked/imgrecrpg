@@ -118,11 +118,12 @@ local options = {
 --composer.gotoScene("scenes.map.scene")
 --composer.gotoScene("scenes.testkev.testui")
 
-composer.gotoScene("scenes.testkev.testeffects")
+--composer.gotoScene("scenes.testkev.testeffects")
 --composer.gotoScene("scenes.map.scene")
 
 --composer.gotoScene("scenes.testkev.testeffect")
 --composer.gotoScene("scenes.testkev.testnpc")
 
-sfx:play("bg", {loops = -1})
+composer.gotoScene("scenes.camera.camera")
 
+sfx:play("bg", {loops = -1})
