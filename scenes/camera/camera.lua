@@ -1,8 +1,9 @@
 local composer = require( "composer" )
 local Sprtie = require( "Sprite" )
 local scene = composer.newScene()
-local camera = require("cameraMod").new()
 local Button = require("ui.BlueButton")
+-----------------For Camera Module----------------------------
+local camera = require("cameraMod").new()
 local json = require("json")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
@@ -20,12 +21,16 @@ function scene:create( event )
 	 local button = Button.new(100,100)
 	 function button:onTouch(e)
 		 if e.phase=="ended" then
+	--------------------------------------
+	--		lines below Show how to open a camera and utilize the tags result
 			camera:shoot(
 			function (tags)
-				-- tags is a table!! json.encode is used to convert it into String 
+				-- tags is a table!! json.encode is used to convert it into String
 				native.showAlert( "Corona", json.encode(tags), { "OK" } )
 			end
 		)
+	--	camera demo part ends
+	-------------------------------------------------
 		end
 	 end
 
