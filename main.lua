@@ -99,4 +99,5 @@ Sprite.addSheet(gameConfig.SHEET_PIXEL_EFFECT, "sprites/pixeleffect.png", "sprit
 
 --composer.gotoScene("scenes.map.scene")
 --composer.gotoScene("scenes.testkev.testui")
-composer.gotoScene("scenes.testkev.testeffect")
+--composer.gotoScene("scenes.testkev.testeffect")
+composer.gotoScene("scenes.testkev.testnpc")

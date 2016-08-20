@@ -1,14 +1,7 @@
 local composer = require( "composer" )
-local RedButton = require("ui.RedButton")
-local BlueButton = require("ui.BlueButton")
-local GreenButton = require("ui.GreenButton")
-local YellowButton = require("ui.YellowButton")
-local GreyButton = require("ui.GreyButton")
-local GreyPanel = require("ui.GreyPanel")
-local GreyBox = require("ui.GreyBox")
+local Sprtie = require( "Sprite" )
 local scene = composer.newScene()
-local logger = require("logger")
-local TAG = "TEST"
+local Kevin = require("npcs.Kevin")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -23,44 +16,16 @@ function scene:create( event )
 
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
-    local redButton = RedButton.new(100, 100)
-    sceneGroup:insert(redButton)
-    redButton.x = display.contentWidth * 0.25
-    redButton.y = display.contentHeight / 4 
+    local kevin = Kevin.new()
 
-    local blueButton = BlueButton.new(100, 100)
-    sceneGroup:insert(blueButton)
-    blueButton.x = redButton.x + redButton.width 
-    blueButton.y = redButton.y
-
-    local greenButton = GreenButton.new(100, 100)
-    sceneGroup:insert(greenButton)
-    greenButton.x = blueButton.x + blueButton.width 
-    greenButton.y = blueButton.y
-
-    local yellowButton = YellowButton.new(100, 100)
-    sceneGroup:insert(yellowButton)
-    yellowButton.x = greenButton.x + greenButton.width 
-    yellowButton.y = greenButton.y
-
-    local greyButton = GreyButton.new(100, 100)
-    sceneGroup:insert(greyButton)
-    greyButton.x = yellowButton.x + yellowButton.width 
-    greyButton.y = yellowButton.y
-
-    function redButton:onTouch(event)
-        if event.phase == "ended" then
-            logger:info(TAG, "Press Me!")
-        end        
-    end
-
-    local greyPanel = GreyPanel.new(400, 400)
-    greyPanel.x = display.contentWidth * 0.5
-    greyPanel.y = display.contentHeight * 0.5
-
-    local greyBox = GreyBox.new(50, 50)
-    greyBox.x = display.contentWidth * 0.5
-    greyBox.y = display.contentHeight * 0.5    
+    kevin.x = display.contentWidth/2
+    kevin.y = display.contentHeight/2
+    kevin:showBubble()
+    sceneGroup:insert(kevin)
+    timer.performWithDelay( 2000, 
+        function ()
+            kevin:setClear()
+        end)
 
 end
 
