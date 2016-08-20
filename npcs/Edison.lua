@@ -4,7 +4,7 @@ local Character = {}
 --
 Character.new = function()
     local character = display.newGroup()
-    character.sprite = Sprite.new("Player/p3_front")
+    character.sprite = Sprite.new("Player/p2_front")
     character:insert(character.sprite)
     character.bubble = Bubble.new(character.sprite.contentWidth * 3, character.sprite.contentWidth)
     character.bubble.alpha = 0
