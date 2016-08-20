@@ -1,5 +1,5 @@
 local composer = require( "composer" )
-
+local scene = composer.newScene()
 --[[
 
 display.setStatusBar(display.HiddenStatusBar)
@@ -92,4 +92,17 @@ Runtime:addEventListener("tap", onTap)
 
 --native.showAlert("Dusk", "Welcome to the Dusk Engine. Try double-tapping to load different example maps.", {"Got it!"})
 --]]
-composer.gotoScene("scenes.map.scene")
+--composer.gotoScene("scenes.map.scene")
+--composer.gotoScene("scenes.UI.Bag")
+local options = {
+    isModal = true,
+    effect = "fade",
+    time = 1000,
+    params = {
+        sampleVar = "my sample variable"
+    }
+}
+composer.showOverlay("scenes.UI.Bag"  )
+--timer.performWithDelay(4000, function())
+--composer.hideOverlay()
+
