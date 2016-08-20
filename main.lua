@@ -35,7 +35,7 @@ Runtime:addEventListener("tap", onTap)
 
 --composer.gotoScene("scenes.map.scene")
 --composer.gotoScene("scenes.UI.Bag")
-Sprite.addSheet(gameConfig.SHEET_PIXEL_EFFECT, "sprites/pixeleffect.png", "sprites.pixeleffect")
+--Sprite.addSheet(gameConfig.SHEET_PIXEL_EFFECT, "sprites/pixeleffect.png", "sprites.pixeleffect")
 --local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
 local options = {
     isModal = true,
@@ -50,7 +50,7 @@ local options = {
 --composer.hideOverlay()
 --Don't delete it!!
 
-composer.gotoScene("scenes.map.scene")
+--composer.gotoScene("scenes.map.scene")
 --composer.gotoScene("scenes.testkev.testui")
 
 --composer.gotoScene("scenes.testkev.testeffects")
@@ -66,3 +66,4 @@ composer.gotoScene("scenes.map.scene")
 -- composer.gotoScene( "scenes.battle.battle" )
 
 sfx:play("bg", {loops = -1})
+composer.showOverlay("scenes.UI.LoadingScreen")
