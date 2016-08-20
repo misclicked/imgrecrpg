@@ -139,8 +139,6 @@ local function openCamera( event )
         busy=true
         camera:shoot(
             function (tags,isFace,faceAttr)
-                native.showAlert( "Corona", json.encode({tags,isFace,faceAttr}), { "OK" } )
-                return
                 -- tags is a table!! json.encode is used to convert it into String
                 print(#tags)
                 --sequenceCnt = 1
@@ -149,14 +147,14 @@ local function openCamera( event )
                 local targetFlag = false
                 local matchCnt = 1
                 local matchFlag = false
-                --[[if isFace then
+                if isFace then
                     if feceAttr.gender == "male" then
                         showWord("我現在不需要"..tostring(faceAttr.age).."歲的男性")
                     else
                         showWord("我現在不需要"..tostring(faceAttr.age).."歲的女性")
                     end
                     return
-                end--]]
+                end
                 for i = 1, #tags do
                     print(tags[i])
                     if inventory.dictionary[tags[i]] ~= null then
@@ -185,6 +183,7 @@ local function openCamera( event )
                     showWord("我現在不需要這項物品")
                 end
                 
+                native.showAlert( "Corona", json.encode({tags,isFace,faceAttr}), { "OK" } )
                 --native.showAlert( "Corona", json.encode(tags), { "OK" } )
             end
             )
@@ -467,7 +466,8 @@ function scene:show( event )
 
         cameraImage:addEventListener( "touch", openCamera)
 
-
+        
+        sceneGroup:insert(cameraImage)
         enemy = {
             hp = 20,
             maxhp = 20,
