@@ -1,7 +1,10 @@
 local composer = require( "composer" )
-local scene = composer.newScene()
-local widget = require( "widget" )
+local GreyBox = require("ui.GreyBox")
+local GreyPanel = require("ui.GreyPanel")
+local BlueButton = require("ui.BlueButton")
+local Sprite = require("Sprite")
 
+local scene = composer.newScene()
 local ItemBox = {}
 
 
@@ -12,7 +15,7 @@ ItemBox.new = function (t)
 	
 	local pictures = {}
 	local count = 0
-	
+
 	--local gap = display.contentWidth / y
 	
 	local width = 100
@@ -22,6 +25,11 @@ ItemBox.new = function (t)
 	local gap = 150
 	local xa = tonumber(x)
 	print (t,x,t.row , xa)
+	
+
+	 
+	
+	
 	
 	if x % 2 == 0 then
 		 xStarting =  display.contentCenterX -((((y/2) - 1)*gap ) + ((1/2)*gap))
@@ -40,22 +48,24 @@ ItemBox.new = function (t)
 	local yCoordinate = yStarting
 		
 	local myButtonHandler =  function ( event )
+		print("dgfg")
 		local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
 		background:setFillColor(math.random(),math.random(),math.random())
 		
 	end
-	
+	--[[
 	local myExitHandler =  function ( event )
 		--local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
 		--background:setFillColor(math.random(),math.random(),math.random())
-		--[[local options = {
+		local options = {
 		isModal = true,
 		effect = "fade",
 		time = 1000,
 		params = {
         sampleVar = "my sample variable"
 		}
-	}	]]--
+	}	
+	
 	print("Touch ended!!")
 	if event.phase == "ended" then
         
@@ -68,6 +78,9 @@ ItemBox.new = function (t)
 		 
 		
 	end
+	]]--
+	
+	
 	
 	function scene:hide( event )
 		local sceneGroup = self.view
@@ -88,10 +101,19 @@ ItemBox.new = function (t)
 			print( "y:")
 			print(yCount)
 			print (xStarting,yStarting,width,height)
-			local box = display.newRect( xCoordinate,yCoordinate,width,height )
-			box:addEventListener("touch", myButtonHandler)
+			--local box = display.newRect( xCoordinate,yCoordinate,width,height )
+			--box:addEventListener("touch", myButtonHandler)
 			--box:setFillColor(0.7,0.8,1)
-			itemBox:insert(box)
+		--	itemBox:insert(box)
+			
+			print(xCoordinate,yCoordinate)
+			local greyBox = GreyBox.new(width, height)
+			greyBox.x = xCoordinate
+			greyBox.y = yCoordinate
+			greyBox:addEventListener("touch", myButtonHandler)
+			itemBox:insert(greyBox)
+			
+			
 			
 			--local image = newImage(pictures[count], display.ContentCenterX,display.ContentCenterX,display.ContentWidth,display.ContentHeight )
 			
@@ -104,13 +126,27 @@ ItemBox.new = function (t)
 	end
 
 		xCoordinate = display.contentCenterX
-		 box = display.newRect( xCoordinate,yCoordinate,buttonWidth,buttonHeight )
-		box:setFillColor(0.5,0.4,1)
-		box:addEventListener("touch", myExitHandler)
-		itemBox:insert(box)
-		
+		--box = display.newRect( xCoordinate,yCoordinate,buttonWidth,buttonHeight )
+		--box:setFillColor(0.5,0.4,1)
+		--box:addEventListener("touch")
+		--itemBox:insert(box)
+		 print("1")
+		  blueButton = BlueButton.new(buttonWidth, buttonHeight)
+		 blueButton.x = xCoordinate
+		 blueButton.y = yCoordinate
+		 --blueButton:addEventListener("touch", onTouch)
+		 itemBox:insert(blueButton)
+		 print("2")
+	
+	function blueButton:onTouch(event)
+        print("3")
+		if event.phase == "ended" then
+            composer.hideOverlay()
+        end        
+    end	
+	
 		return itemBox
 end
-	
+
 scene:addEventListener( "hide", scene )	
 return ItemBox

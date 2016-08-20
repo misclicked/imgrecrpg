@@ -1,29 +1,27 @@
 local composer = require( "composer" )
 local Explosion = require("effects.Explosion")
+local Jesus = require("effects.Jesus")
+local missile = require("effects.missile")
+local red_health = require("effects.red_health")
+local rocks = require("effects.rocks")
+local sword = require("effects.sword")
+local big_explosion = require("effects.big_explosion")
+local fireball = require("effects.fireball")
+local green_health = require("effects.green_health")
+
+
 local scene = composer.newScene()
 
--- -----------------------------------------------------------------------------------
--- Code outside of the scene event functions below will only be executed ONCE unless
--- the scene is removed entirely (not recycled) via "composer.removeScene()"
--- -----------------------------------------------------------------------------------
-
--- -----------------------------------------------------------------------------------
--- Scene event functions
--- -----------------------------------------------------------------------------------
-
--- create()
 function scene:create( event )
 
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
-    local exp = Jesus.new()
-    exp.x = display.contentWidth/2
-    exp.y = display.contentHeight/2
+    local jesus = green_health.new()
+    jesus.x = display.contentWidth/2
+    jesus.y = display.contentHeight/2
 
 end
 
-
--- show()
 function scene:show( event )
 
     local sceneGroup = self.view
@@ -54,7 +52,6 @@ function scene:hide( event )
     end
 end
 
-
 -- destroy()
 function scene:destroy( event )
 
@@ -63,10 +60,6 @@ function scene:destroy( event )
 
 end
 
-
--- -----------------------------------------------------------------------------------
--- Scene event function listeners
--- -----------------------------------------------------------------------------------
 scene:addEventListener( "create", scene )
 scene:addEventListener( "show", scene )
 scene:addEventListener( "hide", scene )

@@ -101,7 +101,7 @@ Runtime:addEventListener("tap", onTap)
 --composer.gotoScene("scenes.map.scene")
 --composer.gotoScene("scenes.UI.Bag")
 Sprite.addSheet(gameConfig.SHEET_PIXEL_EFFECT, "sprites/pixeleffect.png", "sprites.pixeleffect")
-
+--local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
 local options = {
     isModal = true,
     effect = "fade",
@@ -117,8 +117,13 @@ local options = {
 
 --composer.gotoScene("scenes.map.scene")
 --composer.gotoScene("scenes.testkev.testui")
+
+--composer.gotoScene("scenes.testkev.testeffects")
+--composer.gotoScene("scenes.map.scene")
+
 --composer.gotoScene("scenes.testkev.testeffect")
 --composer.gotoScene("scenes.testkev.testnpc")
 composer.gotoScene("scenes.testkev.testitem")
 
 sfx:play("bg", {loops = -1})
+

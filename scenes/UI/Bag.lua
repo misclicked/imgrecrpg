@@ -1,4 +1,5 @@
 local composer = require( "composer" )
+local GreyPanel = require("ui.GreyPanel")
 local scene = composer.newScene()
 
 -- -----------------------------------------------------------------------------------
@@ -30,15 +31,19 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Code here runs when the scene is still off screen (but is about to come on screen)
-
+		self.onClose = event.params and event.params.onClose
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen
 		
 		print("Hello")
 		local I = require("scenes.UI.ItemBox")
 		 print("HI")
-		local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
-		background:setFillColor(1,0.2,0.2)
+		--local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
+		--background:setFillColor(1,0.2,0.2)
+		local greyPanel = GreyPanel.new(display.contentWidth , display.contentHeight)
+		greyPanel.x = display.contentWidth * 0.5
+		greyPanel.y = display.contentHeight * 0.5
+		
 		local items = {row= 3,
 				col=3}
 				
@@ -47,9 +52,9 @@ function scene:show( event )
 		local bag =I.new(items)
 		--bag.x = display.contentWidth / 2
 		--bag.y = display.contentHeight / 2
-		sceneGroup:insert(background)
+		sceneGroup:insert(greyPanel)
 		sceneGroup:insert(bag)
-		
+		--sceneGroup:insert(greyPanel)
 	end
    
 end
@@ -69,7 +74,9 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         -- Code here runs immediately after the scene goes entirely off screen
-		
+		if self.onClose then
+            self.onClose()
+        end
 	end
 end
 -- destroy()
