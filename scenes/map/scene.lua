@@ -181,8 +181,10 @@ function scene:enterFrame( event )
 
         if map.offsetX < 0 then
             self.startMove = false
+            composer.gotoScene( "scenes.battle.battle" )
         elseif map.offsetX > display.contentWidth + 190 then
             self.startMove = false
+            composer.gotoScene( "scenes.battle.battle" )
         end    
 
 if mapkevin1.clearIcon.alpha ~= 1 then 
