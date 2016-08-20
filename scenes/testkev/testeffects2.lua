@@ -20,8 +20,8 @@ function scene:show( event )
         local explosion = Explosions.new()
         explosion.x = display.contentWidth/2
         explosion.y = display.contentHeight/2
+        sceneGroup:insert(explosion)
 
-        
 
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen
