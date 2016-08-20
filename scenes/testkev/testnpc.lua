@@ -2,6 +2,8 @@ local composer = require( "composer" )
 local Sprtie = require( "Sprite" )
 local scene = composer.newScene()
 local Kevin = require("npcs.Kevin")
+local Edison = require("npcs.Edison")
+local Grand = require("npcs.Grand")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -18,18 +20,38 @@ function scene:create( event )
     -- Code here runs when the scene is first created but has not yet appeared on screen
     local kevin = Kevin.new()
 
-    kevin.x = display.contentWidth/2
-    kevin.y = display.contentHeight/2
+    kevin.x = display.contentWidth/4 
+    kevin.y = display.contentHeight/4
     kevin:showBubble()
     sceneGroup:insert(kevin)
     timer.performWithDelay( 2000, 
         function ()
             kevin:setClear()
-        end)
+    end)
+
+    local edison = Edison.new()
+
+    edison.x = display.contentWidth/4 * 2
+    edison.y = display.contentHeight/4 * 2
+    edison:showBubble()
+    sceneGroup:insert(edison)
+    timer.performWithDelay( 2000, 
+        function ()
+            edison:setClear()
+    end)
+
+    local grand = Grand.new()
+
+    grand.x = display.contentWidth/4 * 3
+    grand.y = display.contentHeight/4 * 3
+    grand:showBubble()
+    sceneGroup:insert(grand)
+    timer.performWithDelay( 2000, 
+        function ()
+            grand:setClear()
+    end)
 
 end
-
-
 -- show()
 function scene:show( event )
 

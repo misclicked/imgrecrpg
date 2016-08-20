@@ -15,7 +15,6 @@ end
 
 display.setStatusBar(display.HiddenStatusBar)
 
-composer.gotoScene( "scenes.battle.battle" )
 --[[
 for i = 1, #inventory.items do
     local Item = require(items[i])
@@ -59,9 +58,11 @@ local options = {
 
 --composer.gotoScene("scenes.testkev.testeffect")
 --composer.gotoScene("scenes.testkev.testeffects2")
---composer.gotoScene("scenes.testkev.testnpc")
+composer.gotoScene("scenes.testkev.testnpc")
 --composer.gotoScene("scenes.testkev.testitem")
 
 --composer.gotoScene("scenes.camera.camera")
+
+--composer.gotoScene( "scenes.battle.battle" )
 
 sfx:play("bg", {loops = -1})
