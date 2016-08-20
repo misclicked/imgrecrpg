@@ -14,6 +14,7 @@ Kevin.new = function()
     kevin.bubble:insert(kevin.clearIcon)
     kevin.bubble:setText("")
     kevin.bubble.buttonText.fill = {0,0,0}
+    
     function kevin:showBubble()
         self.bubble.x = 0
         self.bubble.y = - self.sprite.contentHeight
