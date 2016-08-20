@@ -42,7 +42,7 @@ local options = {
     effect = "fade",
     time = 1000,
     params = {
-        sampleVar = "my sample variable"
+    	sampleVar = "my sample variable"
     }
 }
 --composer.showOverlay("scenes.UI.Bag"  )
