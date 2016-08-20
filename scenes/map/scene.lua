@@ -133,7 +133,7 @@ function scene:create( event )
                         end
 
                     end
-                    , 
+                    ,true   
                 )
             else
                 print("carema began")
@@ -248,7 +248,7 @@ if mapkevin1.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有食物可以交付?", {"交付 食物"})
-            if mapkevin1:isFinishQuest("Items.Food") == false then 
+            if mapkevin1:isFinishQuest("items.Food") == false then 
                 print("食物:false")
                 --mapkevin1:setClear()
             else
@@ -275,7 +275,7 @@ if mapkevin2.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
-            if mapkevin2:isFinishQuest("Items.Man") == false then 
+            if mapkevin2:isFinishQuest("items.Man") == false then 
                 print("年輕人:false")
                 --mapkevin2:setClear()
             else
@@ -302,7 +302,7 @@ if mapkevin3.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有藥水可以交付?", {"交付 藥水"})
-            if mapkevin3:isFinishQuest("Items.RedPotion") == false then 
+            if mapkevin3:isFinishQuest("items.RedPotion") == false then 
                 print("藥水:false")
                 --mapkevin3:setClear()
             else
