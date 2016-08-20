@@ -1,4 +1,5 @@
 local composer = require( "composer" )
+local GreyPanel = require("ui.GreyPanel")
 local scene = composer.newScene()
 
 -- -----------------------------------------------------------------------------------
@@ -37,8 +38,12 @@ function scene:show( event )
 		print("Hello")
 		local I = require("scenes.UI.ItemBox")
 		 print("HI")
-		local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
-		background:setFillColor(1,0.2,0.2)
+		--local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
+		--background:setFillColor(1,0.2,0.2)
+		local greyPanel = GreyPanel.new(display.contentWidth , display.contentHeight)
+		greyPanel.x = display.contentWidth * 0.5
+		greyPanel.y = display.contentHeight * 0.5
+		
 		local items = {row= 3,
 				col=3}
 				
@@ -47,9 +52,9 @@ function scene:show( event )
 		local bag =I.new(items)
 		--bag.x = display.contentWidth / 2
 		--bag.y = display.contentHeight / 2
-		sceneGroup:insert(background)
+		sceneGroup:insert(greyPanel)
 		sceneGroup:insert(bag)
-		
+		--sceneGroup:insert(greyPanel)
 	end
    
 end
