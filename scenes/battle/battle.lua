@@ -9,6 +9,7 @@ local Bubble = require("ui.GreyPanel")
 local YellowButton = require("ui.YellowButton")
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
+local json = require("json")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -77,10 +78,10 @@ local function openInventory( event )
             }
         }
     if inventoryOpened then
-        composer.hideOverlay( "scenes.UI.bag", options )
+        composer.hideOverlay( "scenes.UI.Bag", options )
         inventoryOpened = false
     else
-        composer.showOverlay( "scenes.UI.bag", options )
+        composer.showOverlay( "scenes.UI.Bag", options )
         inventoryOpened = true
     end
     elseif event.phase == "ended" or event.phase == "cancelled" then
@@ -151,7 +152,7 @@ end
 
 local function initEnemy( path )
 
-    enemyImage = Sprite.new(path) 
+    enemyImage = Sprite.new(path)
 
     --resize enemyImage
     enemyImage.xScale = ( _SCREEN_WIDTH * 0.25 ) / enemyImage.width
@@ -178,7 +179,7 @@ function scene:listenMove( )
         attackFlag = false
     end
     if moveLeftFlag or moveRightFlag then
-        if playerX >= playerTouchEnemyPosX and moveRightFlag or playerX <= playerTouchScreenPosX and moveLeftFlag then          
+        if playerX >= playerTouchEnemyPosX and moveRightFlag or playerX <= playerTouchScreenPosX and moveLeftFlag then
             playerImage:setSequence("stand")
             return
         end
@@ -207,7 +208,7 @@ function scene:touch( event )
                  y = playerY, rotation = 30, onComplete = function()
                     local damage = math.random(-30,-5)
                     enemy.hp = enemy.hp + damage
-                    local hitText = display.newText(tostring(damage) , 
+                    local hitText = display.newText(tostring(damage) ,
                         enemyX + math.random(_SCREEN_WIDTH*-0.01,_SCREEN_WIDTH*0.01),
                      enemyY - enemyImage.contentHeight/2,
                         native.systemFont, 100)
@@ -345,7 +346,7 @@ function scene:show( event )
         x = _SCREEN_WIDTH/2,
         y = _SCREEN_HEIGHT/2,
         sheetContentWidth = _SCREEN_WIDTH,
-        sheetContentHeight = _SCREEN_HEIGHT 
+        sheetContentHeight = _SCREEN_HEIGHT
         }
 
         local background = display.newImage("backgrounds/full-background.png",options)
@@ -370,7 +371,7 @@ function scene:show( event )
         sceneGroup:insert(bubble)
         --[[
         local yellowButton = YellowButton.new(_SCREEN_WIDTH*0.2,_SCREEN_HEIGHT*0.2)
-        
+
         yellowButton.x = _SCREEN_WIDTH / 2
         yellowButton.y = _SCREEN_HEIGHT / 2
         sceneGroup:insert(yellowButton)
