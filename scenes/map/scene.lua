@@ -2,6 +2,9 @@ local composer = require( "composer" )
 local Sprite = require("Sprite")
 local scene = composer.newScene()
 local Kevin = require("npcs.Kevin")
+-----------------For Camera Module----------------------------
+local camera = require("cameraMod").new()
+local json = require("json")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -65,25 +68,81 @@ function scene:create( event )
 
     map.offsetX = display.contentWidth / 2 + 70
 
+    --camera
     local icon = Sprite.new("Items/62")
     icon.x = display.contentWidth - 100
     icon.y = display.contentHeight - 100
+    icon:addEventListener("touch" , 
+        function(event)
+
+        if event.x < icon.x + 50 and event.x > icon.x - 50 then
+            self.startMove = false
+            if event.phase == "ended" then
+                print("carema ended")
+                --call carema
+                camera:shoot(
+                    function(tags)
+                        --tag decide
+                        print(tags)
+                    end   
+                )
+            else
+                print("carema began")
+            end
+        else
+            
+        end
+
+    end)
     sceneGroup:insert(icon)
 
+    --food
     mapkevin1 = Kevin.new()
     mapkevin1.x = self.offsetX + 200
     mapkevin1.y = display.contentHeight/2
     mapkevin1.offsetX = mapkevin1.x
+    mapkevin1.questionText = "我要食物"
     mapkevin1:showBubble()
     sceneGroup:insert(mapkevin1)
     Runtime:addEventListener( "touch", mapkevin1)
-    timer.performWithDelay( 2000, 
+    timer.performWithDelay( 99000, 
         function ()
             mapkevin1:setClear()
         end)
     sceneGroup:insert(mapkevin1)
 
+    --young man
+    mapkevin2 = Kevin.new()
+    mapkevin2.x = self.offsetX + 600
+    mapkevin2.y = display.contentHeight/2
+    mapkevin2.offsetX = mapkevin2.x
+    mapkevin2.questionText = "我要年輕人"
+    mapkevin2:showBubble()
+    sceneGroup:insert(mapkevin2)
+    Runtime:addEventListener( "touch", mapkevin2)
+    timer.performWithDelay( 99000, 
+        function ()
+            mapkevin2:setClear()
+        end)
+    sceneGroup:insert(mapkevin2)
+
+    --medicinal
+    mapkevin3 = Kevin.new()
+    mapkevin3.x = self.offsetX + 1000
+    mapkevin3.y = display.contentHeight/2
+    mapkevin3.offsetX = mapkevin3.x
+    mapkevin3.questionText = "我要藥水"
+    mapkevin3:showBubble()
+    sceneGroup:insert(mapkevin3)
+    Runtime:addEventListener( "touch", mapkevin3)
+    timer.performWithDelay( 99000, 
+        function ()
+            mapkevin3:setClear()
+        end)
+    sceneGroup:insert(mapkevin3)
+
 end
+
 
 function scene:touch(event)
     if event.phase == "began" then
@@ -115,6 +174,9 @@ function scene:enterFrame( event )
         self.offsetX = self.offsetX + 10 * self.moveDir
         map.x = map.x + 10 * self.moveDir * -1
         map.offsetX = map.offsetX + 10 * self.moveDir * -1
+        print("-人物")
+        print(self.offsetX)
+        print("=人物")
 
         if map.offsetX < 0 then
             self.startMove = false
@@ -122,19 +184,88 @@ function scene:enterFrame( event )
             self.startMove = false
         end    
 
+if mapkevin1.clearIcon.alpha ~= 1 then 
+        print("-food")
         mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
+        print(mapkevin1.x)
+        print("=food")
         if self.offsetX > mapkevin1.x + 70 then
             self.startMove = false
+            self.character:setSequence("stand")
+            self.character:play()
             
+            native.showAlert("需求訊息", "你是否有食物可以交付?", {"交付 食物"})
             if mapkevin1:isFinishQuest() == false then 
-                print("kevin1:false")
+                print("食物:false")
+                -- mapkevin1:setClear()
             else
-                print("kevin1:true")
+                print("食物:true")
+                mapkevin1:setClear()
             end
-            native.showAlert("Battle Message", "Fighting~~~~~~~~with kevin 1.", {"Got it!"})
         end
+else
+        print("pass food")
+        mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
+        if self.offsetX > mapkevin1.x + 70 then
 
-        
+        end  
+end
+
+if mapkevin2.clearIcon.alpha ~= 1 then 
+        print("-young")
+        mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
+        print(mapkevin2.x)
+        print("=young")
+        if self.offsetX > mapkevin2.x + 470 then
+            self.startMove = false
+            self.character:setSequence("stand")
+            self.character:play()
+            
+            native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
+            if mapkevin2:isFinishQuest() == false then 
+                print("年輕人:false")
+                -- mapkevin2:setClear()
+            else
+                print("年輕人:true")
+                mapkevin2:setClear()
+            end
+        end
+else
+        print("pass young")
+        mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
+        if self.offsetX > mapkevin2.x + 70 then
+
+        end  
+end
+
+if mapkevin3.clearIcon.alpha ~= 1 then 
+        print("-medicinal")
+        mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
+        print(mapkevin3.x)
+        print("=medicinal")
+        if self.offsetX > mapkevin3.x + 870 then
+            self.startMove = false
+            self.character:setSequence("stand")
+            self.character:play()
+            
+            native.showAlert("需求訊息", "你是否有藥水可以交付?", {"交付 藥水"})
+            if mapkevin3:isFinishQuest() == false then 
+                print("藥水:false")
+                -- mapkevin3:setClear()
+            else
+                print("藥水:true")
+                mapkevin3:setClear()
+            end
+        end
+else
+        print("pass medicinal")
+        mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
+        if self.offsetX > mapkevin3.x + 70 then
+
+        end  
+end
+
+
     end
 end
 
