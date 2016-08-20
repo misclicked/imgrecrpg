@@ -114,7 +114,7 @@ function scene:create( event )
 
     --young man
     mapkevin2 = Kevin.new()
-    mapkevin2.x = self.offsetX + 600
+    mapkevin2.x = self.offsetX + 400
     mapkevin2.y = display.contentHeight/2
     mapkevin2.offsetX = mapkevin2.x
     mapkevin2.questionText = "我要年輕人"
@@ -129,7 +129,7 @@ function scene:create( event )
 
     --medicinal
     mapkevin3 = Kevin.new()
-    mapkevin3.x = self.offsetX + 1000
+    mapkevin3.x = self.offsetX + 600
     mapkevin3.y = display.contentHeight/2
     mapkevin3.offsetX = mapkevin3.x
     mapkevin3.questionText = "我要藥水"
@@ -198,10 +198,10 @@ if mapkevin1.clearIcon.alpha ~= 1 then
             native.showAlert("需求訊息", "你是否有食物可以交付?", {"交付 食物"})
             if mapkevin1:isFinishQuest() == false then 
                 print("食物:false")
-                -- mapkevin1:setClear()
+                mapkevin1:setClear()
             else
                 print("食物:true")
-                mapkevin1:setClear()
+                -- mapkevin1:setClear()
             end
         end
 else
@@ -217,7 +217,7 @@ if mapkevin2.clearIcon.alpha ~= 1 then
         mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
         print(mapkevin2.x)
         print("=young")
-        if self.offsetX > mapkevin2.x + 470 then
+        if self.offsetX > mapkevin2.x + 270 then
             self.startMove = false
             self.character:setSequence("stand")
             self.character:play()
@@ -225,10 +225,10 @@ if mapkevin2.clearIcon.alpha ~= 1 then
             native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
             if mapkevin2:isFinishQuest() == false then 
                 print("年輕人:false")
-                -- mapkevin2:setClear()
+                mapkevin2:setClear()
             else
                 print("年輕人:true")
-                mapkevin2:setClear()
+                -- mapkevin2:setClear()
             end
         end
 else
@@ -244,7 +244,7 @@ if mapkevin3.clearIcon.alpha ~= 1 then
         mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
         print(mapkevin3.x)
         print("=medicinal")
-        if self.offsetX > mapkevin3.x + 870 then
+        if self.offsetX > mapkevin3.x + 470 then
             self.startMove = false
             self.character:setSequence("stand")
             self.character:play()
@@ -252,10 +252,10 @@ if mapkevin3.clearIcon.alpha ~= 1 then
             native.showAlert("需求訊息", "你是否有藥水可以交付?", {"交付 藥水"})
             if mapkevin3:isFinishQuest() == false then 
                 print("藥水:false")
-                -- mapkevin3:setClear()
+                mapkevin3:setClear()
             else
                 print("藥水:true")
-                mapkevin3:setClear()
+                -- mapkevin3:setClear()
             end
         end
 else
