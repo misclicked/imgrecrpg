@@ -298,6 +298,9 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
         -- Code here runs when the scene is on screen (but is about to go off screen)
+        Runtime:removeEventListener( "touch", mapkevin1)
+        Runtime:removeEventListener( "touch", mapkevin2)
+        Runtime:removeEventListener( "touch", mapkevin3)
         Runtime:removeEventListener("touch", self)
         Runtime:removeEventListener("enterFrame", self)
     elseif ( phase == "did" ) then
