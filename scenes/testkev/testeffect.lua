@@ -1,5 +1,5 @@
 local composer = require( "composer" )
-local Sprtie = require( "Sprite" )
+local Explosion = require("effects.Explosion")
 local scene = composer.newScene()
 
 -- -----------------------------------------------------------------------------------
@@ -16,6 +16,9 @@ function scene:create( event )
 
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
+    local exp = Explosion.new()
+    exp.x = display.contentWidth/2
+    exp.y = display.contentHeight/2
 
 end
 

@@ -1,5 +1,6 @@
 local composer = require( "composer" )
-
+local Sprite = require( "Sprite" )
+local gameConfig = require("gameConfig")
 --[[
 
 display.setStatusBar(display.HiddenStatusBar)
@@ -93,5 +94,9 @@ Runtime:addEventListener("tap", onTap)
 --native.showAlert("Dusk", "Welcome to the Dusk Engine. Try double-tapping to load different example maps.", {"Got it!"})
 --]]
 
+--Don't delete it!!
+Sprite.addSheet(gameConfig.SHEET_PIXEL_EFFECT, "sprites/pixeleffect.png", "sprites.pixeleffect")
+
 --composer.gotoScene("scenes.map.scene")
-composer.gotoScene("scenes.testkev.testui")
+--composer.gotoScene("scenes.testkev.testui")
+composer.gotoScene("scenes.testkev.testeffect")
