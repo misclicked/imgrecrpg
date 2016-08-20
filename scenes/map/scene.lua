@@ -2,6 +2,7 @@ local composer = require( "composer" )
 local Sprite = require("Sprite")
 local scene = composer.newScene()
 local Kevin = require("npcs.Kevin")
+local inventory = require( "inventory" )
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
 local json = require("json")
@@ -15,9 +16,25 @@ local json = require("json")
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
 -- -----------------------------------------------------------------------------------
+local function showWord( s )
+    sceneGroup = scene.view
+    local myText = display.newText( s, 100, 200, native.systemFont, 100 )
+        myText.x = display.contentWidth/2
+        myText.y = display.contentHeight/5
+        myText:setTextColor(255, 0, 0)
+        sceneGroup:insert(myText) 
+        transition.to(myText,{time=500,alpha=0, y=display.contentHeight/7,onComplete= function ()
+        if myText.removeSelf ~= nil then
+            myText:removeSelf()
+        end
+    end
+    })  
+end
 
 -- create()
 function scene:create( event )
+    inventory:makeDictionary()
+
     --local Background = Background.new()
     local sceneGroup = self.view
     clickCount = 70
@@ -82,10 +99,40 @@ function scene:create( event )
                 --call carema
                 camera:shoot(
                     function(tags)
-                        --tag decide
-                        print(tags)
+                        --sequenceCnt = 1
+                        --showSequenceWord(tags)
+                        local targetCnt = 1
+                        local targetFlag = false
+                        local matchCnt = 1
+                        local matchFlag = false
+                        for i = 1, #tags do
+                            if inventory.dictionary[tags[i]] ~= null then
+                                if matchFlag == false then
+                                    matchCnt = i
+                                end
+                                matchFlag = true
+                                if inventory.dictionary[tags[i]] == scene.requestItem then
+                                    print(tags[i])
+                                    targetFlag = true
+                                    targetCnt = i
+                                end
+                            end
+                            if targetFlag then
+                                print("hehe")
+                                break
+                            end
+                        end
+                        if targetFlag then
+                            showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[targetCnt]],"Items.",""))
+                            inventory:addItem(inventory.dictionary[tags[targetCnt]])
+                        elseif matchFlag then
+                            showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[matchCnt]],"Items.",""))
+                            inventory:addItem(inventory.dictionary[tags[matchCnt]])
+                        else
+                            showWord("你不需要這項物品")
+                        end
+
                     end
-                    ,true   
                 )
             else
                 print("carema began")
@@ -181,10 +228,12 @@ function scene:enterFrame( event )
 
         if map.offsetX < 0 then
             self.startMove = false
-            composer.gotoScene( "scenes.battle.battle" )
+            print("start1")
+            composer.gotoScene( "scenes.battle.battle" , {effect = "slideLeft", time = 300})
         elseif map.offsetX > display.contentWidth + 190 then
             self.startMove = false
-            composer.gotoScene( "scenes.battle.battle" )
+            print("start2")
+            composer.gotoScene( "scenes.battle.battle"  ,{effect = "slideLeft", time = 300})
         end    
 
 if mapkevin1.clearIcon.alpha ~= 1 then 
@@ -198,12 +247,12 @@ if mapkevin1.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有食物可以交付?", {"交付 食物"})
-            if mapkevin1:isFinishQuest() == false then 
+            if mapkevin1:isFinishQuest("items.Food") == false then 
                 print("食物:false")
-                mapkevin1:setClear()
+                --mapkevin1:setClear()
             else
                 print("食物:true")
-                -- mapkevin1:setClear()
+                mapkevin1:setClear()
             end
         end
 else
@@ -225,12 +274,12 @@ if mapkevin2.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
-            if mapkevin2:isFinishQuest() == false then 
+            if mapkevin2:isFinishQuest("items.Man") == false then 
                 print("年輕人:false")
-                mapkevin2:setClear()
+                --mapkevin2:setClear()
             else
                 print("年輕人:true")
-                -- mapkevin2:setClear()
+                mapkevin2:setClear()
             end
         end
 else
@@ -252,12 +301,12 @@ if mapkevin3.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有藥水可以交付?", {"交付 藥水"})
-            if mapkevin3:isFinishQuest() == false then 
+            if mapkevin3:isFinishQuest("items.RedPotion") == false then 
                 print("藥水:false")
-                mapkevin3:setClear()
+                --mapkevin3:setClear()
             else
                 print("藥水:true")
-                -- mapkevin3:setClear()
+                mapkevin3:setClear()
             end
         end
 else
@@ -296,6 +345,9 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
         -- Code here runs when the scene is on screen (but is about to go off screen)
+        Runtime:removeEventListener( "touch", mapkevin1)
+        Runtime:removeEventListener( "touch", mapkevin2)
+        Runtime:removeEventListener( "touch", mapkevin3)
         Runtime:removeEventListener("touch", self)
         Runtime:removeEventListener("enterFrame", self)
     elseif ( phase == "did" ) then

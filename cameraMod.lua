@@ -5,9 +5,12 @@ function cameraMod.new()
 	local cameraModule={}
 
 	cameraModule.apiInfo={
+		key1="c24eb2c5ce13487d95ab11912d70224a",
+		key2="7dde71971dd34d43b03309faaa13c57c",
 		url_general= "https://api.clarifai.com/v1/tag/",
 		url_color= "https://api.clarifai.com/v1/color/",
 		url_usage= "https://api.clarifai.com/v1/usage/",
+		url_face="https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=false&returnFaceLandmarks=false&returnFaceAttributes=age,gender",
 		token_type="",
 		expires_in=-1,
 		access_token="",
@@ -83,6 +86,26 @@ function cameraMod.new()
 			network.request(self.url_usage,"GET",networkListener,params)
 		end,
 		sendImages = function(self,onComplete)
+			local function sendFace(result)
+				local headers = {}
+				headers["Ocp-Apim-Subscription-Key"] = self.key1
+				local params = {}
+				params.headers = headers
+				local function networkL( event )
+				    if ( event.isError ) then
+				        print( "Network error: ", event.response )
+				    elseif ( event.phase == "ended" ) then
+						  res=json.decode(event.response)
+						  local flag=(#res>0) and true or false
+						  if(flag) then
+							  res=res[1].faceAttributes
+					  	  end
+						  onComplete(result,flag,res)
+						  return
+				    end
+				end
+				network.upload(self.url_face,"POST",networkL,params,"NewImage.jpg",system.DocumentsDirectory,"application/octet-stream")
+			end
 			self.resizeImage("UnProsImage.jpg","NewImage.jpg", 250, 250)
 			local multipart = MultipartFormData.new()
 			multipart:addHeader("Authorization", string.format("%s %s",self.token_type,self.access_token))
@@ -100,7 +123,8 @@ function cameraMod.new()
 			             if event.response then
 								 local _tableR=json.decode(event.response)
 								--  print("RESPONSE",event.response)
-								 onComplete(_tableR.results[1].result.tag.classes)
+								sendFace(_tableR.results[1].result.tag.classes)
+								 --onComplete()
 								 return
 							 else
 								 return nil
@@ -163,7 +187,7 @@ function cameraMod.new()
 			self.apiInfo:getTags(cb)
 		end
 		if debug~=nil then
-			cb({"young","food","bottle","adult","pencil","glasses"})
+			cb({"young","food","bottle","adult","pencil","glasses"},true,{age=37.4,gender="male"})
 		elseif media.hasSource( media.Camera ) then
 		    media.capturePhoto( { listener=onComplete,
 			 destination ={
