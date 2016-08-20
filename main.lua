@@ -1,7 +1,7 @@
 local composer = require( "composer" )
 local Sprite = require( "Sprite" )
 local gameConfig = require("gameConfig")
-
+local sfx = require("sfx")
 local scene = composer.newScene()
 
 
@@ -119,3 +119,5 @@ local options = {
 --composer.gotoScene("scenes.testkev.testui")
 --composer.gotoScene("scenes.testkev.testeffect")
 composer.gotoScene("scenes.testkev.testnpc")
+
+sfx:play("bg", {loops = -1})

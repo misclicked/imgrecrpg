@@ -14,8 +14,14 @@ function sfx:initVolumn()
   audio.setVolume( 0.7, { channel = self.CHANNEL_BG } )  --music track
   audio.setVolume( 0.8, { channel = self.CHANNEL_UI } )  --ui
   audio.setVolume( 0.8, { channel = self.CHANNEL_CH1_LASER } )
+
   --audio.setVolume( 0.8,  { channel = 3 } )  --Lesser
 end
+
+sfx.bg = {
+  handle = audio.loadSound( "sounds/bg1.mp3" ),
+  channel = sfx.CHANNEL_BG
+}
 
 function sfx:init()
   audio.reserveChannels(3)
