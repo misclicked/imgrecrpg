@@ -6,6 +6,9 @@ local inventory = require( "inventory" )
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
 local json = require("json")
+local icon
+local busy
+local inventoryOpened
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -16,6 +19,40 @@ local json = require("json")
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
 -- -----------------------------------------------------------------------------------
+
+local function openInventory( event )
+    if event.phase == "began" then
+        busy = true
+        scene.startMove = false
+        local options = {
+            isModal = true,
+            params = {
+            onClose = function()
+                inventoryOpened = false
+                scene.startMove = false
+                scene.character:setSequence("stand")
+
+            end
+            }
+        }
+        if inventoryOpened then
+            composer.hideOverlay( "scenes.UI.Bag" )
+            inventoryOpened = false
+        else
+            composer.showOverlay( "scenes.UI.Bag", options )
+            inventoryOpened = true
+        end
+    elseif event.phase == "ended" or event.phase == "cancelled" then
+    scene.startMove = false
+        if inventoryOpened then
+            busy = true
+        else
+            busy = false
+        end
+    end
+
+end
+
 local function showWord( s )
     sceneGroup = scene.view
     local myText = display.newText( s, 100, 200, native.systemFont, 100 )
@@ -33,8 +70,8 @@ end
 
 -- create()
 function scene:create( event )
-    inventory:makeDictionary()
-
+    inventoryOpened = false   
+    busy=false
     --local Background = Background.new()
     local sceneGroup = self.view
     clickCount = 70
@@ -66,7 +103,10 @@ function scene:create( event )
     })
     self.character.x = display.contentWidth / 2
     self.character.y = display.contentHeight / 2
-    
+
+
+
+
     --background add start
     local dusk = require("Dusk.Dusk")
     dusk.setPreference("enableRotatedMapCulling", true)
@@ -86,25 +126,47 @@ function scene:create( event )
     map.offsetX = display.contentWidth / 2 + 70
 
     --camera
-    local icon = Sprite.new("Items/62")
+    icon = Sprite.new("Items/62")
     icon.x = display.contentWidth - 100
     icon.y = display.contentHeight - 100
     icon:addEventListener("touch" , 
         function(event)
-
+        self.startMove = false
+        busy=true
         if event.x < icon.x + 50 and event.x > icon.x - 50 then
             self.startMove = false
-            if event.phase == "ended" then
+            if event.phase == "began" then
+                busy = true
+            elseif event.phase == "ended" then
+                busy = false
                 print("carema ended")
                 --call carema
                 camera:shoot(
-                    function(tags)
+                    function(tags,isFace,faceAttr)
                         --sequenceCnt = 1
                         --showSequenceWord(tags)
                         local targetCnt = 1
                         local targetFlag = false
                         local matchCnt = 1
                         local matchFlag = false
+                        if isFace then
+                            if feceAttr.gender == "male" then
+                                if faceAttr.age <= 20 then
+                                    showWord("我獲得"..tostring(faceAttr.age).."歲的年輕男性")
+                                    inventory:addItem("items.Man")
+                                else
+                                    showWord("我現在不需要"..tostring(faceAttr.age).."歲的男性")
+                                end
+                            else
+                                if faceAttr.age <= 20 then
+                                    showWord("我獲得"..tostring(faceAttr.age).."歲的年輕女性")
+                                    inventory:addItem("items.Woman")
+                                else
+                                    showWord("我現在不需要"..tostring(faceAttr.age).."歲的女性")
+                                end
+                            end
+                            return
+                        end
                         for i = 1, #tags do
                             if inventory.dictionary[tags[i]] ~= null then
                                 if matchFlag == false then
@@ -123,10 +185,10 @@ function scene:create( event )
                             end
                         end
                         if targetFlag then
-                            showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[targetCnt]],"Items.",""))
+                            showWord("你獲得了 "..inventory.translate[inventory.dictionary[tags[targetCnt]]])
                             inventory:addItem(inventory.dictionary[tags[targetCnt]])
                         elseif matchFlag then
-                            showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[matchCnt]],"Items.",""))
+                            showWord("你獲得了 "..inventory.translate[inventory.dictionary[tags[matchCnt]]])
                             inventory:addItem(inventory.dictionary[tags[matchCnt]])
                         else
                             showWord("你不需要這項物品")
@@ -142,8 +204,8 @@ function scene:create( event )
         end
 
     end)
-    sceneGroup:insert(icon)
 
+    sceneGroup:insert(icon)
     --food
     mapkevin1 = Kevin.new()
     mapkevin1.x = self.offsetX + 200
@@ -189,6 +251,18 @@ function scene:create( event )
         end)
     sceneGroup:insert(mapkevin3)
 
+    --add inventory
+    inventory:makeDictionary()
+
+    inventoryImage = Sprite.new("Items/55")
+
+    inventoryImage.xScale = display.contentWidth * 0.08 / inventoryImage.contentWidth
+    inventoryImage.yScale = inventoryImage.xScale
+
+    inventoryImage:addEventListener("touch",openInventory)
+
+    inventoryImage:translate(icon.x-icon.contentWidth/2 - inventoryImage.contentWidth/2 ,icon.y)
+
 end
 
 
@@ -196,7 +270,6 @@ function scene:touch(event)
     if event.phase == "began" then
         print("Touch began!!")
         self.startMove =  true
-
         if event.x > display.contentWidth/2 then
             self.moveDir = 1
         else
@@ -218,6 +291,13 @@ function scene:touch(event)
 end
 
 function scene:enterFrame( event )
+    if inventoryOpened == false and busy then
+        busy = false
+        return
+    end
+    if busy then
+        return
+    end
     if self.startMove then
         self.offsetX = self.offsetX + 10 * self.moveDir
         map.x = map.x + 10 * self.moveDir * -1
@@ -229,11 +309,15 @@ function scene:enterFrame( event )
         if map.offsetX < 0 then
             self.startMove = false
             print("start1")
+            if self.moveDir == 1 then
             composer.gotoScene( "scenes.battle.battle" , {effect = "slideLeft", time = 300})
+            end
         elseif map.offsetX > display.contentWidth + 190 then
             self.startMove = false
             print("start2")
+            if self.moveDir == 1 then
             composer.gotoScene( "scenes.battle.battle"  ,{effect = "slideLeft", time = 300})
+            end
         end    
 
 if mapkevin1.clearIcon.alpha ~= 1 then 
@@ -274,7 +358,7 @@ if mapkevin2.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
-            if mapkevin2:isFinishQuest("items.Man") == false then 
+            if mapkevin2:isFinishQuest("items.Man") == false and mapkevin2:isFinishQuest("items.Woman") == false then 
                 print("年輕人:false")
                 --mapkevin2:setClear()
             else

@@ -43,6 +43,11 @@ function inventory:makeDictionary( )
    inventory.dictionary["glasses"] = "items.RedPotion"
    inventory.dictionary["potion"] = "items.RedPotion"
    inventory.dictionary["can"] = "items.RedPotion"
+   inventory.dictionary["coffee"] = "items.RedPotion"
+   inventory.dictionary["container"] = "items.RedPotion"
+   inventory.dictionary["drink"] = "items.RedPotion"
+   inventory.dictionary["water"] = "items.RedPotion"
+   inventory.dictionary["soda"] = "items.RedPotion"
 
    inventory.dictionary["food"] = "items.Food"
    inventory.dictionary["meat"] = "items.Food"

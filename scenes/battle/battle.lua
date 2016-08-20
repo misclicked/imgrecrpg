@@ -139,8 +139,6 @@ local function openCamera( event )
         busy=true
         camera:shoot(
             function (tags,isFace,faceAttr)
-                native.showAlert( "Corona", json.encode({tags,isFace,faceAttr}), { "OK" } )
-                return
                 -- tags is a table!! json.encode is used to convert it into String
                 print(#tags)
                 --sequenceCnt = 1
@@ -149,14 +147,14 @@ local function openCamera( event )
                 local targetFlag = false
                 local matchCnt = 1
                 local matchFlag = false
-                --[[if isFace then
+                if isFace then
                     if feceAttr.gender == "male" then
                         showWord("我現在不需要"..tostring(faceAttr.age).."歲的男性")
                     else
                         showWord("我現在不需要"..tostring(faceAttr.age).."歲的女性")
                     end
                     return
-                end--]]
+                end
                 for i = 1, #tags do
                     print(tags[i])
                     if inventory.dictionary[tags[i]] ~= null then
@@ -257,16 +255,22 @@ local function initEnemy( path )
 end
 
 function scene:listenMove( )
+    if player.hp <= 0 then
+        local options = {
+            isModal = true
+        }
+        composer.showOverlay( "scenes.UI.LoseScreen", options )
+    end
     --print(tostring(globalATKClock).." "..tostring(system.getTimer()))
 
     --playerHPBar:translate(playerX, playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04 , 150, 50)
     --enemyHPBar:translate(enemyX, enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04, 150, 50)
     if (system.getTimer() - globalATKClock) >= 1000 then
-        if attackFlag and requestFlag == false then
+        if attackFlag and requestFlag == false and player.hp > 0 then
             transition.to(enemyImage,{time = 100, alpha = 1,
              x = enemyX - _SCREEN_WIDTH*0.1,
              y = enemyY, rotation = -30, onComplete = function()
-                local damage = math.random(-300,-200)
+                local damage = math.random(-100,-50)
                 player.hp = player.hp + damage
                 local hitText = display.newText(tostring(damage) ,
                     playerX + math.random(_SCREEN_WIDTH*-0.01,_SCREEN_WIDTH*0.01),
@@ -352,6 +356,10 @@ function scene:touch( event )
                 if inventory:hasItem(self.requestItem) then
                     bubble:setText("")
                     clearIcon.alpha = 1
+                    local options = {
+                        isModal = true
+                    }
+                    composer.showOverlay( "scenes.UI.VictoryScreen", options )
                 end
             end
             if playerX >= playerTouchEnemyPosX and attackFlag and requestFlag == false then
@@ -469,8 +477,8 @@ function scene:show( event )
 
 
         enemy = {
-            hp = 20,
-            maxhp = 20,
+            hp = 1000,
+            maxhp = 1000,
             mp = 1000,
             maxmp = 1000,
             name = "slime",
