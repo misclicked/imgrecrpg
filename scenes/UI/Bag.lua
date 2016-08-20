@@ -26,12 +26,13 @@ end
 -- show()
 function scene:show( event )
 	
-	 local sceneGroup = self.view
+	local sceneGroup = self.view
     local phase = event.phase
 
     if ( phase == "will" ) then
         -- Code here runs when the scene is still off screen (but is about to come on screen)
 		self.onClose = event.params and event.params.onClose
+        self.effect = event.params and event.params.effect
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen
 		
@@ -45,11 +46,12 @@ function scene:show( event )
 		greyPanel.y = display.contentHeight * 0.5
 		
 		local items = {row= 3,
-				col=3}
+				col=3,
+                onItemSelect = self.effect}
 				
 		print(items)
 				
-		local bag =I.new(items)
+		local bag = I.new(items)
 		--bag.x = display.contentWidth / 2
 		--bag.y = display.contentHeight / 2
 		sceneGroup:insert(greyPanel)

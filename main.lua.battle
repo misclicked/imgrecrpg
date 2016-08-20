@@ -3,8 +3,8 @@ local inventory = require( "inventory" )
 --local RedPotion = require("items.RedPotion")
 
 inventory:addItem("items.RedPotion")
-inventory:addItem("items.GreenPotion")
-inventory:addItem("items.BluePotion")
+inventory:addItem("items.RedPotion")
+inventory:addItem("items.RedPotion")
 
 for i=1, #inventory.items do
     print(inventory.items[i])
