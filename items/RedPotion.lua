@@ -7,13 +7,16 @@ Item.new = function()
     item.effectSelf = true
     item.index = -1
     item.success = false
+    item.returnString = nil
     function item:effect(target)
         if target.hp == target.maxhp then
-            return "Your HP is full"
+            item.success = false
+            item.returnString = "Your HP is full"
+            return
         end
         target.hp = target.hp + 10
         item.success = true
-        return "Item "..item.name.." used"
+        item.returnString = "Item "..item.name.." is used"
     end
 
     return item
