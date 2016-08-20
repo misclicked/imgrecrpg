@@ -63,4 +63,3 @@ local options = {
 
 sfx:play("bg", {loops = -1})
 --composer.showOverlay("scenes.UI.LoadingScreen")
-composer.gotoScene("scenes.UI.Scores")
