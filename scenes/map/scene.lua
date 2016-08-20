@@ -84,7 +84,8 @@ function scene:create( event )
                     function(tags)
                         --tag decide
                         print(tags)
-                    end   
+                    end
+                    ,true   
                 )
             else
                 print("carema began")
