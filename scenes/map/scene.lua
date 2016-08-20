@@ -23,23 +23,27 @@ local inventoryOpened
 local function openInventory( event )
     if event.phase == "began" then
         busy = true
+        scene.startMove = false
         local options = {
             isModal = true,
             params = {
             onClose = function()
                 inventoryOpened = false
-                busy = true
+                scene.startMove = false
+                scene.character:setSequence("stand")
+
             end
             }
         }
         if inventoryOpened then
-            composer.hideOverlay( "scenes.UI.Bag", options )
+            composer.hideOverlay( "scenes.UI.Bag" )
             inventoryOpened = false
         else
             composer.showOverlay( "scenes.UI.Bag", options )
             inventoryOpened = true
         end
     elseif event.phase == "ended" or event.phase == "cancelled" then
+    scene.startMove = false
         if inventoryOpened then
             busy = true
         else
@@ -127,7 +131,8 @@ function scene:create( event )
     icon.y = display.contentHeight - 100
     icon:addEventListener("touch" , 
         function(event)
-
+        self.startMove = false
+        busy=true
         if event.x < icon.x + 50 and event.x > icon.x - 50 then
             self.startMove = false
             if event.phase == "began" then
@@ -137,13 +142,31 @@ function scene:create( event )
                 print("carema ended")
                 --call carema
                 camera:shoot(
-                    function(tags)
+                    function(tags,isFace,faceAttr)
                         --sequenceCnt = 1
                         --showSequenceWord(tags)
                         local targetCnt = 1
                         local targetFlag = false
                         local matchCnt = 1
                         local matchFlag = false
+                        if isFace then
+                            if feceAttr.gender == "male" then
+                                if faceAttr.age <= 20 then
+                                    showWord("我獲得"..tostring(faceAttr.age).."歲的年輕男性")
+                                    inventory:addItem("items.Man")
+                                else
+                                    showWord("我現在不需要"..tostring(faceAttr.age).."歲的男性")
+                                end
+                            else
+                                if faceAttr.age <= 20 then
+                                    showWord("我獲得"..tostring(faceAttr.age).."歲的年輕女性")
+                                    inventory:addItem("items.Woman")
+                                else
+                                    showWord("我現在不需要"..tostring(faceAttr.age).."歲的女性")
+                                end
+                            end
+                            return
+                        end
                         for i = 1, #tags do
                             if inventory.dictionary[tags[i]] ~= null then
                                 if matchFlag == false then
@@ -162,10 +185,10 @@ function scene:create( event )
                             end
                         end
                         if targetFlag then
-                            showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[targetCnt]],"Items.",""))
+                            showWord("你獲得了 "..inventory.translate[inventory.dictionary[tags[targetCnt]]])
                             inventory:addItem(inventory.dictionary[tags[targetCnt]])
                         elseif matchFlag then
-                            showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[matchCnt]],"Items.",""))
+                            showWord("你獲得了 "..inventory.translate[inventory.dictionary[tags[matchCnt]]])
                             inventory:addItem(inventory.dictionary[tags[matchCnt]])
                         else
                             showWord("你不需要這項物品")
@@ -286,11 +309,15 @@ function scene:enterFrame( event )
         if map.offsetX < 0 then
             self.startMove = false
             print("start1")
+            if self.moveDir == 1 then
             composer.gotoScene( "scenes.battle.battle" , {effect = "slideLeft", time = 300})
+            end
         elseif map.offsetX > display.contentWidth + 190 then
             self.startMove = false
             print("start2")
+            if self.moveDir == 1 then
             composer.gotoScene( "scenes.battle.battle"  ,{effect = "slideLeft", time = 300})
+            end
         end    
 
 if mapkevin1.clearIcon.alpha ~= 1 then 
@@ -331,7 +358,7 @@ if mapkevin2.clearIcon.alpha ~= 1 then
             self.character:play()
             
             native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
-            if mapkevin2:isFinishQuest("items.Man") == false then 
+            if mapkevin2:isFinishQuest("items.Man") == false and mapkevin2:isFinishQuest("items.Woman") == false then 
                 print("年輕人:false")
                 --mapkevin2:setClear()
             else

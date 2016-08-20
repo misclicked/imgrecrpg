@@ -38,7 +38,7 @@ local options = {
     effect = "fade",
     time = 1000,
     params = {
-        sampleVar = "my sample variable"
+    	sampleVar = "my sample variable"
     }
 }
 --composer.showOverlay("scenes.UI.Bag"  )
@@ -63,4 +63,4 @@ local options = {
 
 sfx:play("bg", {loops = -1})
 --composer.showOverlay("scenes.UI.LoadingScreen")
-composer.gotoScene("scenes.UI.Scores")
+composer.gotoScene("scenes.UI.StartingScreen")
