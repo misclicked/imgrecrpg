@@ -2,6 +2,7 @@ local composer = require( "composer" )
 local Sprite = require("Sprite")
 local scene = composer.newScene()
 local Kevin = require("npcs.Kevin")
+local Edison = require("npcs.Edison")
 local inventory = require( "inventory" )
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
@@ -216,14 +217,14 @@ function scene:create( event )
     mapkevin1:showBubble()
     sceneGroup:insert(mapkevin1)
     Runtime:addEventListener( "touch", mapkevin1)
-    timer.performWithDelay( 99000, 
-        function ()
-            mapkevin1:setClear()
-        end)
+    -- timer.performWithDelay( 99000, 
+    --     function ()
+    --         mapkevin1:setClear()
+    --     end)
     sceneGroup:insert(mapkevin1)
 
     --young man
-    mapkevin2 = Kevin.new()
+    mapkevin2 = Edison.new()
     mapkevin2.x = self.offsetX + 400
     mapkevin2.y = display.contentHeight/2
     mapkevin2.offsetX = mapkevin2.x
@@ -231,10 +232,10 @@ function scene:create( event )
     mapkevin2:showBubble()
     sceneGroup:insert(mapkevin2)
     Runtime:addEventListener( "touch", mapkevin2)
-    timer.performWithDelay( 99000, 
-        function ()
-            mapkevin2:setClear()
-        end)
+    -- timer.performWithDelay( 99000, 
+    --     function ()
+    --         mapkevin2:setClear()
+    --     end)
     sceneGroup:insert(mapkevin2)
 
     --medicinal
@@ -246,10 +247,10 @@ function scene:create( event )
     mapkevin3:showBubble()
     sceneGroup:insert(mapkevin3)
     Runtime:addEventListener( "touch", mapkevin3)
-    timer.performWithDelay( 99000, 
-        function ()
-            mapkevin3:setClear()
-        end)
+    -- timer.performWithDelay( 99000, 
+    --     function ()
+    --         mapkevin3:setClear()
+    --     end)
     sceneGroup:insert(mapkevin3)
 nowNPC = mapkevin1
     --add inventory
