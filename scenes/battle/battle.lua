@@ -2,6 +2,7 @@ local composer = require( "composer" )
 local scene = composer.newScene()
 local Sprite = require("Sprite")
 local Bubble = require("ui.GreyPanel")
+local inventory = require( "inventory" )
 local YellowButton = require("ui.YellowButton")
 local widget = require( "widget" )
 -----------------For Camera Module----------------------------
@@ -41,6 +42,8 @@ local inventoryOpened
 local globalATKClock
 local playerHPBar
 local enemyHPBar
+local simpleSelf
+local existItem
 -- -----------------------------------------------------------------------------------
 -- local functions
 -- -----------------------------------------------------------------------------------
@@ -57,14 +60,31 @@ local function  Sleep( milliseconds )
     end
 end
 
+local function showWord( s )
+    sceneGroup = scene.view
+    local myText = display.newText( s, 100, 200, native.systemFont, 100 )
+        myText.x = display.contentWidth/2
+        myText.y = display.contentHeight/5
+        myText:setTextColor(255, 0, 0)
+        sceneGroup:insert(myText) 
+        transition.to(myText,{time=500,alpha=0, y=display.contentHeight/7,onComplete= function ()
+        if myText.removeSelf ~= nil then
+            myText:removeSelf()
+        end
+    end
+    })  
+end
+
 local function openInventory( event )
     if event.phase == "began" then
+        cameraImage.isVisible = false
         busy=true
         local options = {
             isModal = true,
             params = {
                 onClose = function ()
                     inventoryOpened = false
+                    cameraImage.isVisible = true
                 end,
                 effect = function ( item )
                     if item.effectSelf then
@@ -73,12 +93,14 @@ local function openInventory( event )
                         item:effect(enemy)
                     end
                     print(player.hp)
+                    busy = false
                 end
 
             }
         }
     if inventoryOpened then
         composer.hideOverlay( "scenes.UI.Bag", options )
+        cameraImage.isVisible = true
         inventoryOpened = false
     else
         composer.showOverlay( "scenes.UI.Bag", options )
@@ -89,8 +111,27 @@ local function openInventory( event )
     end
 end
 
-local function print(  )
-    -- body
+local sequenceCnt
+local function showSequenceWord (ss)
+    local sceneGroup = scene.view
+    print("hehe")
+    if sequenceCnt > #ss then
+        return
+    end    
+    local myText = display.newText( ss[sequenceCnt], 100, 200, native.systemFont, 100 )
+        myText.x = display.contentWidth/2
+        myText.y = display.contentHeight/5
+        myText:setTextColor(255, 0, 0)
+        sceneGroup:insert(myText)
+    transition.to(myText
+        ,{time=500,alpha=0, y=display.contentHeight/7,onComplete = function()
+        sequenceCnt = sequenceCnt + 1
+        if myText.removeSelf ~= nil then
+            myText:removeSelf()
+        end
+        showSequenceWord(ss)
+    end
+    }) 
 end
 
 local function openCamera( event )
@@ -99,8 +140,43 @@ local function openCamera( event )
         camera:shoot(
             function (tags)
                 -- tags is a table!! json.encode is used to convert it into String
-                native.showAlert( "Corona", json.encode(tags), { "OK" } )
-            end
+                print(#tags)
+                --sequenceCnt = 1
+                --showSequenceWord(tags)
+                local targetCnt = 1
+                local targetFlag = false
+                local matchCnt = 1
+                local matchFlag = false
+                for i = 1, #tags do
+                    if inventory.dictionary[tags[i]] ~= null then
+                        if matchFlag == false then
+                            matchCnt = i
+                        end
+                        matchFlag = true
+                        if inventory.dictionary[tags[i]] == scene.requestItem then
+                            print(tags[i])
+                            targetFlag = true
+                            targetCnt = i
+                        end
+                    end
+                    if targetFlag then
+                        print("hehe")
+                        break
+                    end
+                end
+                if targetFlag then
+                    showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[targetCnt]],"Items.",""))
+                    inventory:addItem(inventory.dictionary[tags[targetCnt]])
+                elseif matchFlag then
+                    showWord("你獲得了 "..string.gsub(inventory.dictionary[tags[matchCnt]],"Items.",""))
+                    inventory:addItem(inventory.dictionary[tags[matchCnt]])
+                else
+                    showWord("你不需要這項物品")
+                end
+                
+                --native.showAlert( "Corona", json.encode(tags), { "OK" } )
+            end,
+            true
             )
     elseif event.phase == "ended" or event.phase == "cancelled" then
         busy=false
@@ -255,6 +331,12 @@ function scene:touch( event )
             else
                 attackFlag = false
             end
+            if playerX >= playerTouchEnemyPosX and requestFlag then
+                if inventory:hasItem(self.requestItem) then
+                    bubble:setText("")
+                    clearIcon.alpha = 1
+                end
+            end
             if playerX >= playerTouchEnemyPosX and attackFlag and requestFlag == false then
                 transition.to(playerImage,{time = 100, alpha = 1,
                  x = playerX + _SCREEN_WIDTH*0.1,
@@ -336,13 +418,17 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Code here runs when the scene is still off screen (but is about to come on screen)
+        inventory:makeDictionary()
 
         inventoryOpened = false
 
         _SCREEN_HEIGHT = display.contentHeight
         _SCREEN_WIDTH = display.contentWidth
 
-        self.requestText = "我要雙刀~"
+        self.requestText = [[你需要一把劍
+才能打敗我!!]]
+        
+        self.requestItem = "Items.Sword"
 
         busy = false
 
@@ -366,8 +452,8 @@ function scene:show( event )
 
 
         enemy = {
-            hp = 1000,
-            maxhp = 1000,
+            hp = 20,
+            maxhp = 20,
             mp = 1000,
             maxmp = 1000,
             name = "slime",
@@ -381,7 +467,7 @@ function scene:show( event )
             mp = 1000,
             maxmp = 1000,
             name = "player",
-            path = "Enemies/slimeWalk1",
+            path = "Player/p1_stand",
             status = "live"
         }
 
@@ -421,8 +507,8 @@ function scene:show( event )
         sceneGroup:insert(enemyImage)
 
         clearIcon = Sprite.new("UI/Icon/check4")
-        bubble = Bubble.new(enemyImage.contentWidth*0.75,
-        enemyImage.contentHeight*0.5)
+        bubble = Bubble.new(enemyImage.contentWidth*0.9,
+        enemyImage.contentHeight*0.7)
         bubble.alpha = 0
         bubble:insert(clearIcon)
         bubble:setText("")

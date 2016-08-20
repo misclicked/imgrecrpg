@@ -39,7 +39,7 @@ function scene:show( event )
 		
 		print("Hello")
 		local I = require("scenes.UI.ItemBox")
-		 print("HI")
+		print("HI")
 		--local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
 		--background:setFillColor(1,0.2,0.2)
 		local greyPanel = GreyPanel.new(display.contentWidth , display.contentHeight)
@@ -63,7 +63,9 @@ function scene:show( event )
                     myText:setTextColor(255, 0, 0)
                     sceneGroup:insert(myText) 
                     transition.to(myText,{time=500,alpha=0,onComplete= function ()
-                            myText:removeSelf()
+                            if myText.removeSelf ~= nil then
+                                myText:removeSelf()
+                            end
                         end
                         })  
                 end}
