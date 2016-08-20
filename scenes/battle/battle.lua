@@ -183,7 +183,6 @@ local function openCamera( event )
                     showWord("我現在不需要這項物品")
                 end
                 
-                native.showAlert( "Corona", json.encode({tags,isFace,faceAttr}), { "OK" } )
                 --native.showAlert( "Corona", json.encode(tags), { "OK" } )
             end
             )
@@ -466,8 +465,7 @@ function scene:show( event )
 
         cameraImage:addEventListener( "touch", openCamera)
 
-        
-        sceneGroup:insert(cameraImage)
+
         enemy = {
             hp = 20,
             maxhp = 20,
