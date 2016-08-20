@@ -2,6 +2,7 @@ local composer = require( "composer" )
 local GreyBox = require("ui.GreyBox")
 local GreyPanel = require("ui.GreyPanel")
 local BlueButton = require("ui.BlueButton")
+local Sprite = require("Sprite")
 
 local scene = composer.newScene()
 local ItemBox = {}
@@ -107,7 +108,6 @@ ItemBox.new = function (t)
 			
 			print(xCoordinate,yCoordinate)
 			local greyBox = GreyBox.new(width, height)
-		
 			greyBox.x = xCoordinate
 			greyBox.y = yCoordinate
 			greyBox:addEventListener("touch", myButtonHandler)

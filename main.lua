@@ -123,6 +123,7 @@ local options = {
 
 --composer.gotoScene("scenes.testkev.testeffect")
 --composer.gotoScene("scenes.testkev.testnpc")
+composer.gotoScene("scenes.testkev.testitem")
 
 composer.gotoScene("scenes.camera.camera")
 

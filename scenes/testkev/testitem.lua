@@ -1,14 +1,11 @@
 local composer = require( "composer" )
-local GreyPanel = require("ui.GreyPanel")
+local Sprtie = require( "Sprite" )
 local scene = composer.newScene()
-
+local RedPotion = require("items.RedPotion")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
 -- -----------------------------------------------------------------------------------
-
-
-
 
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
@@ -16,51 +13,32 @@ local scene = composer.newScene()
 
 -- create()
 function scene:create( event )
-
     local sceneGroup = self.view
+    local testTable = {hp = 0}
     -- Code here runs when the scene is first created but has not yet appeared on screen
-
+    local item = RedPotion.new()
+    item.x = display.contentWidth/2
+    item.y = display.contentHeight/2
+    item:effect(testTable)
+    sceneGroup:insert(item)
+    print("testTable.hp "..testTable.hp)
 end
 
 
 -- show()
 function scene:show( event )
-	
-	 local sceneGroup = self.view
+
+    local sceneGroup = self.view
     local phase = event.phase
 
     if ( phase == "will" ) then
         -- Code here runs when the scene is still off screen (but is about to come on screen)
-		self.onClose = event.params and event.params.onClose
+
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen
-		
-		print("Hello")
-		local I = require("scenes.UI.ItemBox")
-		 print("HI")
-		--local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
-		--background:setFillColor(1,0.2,0.2)
-		local greyPanel = GreyPanel.new(display.contentWidth , display.contentHeight)
-		greyPanel.x = display.contentWidth * 0.5
-		greyPanel.y = display.contentHeight * 0.5
-		
-		local items = {row= 3,
-				col=3}
-				
-		print(items)
-				
-		local bag =I.new(items)
-		--bag.x = display.contentWidth / 2
-		--bag.y = display.contentHeight / 2
-		sceneGroup:insert(greyPanel)
-		sceneGroup:insert(bag)
-		--sceneGroup:insert(greyPanel)
-	end
-   
+
+    end
 end
-
-    
-
 
 
 -- hide()
@@ -74,11 +52,11 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         -- Code here runs immediately after the scene goes entirely off screen
-		if self.onClose then
-            self.onClose()
-        end
-	end
+
+    end
 end
+
+
 -- destroy()
 function scene:destroy( event )
 
