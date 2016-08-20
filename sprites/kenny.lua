@@ -1,7 +1,7 @@
 --
 -- created with TexturePacker (http://www.codeandweb.com/texturepacker)
 --
--- $TexturePacker:SmartUpdate:93db7437e3f64a4a069fd7fac64c3853:ed1910505d125ca8b0cff8b1cb3dc4fc:a1d8d6df815539b2cf7f2cbbeb18a4d7$
+-- $TexturePacker:SmartUpdate:dffd0180682e0e0c65e0b1cd97d95ed9:212ccfac494e416b5e9b3c4dff156fce:a1d8d6df815539b2cf7f2cbbeb18a4d7$
 --
 -- local sheetInfo = require("mysheet")
 -- local myImageSheet = graphics.newImageSheet( "mysheet.png", sheetInfo:getSheet() )
@@ -16,471 +16,471 @@ SheetInfo.sheet =
     
         {
             -- Enemies/blockerBody
-            x=828,
-            y=1134,
+            x=799,
+            y=1197,
             width=51,
             height=51,
 
         },
         {
             -- Enemies/blockerMad
-            x=889,
-            y=1082,
+            x=854,
+            y=1197,
             width=51,
             height=51,
 
         },
         {
             -- Enemies/blockerSad
-            x=1108,
-            y=1158,
+            x=909,
+            y=1197,
             width=51,
             height=51,
 
         },
         {
             -- Enemies/fishDead
-            x=1979,
-            y=929,
+            x=1808,
+            y=773,
             width=66,
             height=42,
 
         },
         {
             -- Enemies/fishSwim1
-            x=1979,
-            y=975,
+            x=1435,
+            y=986,
             width=66,
             height=42,
 
         },
         {
             -- Enemies/fishSwim2
-            x=65,
-            y=1169,
+            x=1742,
+            y=772,
             width=62,
             height=43,
 
         },
         {
             -- Enemies/flyDead
-            x=1873,
-            y=1053,
+            x=1585,
+            y=569,
             width=59,
             height=33,
 
         },
         {
             -- Enemies/flyFly1
-            x=1125,
-            y=898,
+            x=1666,
+            y=772,
             width=72,
             height=36,
 
         },
         {
             -- Enemies/flyFly2
-            x=1875,
-            y=571,
+            x=1356,
+            y=992,
             width=75,
             height=31,
 
         },
         {
             -- Enemies/pokerMad
-            x=241,
-            y=293,
+            x=347,
+            y=836,
             width=48,
             height=146,
 
         },
         {
             -- Enemies/pokerSad
-            x=1165,
-            y=101,
+            x=399,
+            y=836,
             width=48,
             height=146,
 
         },
         {
             -- Enemies/slimeDead
-            x=1639,
-            y=1168,
+            x=1033,
+            y=528,
             width=59,
             height=12,
 
         },
         {
             -- Enemies/slimeWalk1
-            x=1316,
-            y=1133,
+            x=1989,
+            y=735,
             width=50,
             height=28,
 
         },
         {
             -- Enemies/slimeWalk2
-            x=1460,
-            y=1162,
+            x=1929,
+            y=959,
             width=51,
             height=26,
 
         },
         {
             -- Enemies/snailShell
-            x=1625,
-            y=1083,
+            x=1979,
+            y=995,
             width=44,
             height=30,
 
         },
         {
             -- Enemies/snailShell_upsidedown
-            x=1442,
-            y=1192,
+            x=1929,
+            y=1073,
             width=44,
             height=30,
 
         },
         {
             -- Enemies/snailWalk1
-            x=773,
-            y=1098,
+            x=1871,
+            y=949,
             width=54,
             height=31,
 
         },
         {
             -- Enemies/snailWalk2
-            x=1988,
-            y=862,
+            x=1148,
+            y=1213,
             width=57,
             height=31,
 
         },
         {
             -- HUD/hud_0
-            x=351,
-            y=389,
+            x=191,
+            y=219,
             width=30,
             height=38,
 
         },
         {
             -- HUD/hud_1
-            x=1819,
-            y=1175,
+            x=1869,
+            y=1109,
             width=26,
             height=37,
 
         },
         {
             -- HUD/hud_2
-            x=737,
-            y=1061,
+            x=1838,
+            y=1193,
             width=32,
             height=38,
 
         },
         {
             -- HUD/hud_3
-            x=1715,
-            y=1075,
+            x=1635,
+            y=1066,
             width=28,
             height=38,
 
         },
         {
             -- HUD/hud_4
-            x=1624,
-            y=967,
+            x=1914,
+            y=1193,
             width=29,
             height=38,
 
         },
         {
             -- HUD/hud_5
-            x=1242,
-            y=1128,
+            x=1942,
+            y=1151,
             width=28,
             height=38,
 
         },
         {
             -- HUD/hud_6
-            x=1834,
-            y=1067,
+            x=341,
+            y=65,
             width=30,
             height=38,
 
         },
         {
             -- HUD/hud_7
-            x=1370,
-            y=1188,
+            x=1893,
+            y=1028,
             width=32,
             height=39,
 
         },
         {
             -- HUD/hud_8
-            x=1687,
-            y=1184,
+            x=1893,
+            y=984,
             width=32,
             height=40,
 
         },
         {
             -- HUD/hud_9
-            x=1406,
-            y=1188,
+            x=1947,
+            y=1193,
             width=32,
             height=39,
 
         },
         {
             -- HUD/hud_coins
-            x=1639,
-            y=1117,
+            x=1973,
+            y=895,
             width=47,
             height=47,
 
         },
         {
             -- HUD/hud_gem_blue
-            x=828,
-            y=1191,
+            x=1098,
+            y=1187,
             width=46,
             height=36,
 
         },
         {
             -- HUD/hud_gem_green
-            x=878,
-            y=1191,
+            x=1769,
+            y=1109,
             width=46,
             height=36,
 
         },
         {
             -- HUD/hud_gem_red
-            x=928,
-            y=1191,
+            x=1819,
+            y=1109,
             width=46,
             height=36,
 
         },
         {
             -- HUD/hud_gem_yellow
-            x=978,
-            y=1191,
+            x=1929,
+            y=989,
             width=46,
             height=36,
 
         },
         {
             -- HUD/hud_heartEmpty
-            x=729,
-            y=765,
+            x=1212,
+            y=1203,
             width=53,
             height=45,
 
         },
         {
             -- HUD/hud_heartFull
-            x=883,
-            y=1137,
+            x=1269,
+            y=1203,
             width=53,
             height=45,
 
         },
         {
             -- HUD/hud_heartHalf
-            x=940,
-            y=1142,
+            x=1984,
+            y=946,
             width=53,
             height=45,
 
         },
         {
             -- HUD/hud_keyBlue
-            x=1940,
-            y=878,
+            x=1929,
+            y=1029,
             width=44,
             height=40,
 
         },
         {
             -- HUD/hud_keyBlue_disabled
-            x=1229,
-            y=1170,
+            x=1977,
+            y=1029,
             width=44,
             height=40,
 
         },
         {
             -- HUD/hud_keyGreem_disabled
-            x=1936,
-            y=1077,
+            x=1977,
+            y=1073,
             width=44,
             height=40,
 
         },
         {
             -- HUD/hud_keyGreen
-            x=1536,
-            y=1181,
+            x=1899,
+            y=1107,
             width=44,
             height=40,
 
         },
         {
             -- HUD/hud_keyRed
-            x=1639,
-            y=1184,
+            x=1666,
+            y=1121,
             width=44,
             height=40,
 
         },
         {
             -- HUD/hud_keyRed_disabled
-            x=1723,
-            y=1172,
+            x=1714,
+            y=1144,
             width=44,
             height=40,
 
         },
         {
             -- HUD/hud_keyYellow
-            x=1771,
-            y=1172,
+            x=1762,
+            y=1149,
             width=44,
             height=40,
 
         },
         {
             -- HUD/hud_keyYellow_disabled
-            x=1987,
-            y=1072,
+            x=1810,
+            y=1149,
             width=44,
             height=40,
 
         },
         {
             -- HUD/hud_p1
-            x=1690,
-            y=1117,
+            x=1791,
+            y=1007,
             width=47,
             height=47,
 
         },
         {
             -- HUD/hud_p1Alt
-            x=1747,
-            y=1070,
+            x=1791,
+            y=1058,
             width=47,
             height=47,
 
         },
         {
             -- HUD/hud_p2
-            x=1741,
-            y=1121,
+            x=1842,
+            y=1007,
             width=47,
             height=47,
 
         },
         {
             -- HUD/hud_p2Alt
-            x=1936,
-            y=1026,
+            x=1842,
+            y=1058,
             width=47,
             height=47,
 
         },
         {
             -- HUD/hud_p3
-            x=1987,
-            y=1021,
+            x=1667,
+            y=1070,
             width=47,
             height=47,
 
         },
         {
             -- HUD/hud_p3Alt
-            x=1277,
-            y=1167,
+            x=1718,
+            y=1093,
             width=47,
             height=47,
 
         },
         {
             -- HUD/hud_x
-            x=1834,
-            y=1109,
+            x=1554,
+            y=1144,
             width=30,
             height=28,
 
         },
         {
             -- Items/1
-            x=959,
-            y=286,
+            x=1175,
+            y=208,
             width=108,
             height=106,
 
         },
         {
             -- Items/10
-            x=1887,
-            y=365,
+            x=769,
+            y=273,
             width=64,
             height=106,
 
         },
         {
             -- Items/100
-            x=1331,
-            y=435,
+            x=1667,
+            y=273,
             width=52,
             height=106,
 
         },
         {
             -- Items/101
-            x=1775,
-            y=465,
+            x=767,
+            y=1025,
             width=100,
             height=64,
 
         },
         {
             -- Items/102
-            x=111,
-            y=815,
+            x=1817,
+            y=206,
             width=96,
             height=60,
 
         },
         {
             -- Items/103
-            x=985,
-            y=652,
+            x=1663,
+            y=383,
             width=64,
             height=92,
 
         },
         {
             -- Items/104
-            x=667,
-            y=1114,
+            x=863,
+            y=1093,
             width=64,
             height=100,
 
         },
         {
             -- Items/105
-            x=1535,
+            x=1836,
             y=3,
             width=136,
             height=124,
@@ -488,31 +488,31 @@ SheetInfo.sheet =
         },
         {
             -- Items/106
-            x=241,
-            y=443,
+            x=1552,
+            y=95,
             width=128,
             height=88,
 
         },
         {
             -- Items/107
-            x=131,
-            y=1151,
+            x=231,
+            y=1128,
             width=112,
             height=76,
 
         },
         {
             -- Items/108
-            x=1675,
-            y=3,
+            x=557,
+            y=213,
             width=136,
             height=130,
 
         },
         {
             -- Items/109
-            x=555,
+            x=724,
             y=3,
             width=144,
             height=136,
@@ -520,223 +520,223 @@ SheetInfo.sheet =
         },
         {
             -- Items/11
-            x=1217,
-            y=125,
+            x=259,
+            y=598,
             width=118,
             height=114,
 
         },
         {
             -- Items/110
-            x=1331,
-            y=545,
+            x=1865,
+            y=370,
             width=64,
             height=92,
 
         },
         {
             -- Items/111
-            x=1792,
-            y=1121,
+            x=1600,
+            y=1094,
             width=28,
             height=44,
 
         },
         {
             -- Items/112
-            x=1879,
-            y=475,
+            x=945,
+            y=737,
             width=72,
             height=92,
 
         },
         {
             -- Items/113
-            x=773,
-            y=1042,
+            x=1667,
+            y=918,
             width=52,
             height=52,
 
         },
         {
             -- Items/114
-            x=1798,
-            y=1070,
+            x=525,
+            y=375,
             width=32,
             height=44,
 
         },
         {
             -- Items/115
-            x=1328,
-            y=1165,
+            x=1578,
+            y=1176,
             width=38,
             height=42,
 
         },
         {
             -- Items/116
-            x=988,
-            y=1080,
+            x=1579,
+            y=982,
             width=52,
             height=40,
 
         },
         {
             -- Items/117
-            x=1370,
-            y=1144,
+            x=295,
+            y=1208,
             width=48,
             height=40,
 
         },
         {
             -- Items/118
-            x=1645,
-            y=355,
+            x=159,
+            y=1208,
             width=132,
             height=40,
 
         },
         {
             -- Items/119
-            x=1233,
-            y=391,
+            x=3,
+            y=1208,
             width=152,
             height=40,
 
         },
         {
             -- Items/12
-            x=1071,
-            y=259,
+            x=331,
+            y=986,
             width=90,
             height=138,
 
         },
         {
             -- Items/120
-            x=111,
-            y=675,
+            x=461,
+            y=598,
             width=96,
             height=136,
 
         },
         {
             -- Items/121
-            x=961,
-            y=150,
+            x=257,
+            y=462,
             width=100,
             height=132,
 
         },
         {
             -- Items/122
-            x=121,
-            y=293,
+            x=111,
+            y=836,
             width=116,
             height=136,
 
         },
         {
             -- Items/123
-            x=221,
-            y=997,
+            x=569,
+            y=706,
             width=100,
             height=124,
 
         },
         {
             -- Items/124
-            x=325,
-            y=997,
+            x=613,
+            y=984,
             width=88,
             height=124,
 
         },
         {
             -- Items/125
-            x=1951,
-            y=195,
+            x=651,
+            y=560,
             width=92,
             height=128,
 
         },
         {
             -- Items/126
-            x=501,
-            y=251,
+            x=251,
+            y=716,
             width=128,
             height=116,
 
         },
         {
             -- Items/127
-            x=1535,
-            y=131,
+            x=111,
+            y=976,
             width=116,
             height=112,
 
         },
         {
             -- Items/128
-            x=567,
-            y=1114,
+            x=1367,
+            y=352,
             width=96,
             height=100,
 
         },
         {
             -- Items/129
-            x=399,
-            y=887,
+            x=745,
+            y=383,
             width=84,
             height=100,
 
         },
         {
             -- Items/13
-            x=697,
-            y=269,
+            x=121,
+            y=598,
             width=134,
             height=110,
 
         },
         {
             -- Items/130
-            x=1407,
-            y=641,
+            x=921,
+            y=833,
             width=68,
             height=84,
 
         },
         {
             -- Items/131
-            x=1887,
-            y=273,
+            x=1148,
+            y=1121,
             width=60,
             height=88,
 
         },
         {
             -- Items/132
-            x=849,
-            y=649,
+            x=1875,
+            y=270,
             width=44,
             height=96,
 
         },
         {
             -- Items/133
-            x=439,
-            y=1115,
+            x=717,
+            y=1096,
             width=60,
             height=112,
 
         },
         {
             -- Items/134
-            x=703,
+            x=376,
             y=3,
             width=176,
             height=100,
@@ -744,87 +744,87 @@ SheetInfo.sheet =
         },
         {
             -- Items/135
-            x=1940,
-            y=798,
+            x=1923,
+            y=243,
             width=44,
             height=76,
 
         },
         {
             -- Items/136
-            x=1988,
-            y=782,
+            x=1141,
+            y=835,
             width=52,
             height=76,
 
         },
         {
             -- Items/137
-            x=769,
-            y=1133,
+            x=1739,
+            y=571,
             width=44,
             height=76,
 
         },
         {
             -- Items/138
-            x=949,
-            y=488,
+            x=837,
+            y=370,
             width=92,
             height=80,
 
         },
         {
             -- Items/139
-            x=1231,
-            y=435,
+            x=933,
+            y=382,
             width=96,
             height=72,
 
         },
         {
             -- Items/14
-            x=217,
-            y=535,
+            x=519,
+            y=984,
             width=90,
             height=140,
 
         },
         {
             -- Items/140
-            x=1771,
-            y=269,
+            x=1547,
+            y=375,
             width=112,
             height=80,
 
         },
         {
             -- Items/141
-            x=387,
-            y=139,
+            x=1524,
+            y=3,
             width=156,
             height=88,
 
         },
         {
             -- Items/142
-            x=835,
-            y=272,
+            x=107,
+            y=1092,
             width=120,
             height=112,
 
         },
         {
             -- Items/143
-            x=283,
-            y=65,
+            x=453,
+            y=213,
             width=100,
             height=152,
 
         },
         {
             -- Items/144
-            x=883,
+            x=1188,
             y=3,
             width=164,
             height=96,
@@ -832,72 +832,72 @@ SheetInfo.sheet =
         },
         {
             -- Items/145
-            x=417,
-            y=991,
+            x=543,
+            y=1128,
             width=72,
             height=120,
 
         },
         {
             -- Items/146
-            x=207,
-            y=889,
+            x=1175,
+            y=318,
             width=108,
             height=104,
 
         },
         {
             -- Items/147
-            x=319,
-            y=889,
+            x=1467,
+            y=332,
             width=76,
             height=104,
 
         },
         {
             -- Items/148
-            x=107,
-            y=879,
+            x=1367,
+            y=220,
             width=96,
             height=128,
 
         },
         {
             -- Items/149
-            x=1233,
-            y=243,
+            x=231,
+            y=980,
             width=96,
             height=144,
 
         },
         {
             -- Items/15
-            x=487,
-            y=656,
+            x=1287,
+            y=208,
             width=76,
             height=130,
 
         },
         {
             -- Items/150
-            x=487,
-            y=790,
+            x=381,
+            y=598,
             width=76,
             height=114,
 
         },
         {
             -- Items/151
-            x=988,
-            y=1008,
+            x=871,
+            y=1020,
             width=52,
             height=68,
 
         },
         {
             -- Items/152
-            x=1265,
-            y=1057,
+            x=1583,
+            y=1026,
             width=48,
             height=64,
 
@@ -905,86 +905,86 @@ SheetInfo.sheet =
         {
             -- Items/153
             x=3,
-            y=473,
+            y=669,
             width=104,
             height=188,
 
         },
         {
             -- Items/154
-            x=405,
-            y=521,
+            x=457,
+            y=462,
             width=76,
             height=132,
 
         },
         {
             -- Items/155
-            x=1155,
-            y=403,
+            x=857,
+            y=547,
             width=72,
             height=104,
 
         },
         {
             -- Items/156
-            x=1053,
-            y=647,
+            x=1169,
+            y=426,
             width=68,
             height=104,
 
         },
         {
             -- Items/157
-            x=988,
-            y=818,
+            x=1315,
+            y=626,
             width=60,
             height=96,
 
         },
         {
             -- Items/158
-            x=1055,
-            y=401,
+            x=933,
+            y=458,
             width=96,
             height=84,
 
         },
         {
             -- Items/159
-            x=1463,
-            y=125,
+            x=1033,
+            y=416,
             width=68,
             height=108,
 
         },
         {
             -- Items/16
-            x=951,
-            y=396,
+            x=747,
+            y=653,
             width=100,
             height=88,
 
         },
         {
             -- Items/160
-            x=1141,
-            y=511,
+            x=1023,
+            y=546,
             width=72,
             height=88,
 
         },
         {
             -- Items/161
-            x=949,
-            y=572,
+            x=1241,
+            y=546,
             width=84,
             height=76,
 
         },
         {
             -- Items/162
-            x=1379,
+            x=1032,
             y=3,
             width=152,
             height=118,
@@ -992,8 +992,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/163
-            x=491,
-            y=469,
+            x=549,
+            y=107,
             width=3,
             height=3,
 
@@ -1004,112 +1004,112 @@ SheetInfo.sheet =
         },
         {
             -- Items/17
-            x=1045,
-            y=489,
+            x=757,
+            y=829,
             width=92,
             height=90,
 
         },
         {
             -- Items/18
-            x=1389,
-            y=239,
+            x=673,
+            y=692,
             width=70,
             height=136,
 
         },
         {
             -- Items/19
-            x=247,
-            y=1125,
+            x=447,
+            y=107,
             width=98,
             height=102,
 
         },
         {
             -- Items/2
-            x=3,
-            y=1011,
+            x=225,
+            y=219,
             width=124,
             height=154,
 
         },
         {
             -- Items/20
-            x=1028,
-            y=1191,
+            x=1858,
+            y=1150,
             width=36,
             height=36,
 
         },
         {
             -- Items/21
-            x=1068,
-            y=1191,
+            x=1874,
+            y=1193,
             width=36,
             height=36,
 
         },
         {
             -- Items/22
-            x=1551,
-            y=938,
+            x=1939,
+            y=636,
             width=24,
             height=24,
 
         },
         {
             -- Items/23
-            x=769,
-            y=458,
+            x=1353,
+            y=456,
             width=96,
             height=74,
 
         },
         {
             -- Items/24
-            x=984,
-            y=748,
+            x=1424,
+            y=1106,
             width=64,
             height=66,
 
         },
         {
             -- Items/25
-            x=409,
-            y=657,
+            x=679,
+            y=832,
             width=74,
             height=134,
 
         },
         {
             -- Items/26
-            x=349,
-            y=1125,
+            x=1950,
+            y=137,
             width=86,
             height=102,
 
         },
         {
             -- Items/27
-            x=567,
-            y=752,
+            x=747,
+            y=745,
             width=106,
             height=80,
 
         },
         {
             -- Items/28
-            x=1781,
-            y=353,
+            x=341,
+            y=107,
             width=102,
             height=108,
 
         },
         {
             -- Items/29
-            x=739,
-            y=545,
+            x=781,
+            y=1093,
             width=78,
             height=100,
 
@@ -1117,79 +1117,79 @@ SheetInfo.sheet =
         {
             -- Items/3
             x=3,
-            y=665,
+            y=861,
             width=104,
             height=178,
 
         },
         {
             -- Items/30
-            x=111,
-            y=535,
+            x=537,
+            y=426,
             width=102,
             height=136,
 
         },
         {
             -- Items/31
-            x=1815,
-            y=3,
+            x=121,
+            y=462,
             width=132,
             height=132,
 
         },
         {
             -- Items/32
-            x=567,
-            y=656,
+            x=747,
+            y=557,
             width=106,
             height=92,
 
         },
         {
             -- Items/33
-            x=485,
-            y=532,
+            x=347,
+            y=1128,
             width=106,
             height=120,
 
         },
         {
             -- Items/34
-            x=633,
-            y=251,
+            x=383,
+            y=716,
             width=60,
             height=116,
 
         },
         {
             -- Items/35
-            x=681,
-            y=385,
+            x=767,
+            y=923,
             width=84,
             height=98,
 
         },
         {
             -- Items/36
-            x=595,
-            y=532,
+            x=457,
+            y=1128,
             width=82,
             height=120,
 
         },
         {
             -- Items/37
-            x=769,
-            y=649,
+            x=1467,
+            y=220,
             width=76,
             height=108,
 
         },
         {
             -- Items/38
-            x=211,
-            y=679,
+            x=643,
+            y=426,
             width=98,
             height=130,
 
@@ -1197,54 +1197,54 @@ SheetInfo.sheet =
         {
             -- Items/39
             x=3,
-            y=65,
+            y=261,
             width=126,
             height=196,
 
         },
         {
             -- Items/4
-            x=293,
-            y=221,
+            x=133,
+            y=261,
             width=88,
             height=164,
 
         },
         {
             -- Items/40
-            x=1463,
-            y=237,
+            x=1281,
+            y=434,
             width=68,
             height=108,
 
         },
         {
             -- Items/41
-            x=409,
-            y=795,
+            x=1541,
+            y=459,
             width=74,
             height=88,
 
         },
         {
             -- Items/42
-            x=1873,
-            y=919,
+            x=1492,
+            y=1106,
             width=58,
             height=66,
 
         },
         {
             -- Items/43
-            x=1955,
-            y=407,
+            x=933,
+            y=546,
             width=86,
             height=88,
 
         },
         {
             -- Items/44
-            x=133,
+            x=191,
             y=65,
             width=146,
             height=150,
@@ -1252,79 +1252,79 @@ SheetInfo.sheet =
         },
         {
             -- Items/45
-            x=1387,
-            y=444,
+            x=837,
+            y=272,
             width=92,
             height=94,
 
         },
         {
             -- Items/46
-            x=1773,
-            y=139,
+            x=697,
+            y=143,
             width=110,
             height=126,
 
         },
         {
             -- Items/47
-            x=121,
-            y=433,
+            x=1547,
+            y=273,
             width=116,
             height=98,
 
         },
         {
             -- Items/48
-            x=1887,
-            y=139,
+            x=1976,
+            y=3,
             width=60,
             height=130,
 
         },
         {
             -- Items/49
-            x=1721,
-            y=485,
+            x=1935,
+            y=665,
             width=50,
             height=92,
 
         },
         {
             -- Items/5
-            x=1165,
-            y=251,
+            x=451,
+            y=834,
             width=64,
             height=148,
 
         },
         {
             -- Items/50
-            x=3,
-            y=1169,
+            x=964,
+            y=1189,
             width=58,
             height=58,
 
         },
         {
             -- Items/51
-            x=1277,
-            y=608,
+            x=1989,
+            y=639,
             width=50,
             height=92,
 
         },
         {
             -- Items/52
-            x=1535,
-            y=247,
+            x=933,
+            y=280,
             width=110,
             height=98,
 
         },
         {
             -- Items/53
-            x=1219,
+            x=872,
             y=3,
             width=156,
             height=118,
@@ -1332,24 +1332,24 @@ SheetInfo.sheet =
         },
         {
             -- Items/54
-            x=311,
-            y=535,
+            x=425,
+            y=986,
             width=90,
             height=138,
 
         },
         {
             -- Items/55
-            x=699,
-            y=145,
+            x=111,
+            y=712,
             width=136,
             height=120,
 
         },
         {
             -- Items/56
-            x=1339,
-            y=125,
+            x=811,
+            y=158,
             width=120,
             height=110,
 
@@ -1357,46 +1357,46 @@ SheetInfo.sheet =
         {
             -- Items/57
             x=3,
-            y=265,
+            y=461,
             width=114,
             height=204,
 
         },
         {
             -- Items/58
-            x=746,
-            y=1213,
+            x=619,
+            y=1234,
             width=54,
             height=14,
 
         },
         {
             -- Items/59
-            x=133,
-            y=219,
+            x=549,
+            y=139,
             width=142,
             height=70,
 
         },
         {
             -- Items/6
-            x=897,
-            y=550,
+            x=1240,
+            y=730,
             width=48,
             height=98,
 
         },
         {
             -- Items/60
-            x=1980,
-            y=688,
+            x=853,
+            y=829,
             width=64,
             height=90,
 
         },
         {
             -- Items/61
-            x=387,
+            x=556,
             y=3,
             width=164,
             height=132,
@@ -1404,47 +1404,47 @@ SheetInfo.sheet =
         },
         {
             -- Items/62
-            x=1951,
-            y=3,
+            x=619,
+            y=1112,
             width=94,
             height=118,
 
         },
         {
             -- Items/63
-            x=1625,
-            y=631,
+            x=1453,
+            y=604,
             width=62,
             height=96,
 
         },
         {
             -- Items/64
-            x=922,
-            y=738,
+            x=1345,
+            y=828,
             width=58,
             height=80,
 
         },
         {
             -- Items/65
-            x=1483,
-            y=444,
+            x=851,
+            y=655,
             width=84,
             height=82,
 
         },
         {
             -- Items/66
-            x=897,
-            y=652,
+            x=857,
+            y=741,
             width=84,
             height=82,
 
         },
         {
             -- Items/67
-            x=1051,
+            x=1356,
             y=3,
             width=164,
             height=94,
@@ -1452,64 +1452,64 @@ SheetInfo.sheet =
         },
         {
             -- Items/68
-            x=1955,
-            y=327,
+            x=1723,
+            y=186,
             width=90,
             height=76,
 
         },
         {
             -- Items/69
-            x=1041,
-            y=1142,
+            x=1667,
+            y=1028,
             width=54,
             height=38,
 
         },
         {
             -- Items/7
-            x=1270,
-            y=955,
+            x=1366,
+            y=726,
             width=46,
             height=98,
 
         },
         {
             -- Items/70
-            x=1645,
-            y=485,
+            x=1787,
+            y=591,
             width=72,
             height=68,
 
         },
         {
             -- Items/71
-            x=1775,
-            y=533,
+            x=1863,
+            y=593,
             width=72,
             height=68,
 
         },
         {
             -- Items/72
-            x=373,
-            y=469,
+            x=407,
+            y=377,
             width=114,
             height=48,
 
         },
         {
             -- Items/73
-            x=1951,
-            y=125,
+            x=745,
+            y=487,
             width=94,
             height=66,
 
         },
         {
             -- Items/74
-            x=1065,
-            y=101,
+            x=353,
+            y=219,
             width=96,
             height=154,
 
@@ -1517,223 +1517,223 @@ SheetInfo.sheet =
         {
             -- Items/75
             x=3,
-            y=847,
+            y=1043,
             width=100,
             height=160,
 
         },
         {
             -- Items/76
-            x=746,
-            y=911,
+            x=1941,
+            y=494,
             width=22,
             height=108,
 
         },
         {
             -- Items/77
-            x=735,
-            y=1103,
+            x=1619,
+            y=459,
             width=30,
             height=106,
 
         },
         {
             -- Items/78
-            x=1551,
-            y=836,
+            x=1490,
+            y=704,
             width=28,
             height=98,
 
         },
         {
             -- Items/79
-            x=1333,
-            y=243,
+            x=623,
+            y=834,
             width=52,
             height=144,
 
         },
         {
             -- Items/8
-            x=385,
-            y=375,
+            x=1047,
+            y=322,
             width=110,
             height=90,
 
         },
         {
             -- Items/80
-            x=1645,
-            y=399,
+            x=1550,
+            y=187,
             width=126,
             height=82,
 
         },
         {
             -- Items/81
-            x=1655,
-            y=137,
+            x=935,
+            y=158,
             width=114,
             height=118,
 
         },
         {
             -- Items/82
-            x=1331,
-            y=641,
+            x=1407,
+            y=834,
             width=72,
             height=72,
 
         },
         {
             -- Items/83
-            x=988,
-            y=918,
+            x=1729,
+            y=481,
             width=56,
             height=86,
 
         },
         {
             -- Items/84
-            x=1673,
-            y=1075,
+            x=1620,
+            y=1178,
             width=38,
             height=38,
 
         },
         {
             -- Items/85
-            x=1935,
-            y=984,
+            x=1898,
+            y=1151,
             width=40,
             height=38,
 
         },
         {
             -- Items/86
-            x=944,
-            y=1075,
+            x=1666,
+            y=1165,
             width=40,
             height=42,
 
         },
         {
             -- Items/87
-            x=997,
-            y=1124,
+            x=1710,
+            y=1188,
             width=40,
             height=42,
 
         },
         {
             -- Items/88
-            x=313,
-            y=677,
+            x=361,
+            y=462,
             width=92,
             height=132,
 
         },
         {
             -- Items/89
-            x=131,
-            y=1011,
+            x=561,
+            y=566,
             width=86,
             height=136,
 
         },
         {
             -- Items/9
-            x=493,
-            y=988,
+            x=705,
+            y=970,
             width=58,
             height=122,
 
         },
         {
             -- Items/90
-            x=547,
-            y=143,
+            x=1684,
+            y=3,
             width=148,
             height=104,
 
         },
         {
             -- Items/91
-            x=1649,
-            y=259,
+            x=447,
+            y=738,
             width=118,
             height=92,
 
         },
         {
             -- Items/92
-            x=503,
-            y=1114,
+            x=1105,
+            y=416,
             width=60,
             height=112,
 
         },
         {
             -- Items/93
-            x=1293,
-            y=511,
+            x=1933,
+            y=323,
             width=34,
             height=92,
 
         },
         {
             -- Items/94
-            x=1571,
-            y=382,
+            x=1021,
+            y=737,
             width=70,
             height=94,
 
         },
         {
             -- Items/95
-            x=681,
-            y=533,
+            x=1731,
+            y=365,
             width=54,
             height=112,
 
         },
         {
             -- Items/96
-            x=385,
-            y=231,
+            x=231,
+            y=836,
             width=112,
             height=140,
 
         },
         {
             -- Items/97
-            x=729,
-            y=649,
+            x=1241,
+            y=426,
             width=36,
             height=112,
 
         },
         {
             -- Items/98
-            x=839,
-            y=150,
+            x=1053,
+            y=200,
             width=118,
             height=118,
 
         },
         {
             -- Items/99
-            x=869,
-            y=458,
+            x=1287,
+            y=342,
             width=76,
             height=88,
 
         },
         {
             -- Items/bomb
-            x=860,
-            y=749,
+            x=1521,
+            y=1028,
             width=58,
             height=60,
 
@@ -1744,8 +1744,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/bombFlash
-            x=1873,
-            y=989,
+            x=1573,
+            y=918,
             width=58,
             height=60,
 
@@ -1756,8 +1756,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/bush
-            x=1329,
-            y=915,
+            x=1416,
+            y=802,
             width=70,
             height=28,
 
@@ -1768,8 +1768,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/buttonBlue
-            x=1571,
-            y=480,
+            x=1326,
+            y=1200,
             width=70,
             height=48,
 
@@ -1780,8 +1780,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/buttonBlue_pressed
-            x=1403,
-            y=924,
+            x=1515,
+            y=886,
             width=70,
             height=28,
 
@@ -1792,8 +1792,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/buttonGreen
-            x=786,
-            y=761,
+            x=1878,
+            y=771,
             width=70,
             height=48,
 
@@ -1804,8 +1804,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/buttonGreen_pressed
-            x=1320,
-            y=1027,
+            x=1589,
+            y=886,
             width=70,
             height=28,
 
@@ -1816,8 +1816,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/buttonRed
-            x=1201,
-            y=903,
+            x=1511,
+            y=551,
             width=70,
             height=48,
 
@@ -1828,8 +1828,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/buttonRed_pressed
-            x=1477,
-            y=934,
+            x=1723,
+            y=935,
             width=70,
             height=28,
 
@@ -1840,8 +1840,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/buttonYellow
-            x=1394,
-            y=1036,
+            x=1400,
+            y=1200,
             width=70,
             height=48,
 
@@ -1852,8 +1852,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/buttonYellow_pressed
-            x=772,
-            y=1010,
+            x=1797,
+            y=933,
             width=70,
             height=28,
 
@@ -1864,8 +1864,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/cactus
-            x=1935,
-            y=922,
+            x=1929,
+            y=897,
             width=40,
             height=58,
 
@@ -1876,8 +1876,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/chain
-            x=1851,
-            y=533,
+            x=1497,
+            y=1032,
             width=20,
             height=70,
 
@@ -1888,32 +1888,32 @@ SheetInfo.sheet =
         },
         {
             -- Items/cloud1
-            x=567,
-            y=836,
+            x=1054,
+            y=125,
             width=128,
             height=71,
 
         },
         {
             -- Items/cloud2
-            x=561,
-            y=911,
+            x=1684,
+            y=111,
             width=129,
             height=71,
 
         },
         {
             -- Items/cloud3
-            x=561,
-            y=986,
+            x=1817,
+            y=131,
             width=129,
             height=71,
 
         },
         {
             -- Items/coinBronze
-            x=293,
-            y=389,
+            x=1667,
+            y=974,
             width=54,
             height=50,
 
@@ -1924,8 +1924,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/coinGold
-            x=1274,
-            y=1125,
+            x=1754,
+            y=1193,
             width=38,
             height=38,
 
@@ -1936,8 +1936,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/coinSilver
-            x=1868,
-            y=1090,
+            x=1796,
+            y=1193,
             width=38,
             height=38,
 
@@ -1948,8 +1948,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/fireball
-            x=1889,
-            y=1192,
+            x=1939,
+            y=606,
             width=24,
             height=26,
 
@@ -1960,8 +1960,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagBlue
-            x=1621,
-            y=557,
+            x=697,
+            y=273,
             width=68,
             height=70,
 
@@ -1972,8 +1972,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagBlue2
-            x=916,
-            y=1001,
+            x=1352,
+            y=1102,
             width=68,
             height=70,
 
@@ -1984,8 +1984,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagBlueHanging
-            x=1607,
-            y=1117,
+            x=1546,
+            y=1176,
             width=28,
             height=70,
 
@@ -1996,8 +1996,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagGreen
-            x=1317,
-            y=1059,
+            x=1425,
+            y=1032,
             width=68,
             height=70,
 
@@ -2008,8 +2008,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagGreen2
-            x=1463,
-            y=1088,
+            x=1474,
+            y=1176,
             width=68,
             height=70,
 
@@ -2020,8 +2020,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagGreenHanging
-            x=1625,
-            y=1009,
+            x=1483,
+            y=834,
             width=28,
             height=70,
 
@@ -2032,8 +2032,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagRed
-            x=1657,
-            y=927,
+            x=1515,
+            y=812,
             width=68,
             height=70,
 
@@ -2044,8 +2044,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagRed2
-            x=1729,
-            y=922,
+            x=1587,
+            y=812,
             width=68,
             height=70,
 
@@ -2056,8 +2056,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagRedHanging
-            x=1657,
-            y=1001,
+            x=1635,
+            y=918,
             width=28,
             height=70,
 
@@ -2068,8 +2068,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagYellow
-            x=1801,
-            y=919,
+            x=1659,
+            y=812,
             width=68,
             height=70,
 
@@ -2080,8 +2080,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagYellow2
-            x=1553,
-            y=1043,
+            x=1731,
+            y=819,
             width=68,
             height=70,
 
@@ -2092,8 +2092,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/flagYellowHanging
-            x=1689,
-            y=1001,
+            x=1635,
+            y=992,
             width=28,
             height=70,
 
@@ -2104,8 +2104,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/gemBlue
-            x=1275,
-            y=924,
+            x=497,
+            y=429,
             width=36,
             height=26,
 
@@ -2116,8 +2116,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/gemGreen
-            x=1868,
-            y=1132,
+            x=1578,
+            y=1222,
             width=36,
             height=26,
 
@@ -2128,8 +2128,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/gemRed
-            x=1868,
-            y=1162,
+            x=1618,
+            y=1222,
             width=36,
             height=26,
 
@@ -2140,8 +2140,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/gemYellow
-            x=1849,
-            y=1192,
+            x=1983,
+            y=1117,
             width=36,
             height=26,
 
@@ -2152,8 +2152,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/ham
-            x=1693,
-            y=581,
+            x=717,
+            y=1212,
             width=78,
             height=36,
 
@@ -2164,8 +2164,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/keyBlue
-            x=1044,
-            y=1100,
+            x=1725,
+            y=967,
             width=62,
             height=38,
 
@@ -2176,8 +2176,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/keyGreen
-            x=1110,
-            y=1116,
+            x=1725,
+            y=1009,
             width=62,
             height=38,
 
@@ -2188,8 +2188,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/keyRed
-            x=1176,
-            y=1128,
+            x=1725,
+            y=1051,
             width=62,
             height=38,
 
@@ -2200,8 +2200,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/keyYellow
-            x=1163,
-            y=1170,
+            x=1797,
+            y=965,
             width=62,
             height=38,
 
@@ -2212,8 +2212,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/mushroomBrown
-            x=1490,
-            y=1192,
+            x=1554,
+            y=1108,
             width=42,
             height=32,
 
@@ -2224,8 +2224,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/mushroomRed
-            x=1584,
-            y=1191,
+            x=1620,
+            y=1142,
             width=42,
             height=32,
 
@@ -2236,40 +2236,40 @@ SheetInfo.sheet =
         },
         {
             -- Items/particleBrick1a
-            x=1108,
-            y=1213,
+            x=677,
+            y=1234,
             width=19,
             height=14,
 
         },
         {
             -- Items/particleBrick1b
-            x=1911,
-            y=798,
+            x=1098,
+            y=1227,
             width=21,
             height=21,
 
         },
         {
             -- Items/particleBrick2a
-            x=1131,
-            y=1213,
+            x=1585,
+            y=551,
             width=19,
             height=14,
 
         },
         {
             -- Items/particleBrick2b
-            x=221,
-            y=1125,
+            x=1123,
+            y=1227,
             width=21,
             height=21,
 
         },
         {
             -- Items/plant
-            x=1422,
-            y=1144,
+            x=1933,
+            y=419,
             width=34,
             height=40,
 
@@ -2280,8 +2280,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/plantPurple
-            x=1988,
-            y=897,
+            x=1663,
+            y=886,
             width=56,
             height=28,
 
@@ -2292,8 +2292,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/rock
-            x=681,
-            y=487,
+            x=1505,
+            y=982,
             width=70,
             height=42,
 
@@ -2304,8 +2304,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/snowhill
-            x=1837,
-            y=799,
+            x=1352,
+            y=1176,
             width=70,
             height=20,
 
@@ -2316,8 +2316,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/spikes
-            x=1583,
-            y=927,
+            x=1797,
+            y=893,
             width=70,
             height=36,
 
@@ -2328,8 +2328,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/springboardDown
-            x=1468,
-            y=1046,
+            x=1723,
+            y=893,
             width=70,
             height=38,
 
@@ -2340,8 +2340,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/springboardUp
-            x=1389,
-            y=1088,
+            x=1952,
+            y=767,
             width=70,
             height=52,
 
@@ -2352,8 +2352,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/star
-            x=831,
-            y=1082,
+            x=1871,
+            y=897,
             width=54,
             height=48,
 
@@ -2364,8 +2364,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/switchLeft
-            x=1037,
-            y=583,
+            x=1026,
+            y=1187,
             width=68,
             height=60,
 
@@ -2376,8 +2376,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/switchMid
-            x=846,
-            y=1010,
+            x=1947,
+            y=823,
             width=66,
             height=68,
 
@@ -2388,8 +2388,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/switchRight
-            x=1535,
-            y=1117,
+            x=1501,
+            y=918,
             width=68,
             height=60,
 
@@ -2400,8 +2400,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/weight
-            x=1801,
-            y=993,
+            x=1803,
+            y=819,
             width=68,
             height=70,
 
@@ -2412,8 +2412,8 @@ SheetInfo.sheet =
         },
         {
             -- Items/weightChained
-            x=1729,
-            y=996,
+            x=1875,
+            y=823,
             width=68,
             height=70,
 
@@ -2424,48 +2424,48 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_duck
-            x=1052,
-            y=755,
+            x=927,
+            y=1018,
             width=69,
             height=71,
 
         },
         {
             -- Player/p1_front
-            x=1729,
-            y=826,
+            x=999,
+            y=915,
             width=66,
             height=92,
 
         },
         {
             -- Player/p1_hurt
-            x=1052,
-            y=830,
+            x=1069,
+            y=915,
             width=69,
             height=92,
 
         },
         {
             -- Player/p1_jump
-            x=843,
-            y=813,
+            x=1095,
+            y=737,
             width=67,
             height=94,
 
         },
         {
             -- Player/p1_stand
-            x=1762,
-            y=631,
+            x=931,
+            y=1093,
             width=66,
             height=92,
 
         },
         {
             -- Player/p1_walk01
-            x=772,
-            y=911,
+            x=1971,
+            y=243,
             width=68,
             height=95,
 
@@ -2476,8 +2476,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk02
-            x=844,
-            y=911,
+            x=1971,
+            y=342,
             width=68,
             height=95,
 
@@ -2488,8 +2488,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk03
-            x=1217,
-            y=511,
+            x=1799,
+            y=270,
             width=72,
             height=93,
 
@@ -2500,8 +2500,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk04
-            x=821,
-            y=550,
+            x=939,
+            y=638,
             width=72,
             height=95,
 
@@ -2512,8 +2512,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk05
-            x=1399,
-            y=542,
+            x=1723,
+            y=266,
             width=72,
             height=95,
 
@@ -2524,8 +2524,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk06
-            x=1125,
-            y=603,
+            x=1789,
+            y=367,
             width=72,
             height=95,
 
@@ -2536,8 +2536,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk07
-            x=1201,
-            y=608,
+            x=1015,
+            y=638,
             width=72,
             height=95,
 
@@ -2548,8 +2548,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk08
-            x=699,
-            y=814,
+            x=1169,
+            y=534,
             width=68,
             height=93,
 
@@ -2560,8 +2560,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk09
-            x=771,
-            y=814,
+            x=855,
+            y=923,
             width=68,
             height=93,
 
@@ -2572,8 +2572,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk10
-            x=1405,
-            y=729,
+            x=1091,
+            y=638,
             width=70,
             height=95,
 
@@ -2584,8 +2584,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p1_walk11
-            x=916,
-            y=902,
+            x=1971,
+            y=441,
             width=68,
             height=95,
 
@@ -2596,48 +2596,48 @@ SheetInfo.sheet =
         },
         {
             -- Player/p2_duck
-            x=1553,
-            y=967,
+            x=1430,
+            y=910,
             width=67,
             height=72,
 
         },
         {
             -- Player/p2_front
-            x=1767,
-            y=727,
+            x=1142,
+            y=915,
             width=66,
             height=92,
 
         },
         {
             -- Player/p2_hurt
-            x=1799,
-            y=823,
+            x=1200,
+            y=1011,
             width=67,
             height=92,
 
         },
         {
             -- Player/p2_jump
-            x=1625,
-            y=731,
+            x=1099,
+            y=532,
             width=66,
             height=94,
 
         },
         {
             -- Player/p2_stand
-            x=1832,
-            y=607,
+            x=1212,
+            y=1107,
             width=66,
             height=92,
 
         },
         {
             -- Player/p2_walk01
-            x=1553,
-            y=730,
+            x=1519,
+            y=606,
             width=68,
             height=94,
 
@@ -2648,8 +2648,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p2_walk02
-            x=1902,
-            y=606,
+            x=1212,
+            y=912,
             width=68,
             height=92,
 
@@ -2660,8 +2660,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p2_walk03
-            x=1974,
-            y=592,
+            x=1284,
+            y=912,
             width=68,
             height=92,
 
@@ -2672,8 +2672,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p2_walk04
-            x=1048,
-            y=926,
+            x=1467,
+            y=440,
             width=70,
             height=90,
 
@@ -2684,8 +2684,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p2_walk05
-            x=1403,
-            y=828,
+            x=1861,
+            y=665,
             width=70,
             height=92,
 
@@ -2696,8 +2696,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p2_walk06
-            x=1479,
-            y=740,
+            x=1001,
+            y=1091,
             width=70,
             height=92,
 
@@ -2708,40 +2708,40 @@ SheetInfo.sheet =
         },
         {
             -- Player/p2_walk07
-            x=1477,
-            y=836,
+            x=1292,
+            y=726,
             width=70,
             height=94,
 
         },
         {
             -- Player/p2_walk08
-            x=1122,
-            y=938,
+            x=1416,
+            y=704,
             width=70,
             height=94,
 
         },
         {
             -- Player/p2_walk09
-            x=1196,
-            y=955,
+            x=1591,
+            y=606,
             width=70,
             height=94,
 
         },
         {
             -- Player/p2_walk10
-            x=1583,
-            y=829,
+            x=1665,
+            y=576,
             width=70,
             height=94,
 
         },
         {
             -- Player/p2_walk11
-            x=1657,
-            y=829,
+            x=1666,
+            y=674,
             width=68,
             height=94,
 
@@ -2752,48 +2752,48 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_duck
-            x=1192,
-            y=1053,
+            x=1352,
+            y=1027,
             width=69,
             height=71,
 
         },
         {
             -- Player/p3_front
-            x=1837,
-            y=703,
+            x=1271,
+            y=1008,
             width=66,
             height=92,
 
         },
         {
             -- Player/p3_hurt
-            x=1907,
-            y=702,
+            x=1075,
+            y=1091,
             width=69,
             height=92,
 
         },
         {
             -- Player/p3_jump
-            x=1691,
-            y=631,
+            x=1738,
+            y=674,
             width=67,
             height=94,
 
         },
         {
             -- Player/p3_stand
-            x=1870,
-            y=823,
+            x=1282,
+            y=1104,
             width=66,
             height=92,
 
         },
         {
             -- Player/p3_walk01
-            x=1475,
-            y=542,
+            x=1522,
+            y=704,
             width=68,
             height=95,
 
@@ -2804,8 +2804,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk02
-            x=1695,
-            y=729,
+            x=927,
+            y=921,
             width=68,
             height=93,
 
@@ -2816,8 +2816,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk03
-            x=1125,
-            y=702,
+            x=1653,
+            y=479,
             width=72,
             height=93,
 
@@ -2828,8 +2828,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk04
-            x=1201,
-            y=707,
+            x=1789,
+            y=494,
             width=72,
             height=93,
 
@@ -2840,8 +2840,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk05
-            x=1329,
-            y=717,
+            x=1865,
+            y=494,
             width=72,
             height=95,
 
@@ -2852,8 +2852,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk06
-            x=1125,
-            y=799,
+            x=1967,
+            y=540,
             width=72,
             height=95,
 
@@ -2864,8 +2864,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk07
-            x=1201,
-            y=804,
+            x=1165,
+            y=631,
             width=72,
             height=95,
 
@@ -2876,8 +2876,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk08
-            x=1329,
-            y=816,
+            x=1241,
+            y=626,
             width=70,
             height=95,
 
@@ -2888,8 +2888,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk09
-            x=1479,
-            y=641,
+            x=1166,
+            y=730,
             width=70,
             height=95,
 
@@ -2900,8 +2900,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk10
-            x=1553,
-            y=631,
+            x=1594,
+            y=704,
             width=68,
             height=95,
 
@@ -2912,8 +2912,8 @@ SheetInfo.sheet =
         },
         {
             -- Player/p3_walk11
-            x=1547,
-            y=532,
+            x=1379,
+            y=604,
             width=70,
             height=95,
 
@@ -2924,960 +2924,960 @@ SheetInfo.sheet =
         },
         {
             -- UI/9slices/blue_button02_0_0
-            x=1824,
-            y=1151,
+            x=757,
+            y=956,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button02_0_1
-            x=501,
-            y=371,
+            x=225,
+            y=415,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button02_0_2
-            x=207,
-            y=997,
+            x=1923,
+            y=356,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button02_1_0
-            x=111,
-            y=473,
+            x=833,
+            y=454,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/blue_button02_1_1
-            x=883,
-            y=103,
+            x=872,
+            y=125,
             width=178,
             height=29,
 
         },
         {
             -- UI/9slices/blue_button02_1_2
-            x=1824,
-            y=1118,
+            x=111,
+            y=669,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/blue_button02_2_0
-            x=373,
-            y=521,
+            x=1653,
+            y=459,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button02_2_1
-            x=882,
-            y=136,
+            x=1186,
+            y=194,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button02_2_2
-            x=683,
-            y=371,
+            x=651,
+            y=692,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button03_0_0
-            x=1824,
-            y=1151,
+            x=757,
+            y=956,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button03_0_1
-            x=501,
-            y=371,
+            x=225,
+            y=415,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button03_0_2
-            x=207,
-            y=997,
+            x=1923,
+            y=356,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button03_1_0
-            x=111,
-            y=506,
+            x=537,
+            y=566,
             width=6,
             height=25,
 
         },
         {
             -- UI/9slices/blue_button03_1_1
-            x=211,
-            y=813,
+            x=1188,
+            y=103,
             width=178,
             height=25,
 
         },
         {
             -- UI/9slices/blue_button03_1_2
-            x=1535,
-            y=1088,
+            x=1588,
+            y=1144,
             width=6,
             height=25,
 
         },
         {
             -- UI/9slices/blue_button03_2_0
-            x=383,
-            y=521,
+            x=1521,
+            y=1092,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button03_2_1
-            x=211,
-            y=875,
+            x=1368,
+            y=192,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/blue_button03_2_2
-            x=393,
-            y=521,
+            x=661,
+            y=692,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/green_button02_0_0
-            x=1954,
-            y=592,
+            x=1531,
+            y=1092,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/green_button02_0_1
-            x=491,
-            y=476,
+            x=1368,
+            y=206,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/green_button02_0_2
-            x=1964,
-            y=592,
+            x=1541,
+            y=1092,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/green_button02_1_0
-            x=376,
-            y=3,
+            x=757,
+            y=923,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/green_button02_1_1
-            x=211,
-            y=842,
+            x=133,
+            y=429,
             width=178,
             height=29,
 
         },
         {
             -- UI/9slices/green_button02_1_2
-            x=393,
-            y=813,
+            x=1923,
+            y=323,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/green_button02_2_0
-            x=829,
-            y=536,
+            x=679,
+            y=970,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/green_button02_2_1
-            x=491,
-            y=490,
+            x=557,
+            y=347,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/green_button02_2_2
-            x=839,
-            y=536,
+            x=689,
+            y=970,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/green_button03_0_0
-            x=1954,
-            y=592,
+            x=1531,
+            y=1092,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/green_button03_0_1
-            x=491,
-            y=476,
+            x=1368,
+            y=206,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/green_button03_0_2
-            x=1964,
-            y=592,
+            x=1541,
+            y=1092,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/green_button03_1_0
-            x=376,
-            y=36,
+            x=547,
+            y=566,
             width=6,
             height=25,
 
         },
         {
             -- UI/9slices/green_button03_1_1
-            x=1389,
-            y=415,
+            x=1186,
+            y=165,
             width=178,
             height=25,
 
         },
         {
             -- UI/9slices/green_button03_1_2
-            x=1542,
-            y=1059,
+            x=1696,
+            y=1211,
             width=6,
             height=25,
 
         },
         {
             -- UI/9slices/green_button03_2_0
-            x=849,
-            y=536,
+            x=2017,
+            y=881,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/green_button03_2_1
-            x=491,
-            y=504,
+            x=557,
+            y=361,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/green_button03_2_2
-            x=859,
-            y=536,
+            x=1551,
+            y=1092,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_box_0_0
-            x=1483,
-            y=530,
+            x=705,
+            y=1096,
             width=8,
             height=8,
 
         },
         {
             -- UI/9slices/grey_box_0_1
-            x=567,
-            y=1218,
+            x=561,
+            y=375,
             width=175,
             height=8,
 
         },
         {
             -- UI/9slices/grey_box_0_2
-            x=351,
-            y=431,
+            x=1200,
+            y=1107,
             width=8,
             height=8,
 
         },
         {
             -- UI/9slices/grey_box_1_0
-            x=373,
-            y=431,
+            x=1453,
+            y=456,
             width=8,
             height=34,
 
         },
         {
             -- UI/9slices/grey_box_1_1
-            x=703,
-            y=107,
+            x=225,
+            y=377,
             width=175,
             height=34,
 
         },
         {
             -- UI/9slices/grey_box_1_2
-            x=746,
-            y=1023,
+            x=2026,
+            y=767,
             width=8,
             height=34,
 
         },
         {
             -- UI/9slices/grey_box_2_0
-            x=897,
-            y=738,
+            x=1779,
+            y=1093,
             width=8,
             height=7,
 
         },
         {
             -- UI/9slices/grey_box_2_1
-            x=555,
-            y=1103,
+            x=561,
+            y=387,
             width=175,
             height=7,
 
         },
         {
             -- UI/9slices/grey_box_2_2
-            x=1370,
-            y=1133,
+            x=1571,
+            y=1092,
             width=8,
             height=7,
 
         },
         {
             -- UI/9slices/grey_button02_0_0
-            x=501,
-            y=231,
+            x=1817,
+            y=111,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button02_0_1
-            x=491,
-            y=518,
+            x=561,
+            y=398,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button02_0_2
-            x=65,
-            y=1216,
+            x=811,
+            y=143,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button02_1_0
-            x=755,
-            y=487,
+            x=1033,
+            y=382,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/grey_button02_1_1
-            x=1463,
-            y=349,
+            x=1370,
+            y=101,
             width=178,
             height=29,
 
         },
         {
             -- UI/9slices/grey_button02_1_2
-            x=1109,
-            y=583,
+            x=1917,
+            y=206,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/grey_button02_2_0
-            x=1775,
-            y=605,
+            x=739,
+            y=347,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button02_2_1
-            x=555,
-            y=1061,
+            x=561,
+            y=412,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button02_2_2
-            x=804,
-            y=1213,
+            x=739,
+            y=361,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button03_0_0
-            x=501,
-            y=231,
+            x=1817,
+            y=111,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button03_0_1
-            x=491,
-            y=518,
+            x=561,
+            y=398,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button03_0_2
-            x=65,
-            y=1216,
+            x=811,
+            y=143,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button03_1_0
-            x=755,
-            y=487,
+            x=1033,
+            y=382,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/grey_button03_1_1
-            x=1463,
-            y=349,
+            x=1370,
+            y=101,
             width=178,
             height=29,
 
         },
         {
             -- UI/9slices/grey_button03_1_2
-            x=1109,
-            y=583,
+            x=1917,
+            y=206,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/grey_button03_2_0
-            x=1775,
-            y=605,
+            x=739,
+            y=347,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button03_2_1
-            x=555,
-            y=1061,
+            x=561,
+            y=412,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/grey_button03_2_2
-            x=804,
-            y=1213,
+            x=739,
+            y=361,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/grey_panel_0_0
-            x=1910,
-            y=1123,
+            x=1612,
+            y=803,
             width=7,
             height=5,
 
         },
         {
             -- UI/9slices/grey_panel_0_1
-            x=739,
-            y=536,
+            x=1522,
+            y=803,
             width=86,
             height=5,
 
         },
         {
             -- UI/9slices/grey_panel_0_2
-            x=849,
-            y=749,
+            x=1623,
+            y=803,
             width=7,
             height=5,
 
         },
         {
             -- UI/9slices/grey_panel_1_0
-            x=1542,
-            y=966,
+            x=1161,
+            y=322,
             width=7,
             height=89,
 
         },
         {
             -- UI/9slices/grey_panel_1_1
-            x=1955,
-            y=499,
+            x=843,
+            y=454,
             width=86,
             height=89,
 
         },
         {
             -- UI/9slices/grey_panel_1_2
-            x=817,
-            y=1133,
+            x=1341,
+            y=1008,
             width=7,
             height=89,
 
         },
         {
             -- UI/9slices/grey_panel_2_0
-            x=417,
-            y=1115,
+            x=843,
+            y=547,
             width=7,
             height=6,
 
         },
         {
             -- UI/9slices/grey_panel_2_1
-            x=1693,
-            y=621,
+            x=1861,
+            y=761,
             width=86,
             height=6,
 
         },
         {
             -- UI/9slices/grey_panel_2_2
-            x=428,
-            y=1115,
+            x=1947,
+            y=1107,
             width=7,
             height=6,
 
         },
         {
             -- UI/9slices/red_button00_0_0
-            x=944,
-            y=1121,
+            x=781,
+            y=1197,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/red_button00_0_1
-            x=555,
-            y=1075,
+            x=1789,
+            y=466,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/red_button00_0_2
-            x=997,
-            y=1170,
+            x=1379,
+            y=703,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/red_button00_1_0
-            x=677,
-            y=806,
+            x=2017,
+            y=823,
             width=6,
             height=25,
 
         },
         {
             -- UI/9slices/red_button00_1_1
-            x=499,
-            y=418,
+            x=1368,
+            y=134,
             width=178,
             height=25,
 
         },
         {
             -- UI/9slices/red_button00_1_2
-            x=1515,
-            y=1162,
+            x=2017,
+            y=852,
             width=6,
             height=25,
 
         },
         {
             -- UI/9slices/red_button00_2_0
-            x=1702,
-            y=1168,
+            x=1739,
+            y=651,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/red_button00_2_1
-            x=555,
-            y=1089,
+            x=1789,
+            y=480,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/red_button00_2_2
-            x=1849,
-            y=1175,
+            x=1426,
+            y=1176,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/red_button01_0_0
-            x=1119,
-            y=583,
+            x=700,
+            y=1234,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/red_button01_0_1
-            x=769,
-            y=388,
+            x=1353,
+            y=534,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/red_button01_0_2
-            x=2038,
-            y=1054,
+            x=1608,
+            y=551,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/red_button01_1_0
-            x=829,
-            y=1042,
+            x=2027,
+            y=995,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/red_button01_1_1
-            x=1389,
-            y=382,
+            x=315,
+            y=429,
             width=178,
             height=29,
 
         },
         {
             -- UI/9slices/red_button01_1_2
-            x=2038,
-            y=1021,
+            x=1453,
+            y=494,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/red_button01_2_0
-            x=1917,
-            y=1166,
+            x=1769,
+            y=1093,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/red_button01_2_1
-            x=769,
-            y=402,
+            x=1329,
+            y=548,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/red_button01_2_2
-            x=1630,
-            y=532,
+            x=1983,
+            y=1219,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button02_0_0
-            x=1702,
-            y=557,
+            x=1365,
+            y=604,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button02_0_1
-            x=769,
-            y=416,
+            x=1329,
+            y=562,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button02_0_2
-            x=511,
-            y=231,
+            x=2026,
+            y=805,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button02_1_0
-            x=758,
-            y=1023,
+            x=1927,
+            y=206,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/yellow_button02_1_1
-            x=499,
-            y=385,
+            x=1186,
+            y=132,
             width=178,
             height=29,
 
         },
         {
             -- UI/9slices/yellow_button02_1_2
-            x=1910,
-            y=1090,
+            x=1937,
+            y=206,
             width=6,
             height=29,
 
         },
         {
             -- UI/9slices/yellow_button02_2_0
-            x=75,
-            y=1216,
+            x=1680,
+            y=255,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button02_2_1
-            x=769,
-            y=430,
+            x=1329,
+            y=576,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button02_2_2
-            x=1785,
-            y=605,
+            x=1561,
+            y=1092,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button03_0_0
-            x=1702,
-            y=557,
+            x=1365,
+            y=604,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button03_0_1
-            x=769,
-            y=416,
+            x=1329,
+            y=562,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button03_0_2
-            x=511,
-            y=231,
+            x=2026,
+            y=805,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button03_1_0
-            x=1525,
-            y=1162,
+            x=2010,
+            y=1147,
             width=6,
             height=25,
 
         },
         {
             -- UI/9slices/yellow_button03_1_1
-            x=499,
-            y=447,
+            x=1368,
+            y=163,
             width=178,
             height=25,
 
         },
         {
             -- UI/9slices/yellow_button03_1_2
-            x=393,
-            y=846,
+            x=1648,
+            y=576,
             width=6,
             height=25,
 
         },
         {
             -- UI/9slices/yellow_button03_2_0
-            x=954,
-            y=1121,
+            x=1583,
+            y=1094,
             width=6,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button03_2_1
-            x=769,
-            y=444,
+            x=1329,
+            y=590,
             width=178,
             height=10,
 
         },
         {
             -- UI/9slices/yellow_button03_2_2
-            x=1007,
-            y=1170,
+            x=821,
+            y=143,
             width=6,
             height=10,
 
         },
         {
             -- UI/Icon/check1
-            x=1984,
-            y=1116,
+            x=1893,
+            y=1071,
             width=32,
             height=30,
 
         },
         {
             -- UI/Icon/check2
-            x=1908,
-            y=1132,
+            x=1947,
+            y=1117,
             width=32,
             height=30,
 
         },
         {
             -- UI/Icon/check3
-            x=1944,
-            y=1121,
+            x=1974,
+            y=1151,
             width=32,
             height=30,
 
         },
         {
             -- UI/Icon/check4
-            x=1944,
-            y=1155,
+            x=1983,
+            y=1185,
             width=32,
             height=30,
 
         },
         {
             -- UI/Icon/circle1
-            x=487,
-            y=908,
+            x=993,
+            y=835,
             width=70,
             height=76,
 
         },
         {
             -- UI/Icon/circle2
-            x=914,
-            y=822,
+            x=1067,
+            y=835,
             width=70,
             height=76,
 
         },
         {
             -- UI/Icon/circle3
-            x=1320,
-            y=947,
+            x=1000,
+            y=1011,
             width=70,
             height=76,
 
         },
         {
             -- UI/Icon/circle4
-            x=1394,
-            y=956,
+            x=1074,
+            y=1011,
             width=70,
             height=76,
 
         },
         {
             -- UI/Icon/cross1
-            x=1834,
-            y=1141,
+            x=1632,
+            y=1108,
             width=30,
             height=30,
 
         },
         {
             -- UI/Icon/cross2
-            x=1980,
-            y=1150,
+            x=1662,
+            y=1211,
             width=30,
             height=30,
 
         },
         {
             -- UI/Icon/cross3
-            x=1917,
-            y=1189,
+            x=1680,
+            y=187,
             width=30,
             height=30,
 
         },
         {
             -- UI/Icon/cross4
-            x=1951,
-            y=1189,
+            x=1680,
+            y=221,
             width=30,
             height=30,
 
@@ -3895,161 +3895,173 @@ SheetInfo.sheet =
             sourceHeight = 72
         },
         {
+            -- UI/Icon/load
+            x=3,
+            y=65,
+            width=184,
+            height=192,
+
+            sourceX = 8,
+            sourceY = 4,
+            sourceWidth = 200,
+            sourceHeight = 200
+        },
+        {
             -- UI/Icon/sword1
-            x=1468,
-            y=966,
+            x=1197,
+            y=832,
             width=70,
             height=76,
 
         },
         {
             -- UI/Icon/sword2
-            x=1044,
-            y=1020,
+            x=1271,
+            y=832,
             width=70,
             height=76,
 
         },
         {
             -- UI/Icon/sword3
-            x=1118,
-            y=1036,
+            x=1356,
+            y=912,
             width=70,
             height=76,
 
         },
         {
             -- castleLedgeLeft
-            x=1908,
-            y=1166,
+            x=1967,
+            y=639,
             width=5,
             height=22,
 
         },
         {
             -- castleLedgeRight
-            x=687,
-            y=806,
+            x=1976,
+            y=639,
             width=5,
             height=22,
 
         },
         {
             -- dirtLedgeLeft
-            x=1141,
-            y=489,
+            x=447,
+            y=716,
             width=5,
             height=18,
 
         },
         {
             -- dirtLedgeRight
-            x=1621,
-            y=532,
+            x=1353,
+            y=434,
             width=5,
             height=18,
 
         },
         {
             -- grassLedgeLeft
-            x=1630,
-            y=1191,
+            x=1490,
+            y=806,
             width=5,
             height=24,
 
         },
         {
             -- grassLedgeRight
-            x=1099,
-            y=1142,
+            x=1499,
+            y=806,
             width=5,
             height=24,
 
         },
         {
             -- hill_large
-            x=677,
-            y=656,
+            x=519,
+            y=834,
             width=48,
             height=146,
 
         },
         {
             -- hill_largeAlt
-            x=694,
-            y=911,
+            x=571,
+            y=834,
             width=48,
             height=146,
 
         },
         {
             -- hill_small
-            x=1277,
-            y=704,
+            x=1809,
+            y=663,
             width=48,
             height=106,
 
         },
         {
             -- hill_smallAlt
-            x=1277,
-            y=814,
+            x=1148,
+            y=1011,
             width=48,
             height=106,
 
         },
         {
             -- sandLedgeLeft
-            x=1693,
-            y=557,
+            x=1329,
+            y=604,
             width=5,
             height=18,
 
         },
         {
             -- sandLedgeRight
-            x=1315,
-            y=924,
+            x=1338,
+            y=604,
             width=5,
             height=18,
 
         },
         {
             -- snowLedgeLeft
-            x=2020,
-            y=1116,
+            x=1347,
+            y=604,
             width=5,
             height=18,
 
         },
         {
             -- snowLedgeRight
-            x=1920,
-            y=1090,
+            x=1356,
+            y=604,
             width=5,
             height=18,
 
         },
         {
             -- stoneLedgeLeft
-            x=121,
-            y=265,
+            x=1714,
+            y=186,
             width=5,
             height=24,
 
         },
         {
             -- stoneLedgeRight
-            x=1109,
-            y=616,
+            x=1714,
+            y=214,
             width=5,
             height=24,
 
         },
     },
     
-    sheetContentWidth = 2048,
-    sheetContentHeight = 1230
+    sheetContentWidth = 2042,
+    sheetContentHeight = 1251
 }
 
 SheetInfo.frameIndex =
@@ -4498,25 +4510,26 @@ SheetInfo.frameIndex =
     ["UI/Icon/cross3"] = 441,
     ["UI/Icon/cross4"] = 442,
     ["UI/Icon/icon"] = 443,
-    ["UI/Icon/sword1"] = 444,
-    ["UI/Icon/sword2"] = 445,
-    ["UI/Icon/sword3"] = 446,
-    ["castleLedgeLeft"] = 447,
-    ["castleLedgeRight"] = 448,
-    ["dirtLedgeLeft"] = 449,
-    ["dirtLedgeRight"] = 450,
-    ["grassLedgeLeft"] = 451,
-    ["grassLedgeRight"] = 452,
-    ["hill_large"] = 453,
-    ["hill_largeAlt"] = 454,
-    ["hill_small"] = 455,
-    ["hill_smallAlt"] = 456,
-    ["sandLedgeLeft"] = 457,
-    ["sandLedgeRight"] = 458,
-    ["snowLedgeLeft"] = 459,
-    ["snowLedgeRight"] = 460,
-    ["stoneLedgeLeft"] = 461,
-    ["stoneLedgeRight"] = 462,
+    ["UI/Icon/load"] = 444,
+    ["UI/Icon/sword1"] = 445,
+    ["UI/Icon/sword2"] = 446,
+    ["UI/Icon/sword3"] = 447,
+    ["castleLedgeLeft"] = 448,
+    ["castleLedgeRight"] = 449,
+    ["dirtLedgeLeft"] = 450,
+    ["dirtLedgeRight"] = 451,
+    ["grassLedgeLeft"] = 452,
+    ["grassLedgeRight"] = 453,
+    ["hill_large"] = 454,
+    ["hill_largeAlt"] = 455,
+    ["hill_small"] = 456,
+    ["hill_smallAlt"] = 457,
+    ["sandLedgeLeft"] = 458,
+    ["sandLedgeRight"] = 459,
+    ["snowLedgeLeft"] = 460,
+    ["snowLedgeRight"] = 461,
+    ["stoneLedgeLeft"] = 462,
+    ["stoneLedgeRight"] = 463,
 }
 
 function SheetInfo:getSheet()
