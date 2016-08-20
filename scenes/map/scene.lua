@@ -133,7 +133,7 @@ function scene:create( event )
                         end
 
                     end
-                    ,true   
+                    ,   
                 )
             else
                 print("carema began")
