@@ -6,6 +6,8 @@ local inventory = require( "inventory" )
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
 local json = require("json")
+local icon 
+local inventoryOpened
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -16,6 +18,34 @@ local json = require("json")
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
 -- -----------------------------------------------------------------------------------
+local function openInventory( event )
+    if event.phase == "began" then
+        icon.isVisible = false
+        local options = {
+            isModal = true,
+            params = {
+                onClose = function ()
+                    inventoryOpened = false
+                    icon.isVisible = true
+                end,
+                effect = function ( item )
+
+                end
+
+            }
+        }
+    if inventoryOpened then
+        composer.hideOverlay( "scenes.UI.Bag", options )
+        icon.isVisible = true
+        inventoryOpened = false
+    else
+        composer.showOverlay( "scenes.UI.Bag", options )
+        inventoryOpened = true
+    end
+    elseif event.phase == "ended" or event.phase == "cancelled" then
+    end
+end
+
 local function showWord( s )
     sceneGroup = scene.view
     local myText = display.newText( s, 100, 200, native.systemFont, 100 )
@@ -33,7 +63,7 @@ end
 
 -- create()
 function scene:create( event )
-    inventory:makeDictionary()
+        
 
     --local Background = Background.new()
     local sceneGroup = self.view
@@ -66,6 +96,19 @@ function scene:create( event )
     })
     self.character.x = display.contentWidth / 2
     self.character.y = display.contentHeight / 2
+
+    --add inventory
+    inventory:makeDictionary()
+
+        inventoryImage = Sprite.new("Items/55")
+
+        inventoryImage.xScale = display.contentWidth*0.1 / inventoryImage.contentWidth
+        inventoryImage.yScale = inventoryImage.xScale
+
+        inventoryImage:translate(display.contentWidth*0.05, inventoryImage.contentWidth/2)
+inventoryOpened = false
+        inventoryImage:addEventListener( "touch", openInventory)
+        sceneGroup:insert(inventoryImage)
     
     --background add start
     local dusk = require("Dusk.Dusk")
@@ -86,7 +129,7 @@ function scene:create( event )
     map.offsetX = display.contentWidth / 2 + 70
 
     --camera
-    local icon = Sprite.new("Items/62")
+    icon = Sprite.new("Items/62")
     icon.x = display.contentWidth - 100
     icon.y = display.contentHeight - 100
     icon:addEventListener("touch" , 
