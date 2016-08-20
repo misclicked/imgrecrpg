@@ -118,6 +118,7 @@ local options = {
 --composer.gotoScene("scenes.map.scene")
 --composer.gotoScene("scenes.testkev.testui")
 --composer.gotoScene("scenes.testkev.testeffect")
-composer.gotoScene("scenes.testkev.testnpc")
+--composer.gotoScene("scenes.testkev.testnpc")
+composer.gotoScene("scenes.testkev.testitem")
 
 sfx:play("bg", {loops = -1})
