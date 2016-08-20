@@ -27,6 +27,17 @@ sfx.hit = {
 	handle = audio.loadSound( "sounds/hit.mp3" ),
 }
 
+sfx.ending = {
+  handle = audio.loadSound( "sounds/ending1.mp3" ),
+  channel = sfx.CHANNEL_BG
+}
+
+sfx.boom = {
+  handle = audio.loadSound( "sounds/boom2.mp3" ),
+
+}
+
+
 function sfx:init()
   audio.reserveChannels(3)
   self:initVolumn()
