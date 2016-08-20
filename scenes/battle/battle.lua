@@ -248,23 +248,7 @@ end
 
 function scene:listenMove( )
     --print(tostring(globalATKClock).." "..tostring(system.getTimer()))
-    if playerHPBar.removeSelf ~= nil then
-        if player.hp > 0 then
-            transition.to(playerHPBar,{time=10,x=playerX,y=playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04})
-            playerHPBar.width = _SCREEN_WIDTH * 0.1 * player.hp/player.maxhp
-        else
-            playerHPBar:removeSelf()
-        end
-    end
 
-    if enemyHPBar.removeSelf ~= nil then
-        if enemy.hp > 0 then
-            transition.to(enemyHPBar,{time=10,x=enemyX,y=enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04})
-            enemyHPBar.width = _SCREEN_WIDTH * 0.1 * enemy.hp/enemy.maxhp
-        else
-            enemyHPBar:removeSelf()
-        end
-    end
     --playerHPBar:translate(playerX, playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04 , 150, 50)
     --enemyHPBar:translate(enemyX, enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04, 150, 50)
     if (system.getTimer() - globalATKClock) >= 1000 then
@@ -299,6 +283,9 @@ function scene:listenMove( )
         clearIcon.alpha = 0
         attackFlag = false
     end
+end
+
+function scene:enterFrame( event )
     if moveLeftFlag or moveRightFlag then
         if playerX >= playerTouchEnemyPosX and moveRightFlag then
             attackFlag = true
@@ -308,15 +295,35 @@ function scene:listenMove( )
             return
         end
         if moveLeftFlag then
-            transition.to( playerImage, {time=10, alpha=1, x=playerX-10, y=playerY})
-            playerX = playerX - 10
+            --transition.to( playerImage, {time=10, alpha=1, x=playerX-10, y=playerY})
+            playerImage.x = playerImage.x - 10
+            playerX = playerImage.x
         else
-            transition.to( playerImage, {time=10, alpha=1, x=playerX+10, y=playerY})
-            playerX = playerX + 10
+            --transition.to( playerImage, {time=10, alpha=1, x=playerX+10, y=playerY})
+            playerImage.x = playerImage.x + 10
+            playerX = playerImage.x
+        end
+    end
+    if playerHPBar.removeSelf ~= nil then
+        if player.hp > 0 then
+            playerHPBar.x = playerImage.x
+            playerHPBar.y = playerImage.y - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04
+            playerHPBar.width = _SCREEN_WIDTH * 0.1 * player.hp/player.maxhp
+        else
+            playerHPBar:removeSelf()
+        end
+    end
+
+    if enemyHPBar.removeSelf ~= nil then
+        if enemy.hp > 0 then
+            enemyHPBar.x = enemyImage.x
+            enemyHPBar.y = enemyImage.y - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04
+            enemyHPBar.width = _SCREEN_WIDTH * 0.1 * enemy.hp/enemy.maxhp
+        else
+            enemyHPBar:removeSelf()
         end
     end
 end
-
 
 function scene:touch( event )
     if(busy) then
@@ -543,7 +550,8 @@ r
         --calc playerTouchEnemyPosX
         playerTouchEnemyPosX = enemyX - enemyImage.contentWidth/2 - playerImage.contentWidth/2
         playerTouchScreenPosX = playerImage.contentWidth/2
-        Runtime:addEventListener( "touch", scene)
+        Runtime:addEventListener( "touch", self)
+        Runtime:addEventListener( "enterFrame", self)
         moveTimer = timer.performWithDelay( 1, function()
         self:listenMove()
         end, -1)
@@ -571,6 +579,7 @@ function scene:hide( event )
         Runtime:removeEventListener("touch",scene)
         inventoryImage:removeEventListener("touch",openInventory)
         clearIcon:removeEventListener("touch",openCamera)
+        Runtime:removeEventListener( "enterFrame", self)
         -- Code here runs immediately after the scene goes entirely off screen
 
     end
