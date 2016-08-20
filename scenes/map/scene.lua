@@ -1,326 +1,185 @@
-local composer = require( "composer" )
-local Sprite = require("Sprite")
-local scene = composer.newScene()
-local Kevin = require("npcs.Kevin")
------------------For Camera Module----------------------------
-local camera = require("cameraMod").new()
-local json = require("json")
--- -----------------------------------------------------------------------------------
--- Code outside of the scene event functions below will only be executed ONCE unless
--- the scene is removed entirely (not recycled) via "composer.removeScene()"
--- -----------------------------------------------------------------------------------
-
-
-
--- -----------------------------------------------------------------------------------
--- Scene event functions
--- -----------------------------------------------------------------------------------
-
--- create()
-function scene:create( event )
-    --local Background = Background.new()
-    local sceneGroup = self.view
-    clickCount = 70
-    -- Code here runs when the scene is first created but has not yet appeared on screen
-    self.character = Sprite.newAnimation({
+{ "backgroundcolor":"#000000",
+ "height":21,
+ "layers":[
         {
-            name = "stand",
-            frames = {
-                "Player/p1_stand"
-            }
-        },
-        {
-            name = "walk",
-            frames = {
-                "Player/p1_walk01",
-                "Player/p1_walk02",
-                "Player/p1_walk03",
-                "Player/p1_walk04",
-                "Player/p1_walk05",
-                "Player/p1_walk06",
-                "Player/p1_walk07",
-                "Player/p1_walk08",
-                "Player/p1_walk09",
-                "Player/p1_walk010",
-                "Player/p1_walk011",
+         "data":[
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 65, 4, 4, 4, 4, 4, 4, 4,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 ],
+         "height":21,
+         "name":"background",
+         "opacity":1,
+         "properties":
+            {
+             "edgeModeBottom":"wrap",
+             "edgeModeLeft":"wrap",
+             "edgeModeRight":"wrap",
+             "edgeModeTop":"wrap"
             },
-            time = 400,
-        },
-    })
-    self.character.x = display.contentWidth / 2
-    self.character.y = display.contentHeight / 2
-    
-    --background add start
-    local dusk = require("Dusk.Dusk")
-    dusk.setPreference("enableRotatedMapCulling", true)
-    local currMap = "grass_stone.json"
-    map = dusk.buildMap("maps/" .. currMap)
-    sceneGroup:insert(map)
-    --map.setTrackingLevel(0.3)
-    --background add end
-    sceneGroup:insert(self.character)
+         "type":"tilelayer",
+         "visible":true,
+         "width":37,
+         "x":0,
+         "y":0
+        }, 
+        {
+        "data":[
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 ],
 
-    self.offset = 0
-    self.startMove = false
-    self.moveDir = 1
-    Runtime:addEventListener( "touch", self)
-    self.offsetX = display.contentWidth / 2
-
-    map.offsetX = display.contentWidth / 2 + 70
-
-    --camera
-    local icon = Sprite.new("Items/62")
-    icon.x = display.contentWidth - 100
-    icon.y = display.contentHeight - 100
-    icon:addEventListener("touch" , 
-        function(event)
-
-        if event.x < icon.x + 50 and event.x > icon.x - 50 then
-            self.startMove = false
-            if event.phase == "ended" then
-                print("carema ended")
-                --call carema
-                camera:shoot(
-                    function(tags)
-                        --tag decide
-                        print(tags)
-                    end
-                    ,true   
-                )
-            else
-                print("carema began")
-            end
-        else
-            
-        end
-
-    end)
-    sceneGroup:insert(icon)
-
-    --food
-    mapkevin1 = Kevin.new()
-    mapkevin1.x = self.offsetX + 200
-    mapkevin1.y = display.contentHeight/2
-    mapkevin1.offsetX = mapkevin1.x
-    mapkevin1.questionText = "我要食物"
-    mapkevin1:showBubble()
-    sceneGroup:insert(mapkevin1)
-    Runtime:addEventListener( "touch", mapkevin1)
-    timer.performWithDelay( 99000, 
-        function ()
-            mapkevin1:setClear()
-        end)
-    sceneGroup:insert(mapkevin1)
-
-    --young man
-    mapkevin2 = Kevin.new()
-    mapkevin2.x = self.offsetX + 400
-    mapkevin2.y = display.contentHeight/2
-    mapkevin2.offsetX = mapkevin2.x
-    mapkevin2.questionText = "我要年輕人"
-    mapkevin2:showBubble()
-    sceneGroup:insert(mapkevin2)
-    Runtime:addEventListener( "touch", mapkevin2)
-    timer.performWithDelay( 99000, 
-        function ()
-            mapkevin2:setClear()
-        end)
-    sceneGroup:insert(mapkevin2)
-
-    --medicinal
-    mapkevin3 = Kevin.new()
-    mapkevin3.x = self.offsetX + 600
-    mapkevin3.y = display.contentHeight/2
-    mapkevin3.offsetX = mapkevin3.x
-    mapkevin3.questionText = "我要藥水"
-    mapkevin3:showBubble()
-    sceneGroup:insert(mapkevin3)
-    Runtime:addEventListener( "touch", mapkevin3)
-    timer.performWithDelay( 99000, 
-        function ()
-            mapkevin3:setClear()
-        end)
-    sceneGroup:insert(mapkevin3)
-
-end
+         "height":21,
+         "name":"base",
+         "opacity":1,
+         "properties":
+            {
+             "edgeModeBottom":"wrap",
+             "edgeModeLeft":"wrap",
+             "edgeModeRight":"wrap",
+             "edgeModeTop":"wrap"
+            },
+         "type":"tilelayer",
+         "visible":true,
+         "width":37,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                 ],
+         "height":21,
+         "name":"overlay",
+         "opacity":1,
+         "properties":
+            {
+             "edgeModeBottom":"wrap",
+             "edgeModeLeft":"wrap",
+             "edgeModeRight":"wrap",
+             "edgeModeTop":"wrap"
+            },
+         "type":"tilelayer",
+         "visible":true,
+         "width":37,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
 
 
-function scene:touch(event)
-    if event.phase == "began" then
-        print("Touch began!!")
-        self.startMove =  true
+ "renderorder":"right-down",
+ "tileheight":70,
+ "tilesets":[
+        {
+      
+         "firstgid":1,
+         "image":"../tilesets\/tileset.png",
+         "imageheight":128,
+         "imagewidth":224,
+         "margin":0,
+         "name":"tileset",
+         "spacing":0,
+         "tilecount":3,
+         "tileheight":70,
+                  "tileproperties":
+            {
+             "33":
+                {
+                 "!isSprite!":"true"
+                },
+             "8":
+                {
+                 "!tileTag!":"bridge_start_vertical"
+                }
+            },
 
-        if event.x > display.contentWidth/2 then
-            self.moveDir = 1
-        else
-            self.moveDir = -1
+         "tilewidth":70
+        }, 
+        {
+  
+         "firstgid":4,
+         "image":"../tilesets\/tileset_16.png",
+         "imageheight":490,
+         "imagewidth":1540,
+         "margin":0,
+         "name":"tile",
+         "spacing":0,
+         "tilecount":154,
+         "tileheight":70,
+                  "tileproperties":
+            {
+             "33":
+                {
+                 "!isSprite!":"true"
+                },
+             "8":
+                {
+                 "!tileTag!":"bridge_start_vertical"
+                }
+            },
 
-        end
-        self.character:setSequence("walk")
-        self.character:play()
-        self.character.xScale = self.moveDir
-
-
-
-    elseif event.phase == "ended" then
-        print("Touch ended!!")
-        self.startMove =  false
-        self.character:setSequence("stand")
-        self.character:play()
-    end
-end
-
-function scene:enterFrame( event )
-    if self.startMove then
-        self.offsetX = self.offsetX + 10 * self.moveDir
-        map.x = map.x + 10 * self.moveDir * -1
-        map.offsetX = map.offsetX + 10 * self.moveDir * -1
-        print("-人物")
-        print(self.offsetX)
-        print("=人物")
-
-        if map.offsetX < 0 then
-            self.startMove = false
-            composer.gotoScene( "scenes.battle.battle" )
-        elseif map.offsetX > display.contentWidth + 190 then
-            self.startMove = false
-            composer.gotoScene( "scenes.battle.battle" )
-        end    
-
-if mapkevin1.clearIcon.alpha ~= 1 then 
-        print("-food")
-        mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
-        print(mapkevin1.x)
-        print("=food")
-        if self.offsetX > mapkevin1.x + 70 then
-            self.startMove = false
-            self.character:setSequence("stand")
-            self.character:play()
-            
-            native.showAlert("需求訊息", "你是否有食物可以交付?", {"交付 食物"})
-            if mapkevin1:isFinishQuest() == false then 
-                print("食物:false")
-                mapkevin1:setClear()
-            else
-                print("食物:true")
-                -- mapkevin1:setClear()
-            end
-        end
-else
-        print("pass food")
-        mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
-        if self.offsetX > mapkevin1.x + 70 then
-
-        end  
-end
-
-if mapkevin2.clearIcon.alpha ~= 1 then 
-        print("-young")
-        mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
-        print(mapkevin2.x)
-        print("=young")
-        if self.offsetX > mapkevin2.x + 270 then
-            self.startMove = false
-            self.character:setSequence("stand")
-            self.character:play()
-            
-            native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
-            if mapkevin2:isFinishQuest() == false then 
-                print("年輕人:false")
-                mapkevin2:setClear()
-            else
-                print("年輕人:true")
-                -- mapkevin2:setClear()
-            end
-        end
-else
-        print("pass young")
-        mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
-        if self.offsetX > mapkevin2.x + 70 then
-
-        end  
-end
-
-if mapkevin3.clearIcon.alpha ~= 1 then 
-        print("-medicinal")
-        mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
-        print(mapkevin3.x)
-        print("=medicinal")
-        if self.offsetX > mapkevin3.x + 470 then
-            self.startMove = false
-            self.character:setSequence("stand")
-            self.character:play()
-            
-            native.showAlert("需求訊息", "你是否有藥水可以交付?", {"交付 藥水"})
-            if mapkevin3:isFinishQuest() == false then 
-                print("藥水:false")
-                mapkevin3:setClear()
-            else
-                print("藥水:true")
-                -- mapkevin3:setClear()
-            end
-        end
-else
-        print("pass medicinal")
-        mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
-        if self.offsetX > mapkevin3.x + 70 then
-
-        end  
-end
-
-
-    end
-end
-
--- show()
-function scene:show( event )
-
-    local sceneGroup = self.view
-    local phase = event.phase
-
-    if ( phase == "will" ) then
-        Runtime:addEventListener("touch", self)
-        Runtime:addEventListener("enterFrame", self)
-    elseif ( phase == "did" ) then
-        -- Code here runs when the scene is entirely on screen
-
-    end
-end
-
-
--- hide()
-function scene:hide( event )
-
-    local sceneGroup = self.view
-    local phase = event.phase
-
-    if ( phase == "will" ) then
-        -- Code here runs when the scene is on screen (but is about to go off screen)
-        Runtime:removeEventListener("touch", self)
-        Runtime:removeEventListener("enterFrame", self)
-    elseif ( phase == "did" ) then
-        -- Code here runs immediately after the scene goes entirely off screen
-
-    end
-end
-
-
--- destroy()
-function scene:destroy( event )
-
-    local sceneGroup = self.view
-    -- Code here runs prior to the removal of scene's view
-
-end
-
-
--- -----------------------------------------------------------------------------------
--- Scene event function listeners
--- -----------------------------------------------------------------------------------
-scene:addEventListener( "create", scene )
-scene:addEventListener( "show", scene )
-scene:addEventListener( "hide", scene )
-scene:addEventListener( "destroy", scene )
--- -----------------------------------------------------------------------------------
-
-return scene
+         "tilewidth":70
+        }],
+ "tilewidth":70,
+ "version":1,
+ "width":37
+}
