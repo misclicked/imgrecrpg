@@ -2,8 +2,8 @@ local M = {}
 local logger = require("logger")
 local gameConfig = require("gameConfig")
 local TAG = "Sprite"
-display.setDefault( "magTextureFilter", "linear" )
-display.setDefault( "minTextureFilter", "“nearest”" )
+--display.setDefault( "magTextureFilter", "linear" )
+--display.setDefault( "minTextureFilter", "“nearest”" )
 M.sheetInfos = {}
 M.imageSheets = {}
 
