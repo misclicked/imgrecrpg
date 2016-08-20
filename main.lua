@@ -50,7 +50,7 @@ local options = {
 --composer.hideOverlay()
 --Don't delete it!!
 
---composer.gotoScene("scenes.map.scene")
+composer.gotoScene("scenes.map.scene")
 --composer.gotoScene("scenes.testkev.testui")
 
 --composer.gotoScene("scenes.testkev.testeffects")
@@ -58,7 +58,7 @@ local options = {
 
 --composer.gotoScene("scenes.testkev.testeffect")
 --composer.gotoScene("scenes.testkev.testeffects2")
-composer.gotoScene("scenes.testkev.testnpc")
+--composer.gotoScene("scenes.testkev.testnpc")
 --composer.gotoScene("scenes.testkev.testitem")
 
 --composer.gotoScene("scenes.camera.camera")
