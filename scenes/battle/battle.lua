@@ -184,8 +184,7 @@ local function openCamera( event )
                 end
                 
                 --native.showAlert( "Corona", json.encode(tags), { "OK" } )
-            end,
-            true
+            end
             )
     elseif event.phase == "ended" or event.phase == "cancelled" then
         busy=false
