@@ -148,7 +148,7 @@ local function initEnemy( path )
 end
 
 function scene:listenMove( )
-    if enemyBlood <= 4999 and requestFlag == false then
+    if enemyBlood <= 4800 and requestFlag == false then
         requestFlag = true
         bubble:setText(self.requestText)
         bubble.alpha = 1
@@ -293,19 +293,19 @@ function scene:show( event )
 
         requestFlag = false
 
-        floor = _SCREEN_HEIGHT*0.9
+        floor = _SCREEN_HEIGHT*0.8
 
         playerX = _SCREEN_WIDTH*0.1
 
         enemyX = _SCREEN_WIDTH*0.875
 
-        local background = display.newRect(
-            display.contentCenterX
-            ,display.contentCenterY
-            ,_SCREEN_WIDTH
-            ,_SCREEN_HEIGHT)
+        local options =
+        {
+        sheetContentWidth = _SCREEN_WIDTH,
+        sheetContentHeight = _SCREEN_HEIGHT 
+        }
 
-        background:setFillColor(.3,.5,.6)
+        local background = display.newImage("backgrounds/full-background.png",options)
 
         sceneGroup:insert(background)
 
