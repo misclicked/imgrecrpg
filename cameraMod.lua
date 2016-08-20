@@ -158,11 +158,13 @@ function cameraMod.new()
 		end,
 	}
 
-	function cameraModule:shoot(cb)
+	function cameraModule:shoot(cb,debug)
 		local function onComplete( event )
 			self.apiInfo:getTags(cb)
 		end
-		if media.hasSource( media.Camera ) then
+		if debug~=nil then
+			cb({"young","food","bottle","adult","pencil","glasses"})
+		elseif media.hasSource( media.Camera ) then
 		    media.capturePhoto( { listener=onComplete,
 			 destination ={
 				 baseDir=system.DocumentsDirectory,
@@ -173,7 +175,6 @@ function cameraMod.new()
 		else
 		    native.showAlert( "Corona", "This device does not have a camera.", { "OK" } )
 		end
-	end
 	return cameraModule
 end
 return cameraMod
