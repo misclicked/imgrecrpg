@@ -23,6 +23,10 @@ sfx.bg = {
   channel = sfx.CHANNEL_BG
 }
 
+sfx.hit = {
+	handle = audio.loadSound( "sounds/hit.mp3" ),
+}
+
 function sfx:init()
   audio.reserveChannels(3)
   self:initVolumn()
