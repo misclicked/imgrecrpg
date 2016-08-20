@@ -126,6 +126,6 @@ composer.gotoScene("scenes.testkev.testeffects2")
 --composer.gotoScene("scenes.testkev.testnpc")
 --composer.gotoScene("scenes.testkev.testitem")
 
-composer.gotoScene("scenes.camera.camera")
+--composer.gotoScene("scenes.camera.camera")
 
 sfx:play("bg", {loops = -1})
