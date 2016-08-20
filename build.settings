@@ -1,11 +1,23 @@
 settings =
 {
+   build={
+     neverStripDebugInfo = true
+    },
     android =
     {
+        debuggable="true",
+        minSdkVersion = "20",
+        versionCode = "10",
         usesPermissions =
         {
-         "android.permission.INTERNET",
+           "android.permission.INTERNET",
+           "android.permission.WRITE_EXTERNAL_STORAGE",
+           "android.permission.CAMERA"
         },
+        usesFeatures =
+         {
+              { name="android.hardware.camera", required=true },
+         },
         orientation =
         {
             default = "landscapeRight",
@@ -14,9 +26,9 @@ settings =
     },
     window = {
       defaultViewWidth = 640,
-      defaultViewHeight = 960 
+      defaultViewHeight = 960
     },
-    excludeFiles = 
+    excludeFiles =
      {
         all = { "doc"},
      },

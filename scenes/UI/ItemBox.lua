@@ -3,6 +3,7 @@ local GreyBox = require("ui.GreyBox")
 local GreyPanel = require("ui.GreyPanel")
 local BlueButton = require("ui.BlueButton")
 local Sprite = require("Sprite")
+local inventory = require( "inventory" )
 
 local scene = composer.newScene()
 local ItemBox = {}
@@ -12,7 +13,8 @@ ItemBox.new = function (t)
 	local itemBox = display.newGroup()
 	local x = t.row
 	local y = t.col
-	
+	itemBox.onItemSelect = t and t.onItemSelect
+
 	local pictures = {}
 	local count = 0
 
@@ -48,10 +50,10 @@ ItemBox.new = function (t)
 	local yCoordinate = yStarting
 		
 	local myButtonHandler =  function ( event )
-		print("dgfg")
-		local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
-		background:setFillColor(math.random(),math.random(),math.random())
-		
+		print(t.onItemSelect)
+		if t.onItemSelect then
+			itemBox.onItemSelect(event.target)
+		end
 	end
 	--[[
 	local myExitHandler =  function ( event )
@@ -93,6 +95,7 @@ ItemBox.new = function (t)
 		end
 	end
 	
+	local cnt = 1
 	for xCount = 1, x do
 		for yCount = 1, y do
 			
@@ -105,12 +108,18 @@ ItemBox.new = function (t)
 			--box:addEventListener("touch", myButtonHandler)
 			--box:setFillColor(0.7,0.8,1)
 		--	itemBox:insert(box)
-			
+			local greyBox
 			print(xCoordinate,yCoordinate)
-			local greyBox = GreyBox.new(width, height)
+			if cnt <= #inventory.items then
+				local Item = require(inventory.items[cnt])
+				greyBox = Item.new()
+				cnt = cnt + 1
+				greyBox:addEventListener("touch", myButtonHandler)
+			else
+				greyBox = GreyBox.new(width, height)
+			end
 			greyBox.x = xCoordinate
 			greyBox.y = yCoordinate
-			greyBox:addEventListener("touch", myButtonHandler)
 			itemBox:insert(greyBox)
 			
 			

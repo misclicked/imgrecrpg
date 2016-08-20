@@ -11,6 +11,8 @@ local YellowButton = require("ui.YellowButton")
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
 -- -----------------------------------------------------------------------------------
+local player
+local enemy
 local playerRightMostX
 local playerLeftMostX
 local enemyRightMostX
@@ -31,7 +33,6 @@ local _SCREEN_WIDTH
 local _SCREEN_HEIGHT
 local attackFlag
 local requestFlag
-local enemyBlood
 local requestTimer
 local inventoryImage
 local cameraImage
@@ -61,7 +62,16 @@ local function openInventory( event )
             params = {
                 onClose = function ()
                     inventoryOpened = false
+                end,
+                effect = function ( item )
+                    if item.effectSelf then
+                        item:effect(player)
+                    else
+                        item:effect(enemy)
+                    end
+                    print(player.hp)
                 end
+
             }
         }
     if inventoryOpened then
@@ -148,7 +158,7 @@ local function initEnemy( path )
 end
 
 function scene:listenMove( )
-    if enemyBlood <= 4999 and requestFlag == false then
+    if enemy.hp <= 4800 and requestFlag == false then
         requestFlag = true
         bubble:setText(self.requestText)
         bubble.alpha = 1
@@ -184,7 +194,7 @@ function scene:touch( event )
                  x = playerX + _SCREEN_WIDTH*0.1,
                  y = playerY, rotation = 30, onComplete = function()
                     local damage = math.random(-30,-5)
-                    enemyBlood = enemyBlood + damage
+                    enemy.hp = enemy.hp + damage
                     local hitText = display.newText(tostring(damage) , 
                         enemyX + math.random(_SCREEN_WIDTH*-0.01,_SCREEN_WIDTH*0.01),
                      enemyY - enemyImage.contentHeight/2,
@@ -200,7 +210,7 @@ function scene:touch( event )
                      x = playerX,
                      y = playerY, rotation = 0})
                  end})
-                print(enemyBlood)
+                print(enemy.hp)
                 return
             end
             playerImage:setSequence("walk")
@@ -287,25 +297,40 @@ function scene:show( event )
 
         cameraImage:addEventListener( "touch", openCamera)
 
-        enemyBlood = 5000
+
+        enemy = {
+            hp = 5000,
+            mp = 5000,
+            name = "slime",
+            path = "Enemies/slimeWalk1",
+            status = "live"
+        }
+
+        player = {
+            hp = 5000,
+            mp = 5000,
+            name = "player",
+            path = "Enemies/slimeWalk1",
+            status = "live"
+        }
 
         attackFlag = true
 
         requestFlag = false
 
-        floor = _SCREEN_HEIGHT*0.9
+        floor = _SCREEN_HEIGHT*0.8
 
         playerX = _SCREEN_WIDTH*0.1
 
         enemyX = _SCREEN_WIDTH*0.875
 
-        local background = display.newRect(
-            display.contentCenterX
-            ,display.contentCenterY
-            ,_SCREEN_WIDTH
-            ,_SCREEN_HEIGHT)
+        local options =
+        {
+        sheetContentWidth = _SCREEN_WIDTH,
+        sheetContentHeight = _SCREEN_HEIGHT 
+        }
 
-        background:setFillColor(.3,.5,.6)
+        local background = display.newImage("backgrounds/full-background.png",options)
 
         sceneGroup:insert(background)
 

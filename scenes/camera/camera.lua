@@ -1,14 +1,14 @@
 local composer = require( "composer" )
-local GreyPanel = require("ui.GreyPanel")
+local Sprtie = require( "Sprite" )
 local scene = composer.newScene()
-
+local Button = require("ui.BlueButton")
+-----------------For Camera Module----------------------------
+local camera = require("cameraMod").new()
+local json = require("json")
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
 -- -----------------------------------------------------------------------------------
-
-
-
 
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
@@ -16,53 +16,54 @@ local scene = composer.newScene()
 
 -- create()
 function scene:create( event )
-
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
+	 local button = Button.new(100,100)
+	 function button:onTouch(e)
+		 if e.phase=="ended" then
+	--------------------------------------
+	--		lines below Show how to open a camera and utilize the tags result
+			camera:shoot(
+			function (tags)
+				-- tags is a table!! json.encode is used to convert it into String
+				native.showAlert( "Corona", json.encode(tags), { "OK" } )
+			end
+		)
+	--	camera demo part ends
+	-------------------------------------------------
+		end
+	 end
 
+	local button2 = Button.new(100,100)
+	function button2:onTouch(e)
+		if e.phase == "ended" then
+	 		button.x=button.x+10;
+		end
+	end
+
+	 sceneGroup:insert(button)
+	 sceneGroup:insert(button2)
+	 button.x = display.contentWidth/2
+	 button.y = display.contentHeight/2
+	 button2.x = display.contentHeight/3
+	 button2.y = display.contentHeight/5
 end
 
 
 -- show()
 function scene:show( event )
-	
-	local sceneGroup = self.view
-    local phase = event.phase
 
+    local sceneGroup = self.view
+    local phase = event.phase
+	 self.callback = event.params and event.params.onComplete
     if ( phase == "will" ) then
         -- Code here runs when the scene is still off screen (but is about to come on screen)
-		self.onClose = event.params and event.params.onClose
-        self.effect = event.params and event.params.effect
+
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen
-		
-		print("Hello")
-		local I = require("scenes.UI.ItemBox")
-		 print("HI")
-		--local background = display.newRect(display.contentCenterX,display.contentCenterY,display.contentWidth,display.contentHeight)
-		--background:setFillColor(1,0.2,0.2)
-		local greyPanel = GreyPanel.new(display.contentWidth , display.contentHeight)
-		greyPanel.x = display.contentWidth * 0.5
-		greyPanel.y = display.contentHeight * 0.5
-		
-		local items = {row= 3,
-				col=3,
-                onItemSelect = self.effect}
-				
-		print(items)
-				
-		local bag = I.new(items)
-		--bag.x = display.contentWidth / 2
-		--bag.y = display.contentHeight / 2
-		sceneGroup:insert(greyPanel)
-		sceneGroup:insert(bag)
-		--sceneGroup:insert(greyPanel)
-	end
-   
+
+    end
 end
-
-    
-
 
 
 -- hide()
@@ -76,11 +77,11 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         -- Code here runs immediately after the scene goes entirely off screen
-		if self.onClose then
-            self.onClose()
-        end
-	end
+
+    end
 end
+
+
 -- destroy()
 function scene:destroy( event )
 
