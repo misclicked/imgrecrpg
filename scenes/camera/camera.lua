@@ -24,9 +24,13 @@ function scene:create( event )
 	--------------------------------------
 	--		lines below Show how to open a camera and utilize the tags result
 			camera:shoot(
-			function (tags)
+			function (tags,isFace,faceAttr)
 				-- tags is a table!! json.encode is used to convert it into String
-				native.showAlert( "Corona", json.encode(tags), { "OK" } )
+            -- sample output
+            -- tags: ["people","adult","portrait","indoors","man","room","stock","woman","table","furniture","facial expression","employee","school","shop","education","shelf","commerce","group","wear","counter"]
+            -- isFace: true
+            -- faceAttr: {age:37.4,gender:"male"}
+				native.showAlert( "Corona", json.encode({tags,isFace,faceAttr}), { "OK" } )
 			end
 		)
 	--	camera demo part ends
