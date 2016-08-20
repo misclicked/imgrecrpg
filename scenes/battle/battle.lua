@@ -1,12 +1,9 @@
 local composer = require( "composer" )
-
 local scene = composer.newScene()
-
 local Sprite = require("Sprite")
-
 local Bubble = require("ui.GreyPanel")
-
 local YellowButton = require("ui.YellowButton")
+local widget = require( "widget" )
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
 local json = require("json")
@@ -41,6 +38,9 @@ local inventoryImage
 local cameraImage
 local busy
 local inventoryOpened
+local globalATKClock
+local playerHPBar
+local enemyHPBar
 -- -----------------------------------------------------------------------------------
 -- local functions
 -- -----------------------------------------------------------------------------------
@@ -135,7 +135,7 @@ local function initPlayer(  )
         },
     })
     --resize playerImage
-    playerImage.xScale = ( _SCREEN_WIDTH * 0.2 ) / playerImage.width
+    playerImage.xScale = ( _SCREEN_WIDTH * 0.1 ) / playerImage.width
     playerImage.yScale = playerImage.xScale
 
     --calc playerPos
@@ -155,7 +155,7 @@ local function initEnemy( path )
     enemyImage = Sprite.new(path)
 
     --resize enemyImage
-    enemyImage.xScale = ( _SCREEN_WIDTH * 0.25 ) / enemyImage.width
+    enemyImage.xScale = ( _SCREEN_WIDTH * 0.15 ) / enemyImage.width
     enemyImage.yScale = enemyImage.xScale
 
     --calc enemyPos
@@ -171,7 +171,52 @@ local function initEnemy( path )
 end
 
 function scene:listenMove( )
-    if enemy.hp <= 4800 and requestFlag == false then
+    --print(tostring(globalATKClock).." "..tostring(system.getTimer()))
+    if playerHPBar.removeSelf ~= nil then
+        if player.hp > 0 then
+            transition.to(playerHPBar,{time=10,x=playerX,y=playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04})
+            playerHPBar.width = _SCREEN_WIDTH * 0.1 * player.hp/player.maxhp
+        else
+            playerHPBar:removeSelf()
+        end
+    end
+
+    if enemyHPBar.removeSelf ~= nil then
+        if enemy.hp > 0 then
+            transition.to(enemyHPBar,{time=10,x=enemyX,y=enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04})
+            enemyHPBar.width = _SCREEN_WIDTH * 0.1 * enemy.hp/enemy.maxhp
+        else
+            enemyHPBar:removeSelf()
+        end
+    end
+    --playerHPBar:translate(playerX, playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04 , 150, 50)
+    --enemyHPBar:translate(enemyX, enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04, 150, 50)
+    if (system.getTimer() - globalATKClock) >= 1000 then
+        if attackFlag and requestFlag == false then
+            transition.to(enemyImage,{time = 100, alpha = 1,
+             x = enemyX - _SCREEN_WIDTH*0.1,
+             y = enemyY, rotation = -30, onComplete = function()
+                local damage = math.random(-300,-200)
+                player.hp = player.hp + damage
+                local hitText = display.newText(tostring(damage) ,
+                    playerX + math.random(_SCREEN_WIDTH*-0.01,_SCREEN_WIDTH*0.01),
+                 playerY - enemyImage.contentHeight/2,
+                    native.systemFont, 100)
+                hitText:setTextColor(255, 0, 0)
+                sceneGroup:insert(hitText)
+                transition.to(hitText,{time = 300, alpha = 0,
+                    x = playerX, y=playerY - enemyImage.contentHeight,
+                    onComplete = function()
+                        hitText:removeSelf()
+                    end})
+                transition.to(enemyImage,{time = 100, alpha = 1,
+                 x = enemyX,
+                 y = enemyY, rotation = 0})
+             end})
+        end
+        globalATKClock = system.getTimer()
+    end
+    if enemy.hp <= 0 and requestFlag == false then
         requestFlag = true
         bubble:setText(self.requestText)
         bubble.alpha = 1
@@ -179,6 +224,9 @@ function scene:listenMove( )
         attackFlag = false
     end
     if moveLeftFlag or moveRightFlag then
+        if playerX >= playerTouchEnemyPosX and moveRightFlag then
+            attackFlag = true
+        end
         if playerX >= playerTouchEnemyPosX and moveRightFlag or playerX <= playerTouchScreenPosX and moveLeftFlag then
             playerImage:setSequence("stand")
             return
@@ -202,7 +250,12 @@ function scene:touch( event )
     self.touchEvent = event
     if event.phase == "began" then
         if event.x > _SCREEN_WIDTH/2 then
-            if playerX >= playerTouchEnemyPosX and attackFlag then
+            if playerX >= playerTouchEnemyPosX then
+                attackFlag = true
+            else
+                attackFlag = false
+            end
+            if playerX >= playerTouchEnemyPosX and attackFlag and requestFlag == false then
                 transition.to(playerImage,{time = 100, alpha = 1,
                  x = playerX + _SCREEN_WIDTH*0.1,
                  y = playerY, rotation = 30, onComplete = function()
@@ -231,6 +284,7 @@ function scene:touch( event )
             moveRightFlag = true
             moveLeftFlag = false
         else
+            attackFlag = false
             if playerX <= playerTouchScreenPosX then
                 print("hehe")
                 return
@@ -312,26 +366,36 @@ function scene:show( event )
 
 
         enemy = {
-            hp = 5000,
-            maxhp = 5000,
-            mp = 5000,
-            maxmp = 5000,
+            hp = 1000,
+            maxhp = 1000,
+            mp = 1000,
+            maxmp = 1000,
             name = "slime",
             path = "Enemies/slimeWalk1",
             status = "live"
         }
 
         player = {
-            hp = 5000,
-            maxhp = 5000,
-            mp = 5000,
-            maxmp = 5000,
+            hp = 1000,
+            maxhp = 1000,
+            mp = 1000,
+            maxmp = 1000,
             name = "player",
             path = "Enemies/slimeWalk1",
             status = "live"
         }
 
-        attackFlag = true
+
+
+        local options = {
+            width = 64,
+            height = 64,
+            numFrames = 6,
+            sheetContentWidth = 384,
+            sheetContentHeight = 64
+        }
+
+        attackFlag = false
 
         requestFlag = false
 
@@ -366,13 +430,29 @@ function scene:show( event )
         bubble.x = enemyX
         bubble.y = enemyY - enemyImage.contentHeight
         sceneGroup:insert(bubble)
+
+        playerHPBar = display.newRect( playerX, playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04 , 
+            _SCREEN_WIDTH * 0.1, _SCREEN_HEIGHT * 0.033 )
+        playerHPBar.strokeWidth = 3
+        playerHPBar:setFillColor( 0, 255, 0 )
+        playerHPBar:setStrokeColor( 0, 255, 0 )
+        sceneGroup:insert(playerHPBar)
+
+        playerHPBar.width = playerHPBar.width
+
+        enemyHPBar = display.newRect( enemyX, enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04, 
+            _SCREEN_WIDTH * 0.1, _SCREEN_HEIGHT * 0.033 )
+        enemyHPBar.strokeWidth = 3
+        enemyHPBar:setFillColor( 0, 255, 0 )
+        enemyHPBar:setStrokeColor( 0, 255, 0 )
+        sceneGroup:insert(enemyHPBar)
         --[[
         local yellowButton = YellowButton.new(_SCREEN_WIDTH*0.2,_SCREEN_HEIGHT*0.2)
 
         yellowButton.x = _SCREEN_WIDTH / 2
         yellowButton.y = _SCREEN_HEIGHT / 2
         sceneGroup:insert(yellowButton)
-
+r
         --]]
         --calc playerTouchEnemyPosX
         playerTouchEnemyPosX = enemyX - enemyImage.contentWidth/2 - playerImage.contentWidth/2
@@ -381,6 +461,7 @@ function scene:show( event )
         moveTimer = timer.performWithDelay( 1, function()
         self:listenMove()
         end, -1)
+        globalATKClock = system.getTimer()
 
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen

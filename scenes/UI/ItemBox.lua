@@ -22,15 +22,16 @@ ItemBox.new = function (t)
 		end
 	end
 	local myButtonHandler =  function ( event )
-		print(t.onItemSelect)
+		--print(t.onItemSelect)
 		if t.onItemSelect then
 			itemBox.onItemSelect(event.target)
-			print(event.target.index)
+			print(event.target.returnString)
+			--print(event.target.index)
 			if event.target.success then
 				inventory:removeItem(event.target.index)
-				itemBox:removeSelf()
-				reflash()
+				t.clear()
 			end
+			t.showWord(event.target.returnString)
 		end
 	end
 	function reflash()
@@ -63,24 +64,24 @@ ItemBox.new = function (t)
 				 yStarting =  display.contentCenterY -(((x - 1) / 2)*gap)
 			end
 				
-		print("have"..tostring(#inventory.items).."items")
+		--print("have"..tostring(#inventory.items).."items")
 		local xCoordinate = xStarting
 		local yCoordinate = yStarting
 		local cnt = 1
 		for xCount = 1, x do
 			for yCount = 1, y do
 				
-				print( "x:")
-				print(xCount)
-				print( "y:")
-				print(yCount)
-				print (xStarting,yStarting,width,height)
+				--print( "x:")
+				--print(xCount)
+				--print( "y:")
+				--print(yCount)
+				--print (xStarting,yStarting,width,height)
 				--local box = display.newRect( xCoordinate,yCoordinate,width,height )
 				--box:addEventListener("touch", myButtonHandler)
 				--box:setFillColor(0.7,0.8,1)
 			--	itemBox:insert(box)
 				local greyBox
-				print(xCoordinate,yCoordinate)
+				--print(xCoordinate,yCoordinate)
 				if cnt <= #inventory.items then
 					local Item = require(inventory.items[cnt])
 					greyBox = Item.new()
@@ -110,18 +111,18 @@ ItemBox.new = function (t)
 		--box:setFillColor(0.5,0.4,1)
 		--box:addEventListener("touch")
 		--itemBox:insert(box)
-		 print("1")
+		 --print("1")
 		 blueButton = BlueButton.new(buttonWidth, buttonHeight)
 		 blueButton.x = xCoordinate
 		 blueButton.y = yCoordinate
 		 --blueButton:addEventListener("touch", onTouch)
 		 itemBox:insert(blueButton)
-		 print("2")
+		 --print("2")
 	end
 	reflash()
 	
 	function blueButton:onTouch(event)
-        print("3")
+        --print("3")
 		if event.phase == "ended" then
             composer.hideOverlay()
         end        
