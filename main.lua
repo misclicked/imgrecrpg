@@ -66,4 +66,5 @@ local options = {
 -- composer.gotoScene( "scenes.battle.battle" )
 
 sfx:play("bg", {loops = -1})
-composer.showOverlay("scenes.UI.LoadingScreen")
+--composer.showOverlay("scenes.UI.LoadingScreen")
+composer.gotoScene("scenes.UI.StartingScreen")

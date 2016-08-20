@@ -2,6 +2,7 @@ local composer = require("composer")
 local Sprite = require("Sprite")
 local scene = composer.newScene()
 local background= nil
+
 function scene:show( event )
 
     local sceneGroup = self.view
@@ -16,6 +17,25 @@ function scene:show( event )
 		local width = 500
 		local height = 150
 		 
+		
+	end
+	
+	local function revolveScreen()
+			
+			--transition.to( background, { time=1500, alpha=0, x=(w-50), y=(h-50), onComplete=revolveScreen } )
+			--print("Hi")
+			deltaAngle = 45
+			background:rotate( deltaAngle )
+			timer.performWithDelay( 200, revolveScreen )
+	end
+		
+	local function myButtonHandler(event)
+		 if ( event.phase == "ended" ) then
+			print("Hi")
+			composer.gotoScene("scenes.map.scene", {effect = "slideLeft", time = 300})
+		 end
+	end
+		
 		background = display.newImage( "backgrounds/Wordmarkp1.png",display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
 		background.xScale = 1.5
 		background.yScale = 1.5
@@ -58,22 +78,9 @@ function scene:show( event )
 	
 		
     end
-	function revolveScreen()
-			
-			--transition.to( background, { time=1500, alpha=0, x=(w-50), y=(h-50), onComplete=revolveScreen } )
-			--print("Hi")
-			deltaAngle = 45
-			background:rotate( deltaAngle )
-			timer.performWithDelay( 200, revolveScreen )
-		end
-	end
 	
-	function myButtonHandler(event)
-		 if ( event.phase == "ended" ) then
-			print("Hi")
-			composer.gotoScene("scenes.map.scene", {effect = "slideLeft", time = 300})
-		 end
-	end
+	
+	
 	
 	
 scene:addEventListener( "show", scene )
