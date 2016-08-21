@@ -118,6 +118,7 @@ ItemBox.new = function (t)
 		 local closeText = display.newText("Close",xCoordinate,yCoordinate, native.systemFontBold, 26)
 		 --blueButton:addEventListener("touch", onTouch)
 		 itemBox:insert(blueButton)
+		 itemBox:insert(closeText)
 		 --print("2")
 		 
 		 function blueButton:onTouch(event)
