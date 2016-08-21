@@ -14,7 +14,7 @@ Item.new = function()
             item.returnString = "Your HP is full"
             return
         end
-        target.hp = target.hp + 10
+        target.hp = target.hp + 100
         item.success = true
         item.returnString = "Item "..item.name.." is used"
     end
