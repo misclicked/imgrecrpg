@@ -2,6 +2,7 @@ local composer = require( "composer" )
 local Sprite = require("Sprite")
 local scene = composer.newScene()
 local Kevin = require("npcs.Kevin")
+local Edison = require("npcs.Edison")
 local inventory = require( "inventory" )
 -----------------For Camera Module----------------------------
 local camera = require("cameraMod").new()
@@ -9,6 +10,7 @@ local json = require("json")
 local icon
 local busy
 local inventoryOpened
+local nowNPC
 -- -----------------------------------------------------------------------------------
 -- Code outside of the scene event functions below will only be executed ONCE unless
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
@@ -216,14 +218,15 @@ function scene:create( event )
     mapkevin1:showBubble()
     sceneGroup:insert(mapkevin1)
     Runtime:addEventListener( "touch", mapkevin1)
-    timer.performWithDelay( 99000,
-        function ()
-            mapkevin1:setClear()
-        end)
+
+    -- timer.performWithDelay( 99000,
+    --     function ()
+    --         mapkevin1:setClear()
+    --     end)
     sceneGroup:insert(mapkevin1)
 
     --young man
-    mapkevin2 = Kevin.new()
+    mapkevin2 = Edison.new()
     mapkevin2.x = self.offsetX + 400
     mapkevin2.y = display.contentHeight/2
     mapkevin2.offsetX = mapkevin2.x
@@ -231,10 +234,11 @@ function scene:create( event )
     mapkevin2:showBubble()
     sceneGroup:insert(mapkevin2)
     Runtime:addEventListener( "touch", mapkevin2)
-    timer.performWithDelay( 99000,
-        function ()
-            mapkevin2:setClear()
-        end)
+
+    -- timer.performWithDelay( 99000,
+    --     function ()
+    --         mapkevin2:setClear()
+    --     end)
     sceneGroup:insert(mapkevin2)
 
     --medicinal
@@ -246,12 +250,12 @@ function scene:create( event )
     mapkevin3:showBubble()
     sceneGroup:insert(mapkevin3)
     Runtime:addEventListener( "touch", mapkevin3)
-    timer.performWithDelay( 99000,
-        function ()
-            mapkevin3:setClear()
-        end)
+    -- timer.performWithDelay( 99000,
+    --     function ()
+    --         mapkevin3:setClear()
+    --     end)
     sceneGroup:insert(mapkevin3)
-
+nowNPC = mapkevin1
     --add inventory
     inventory:makeDictionary()
 
@@ -262,8 +266,9 @@ function scene:create( event )
 
     inventoryImage:addEventListener("touch",openInventory)
 
-    inventoryImage:translate(icon.x-icon.contentWidth/2 - inventoryImage.contentWidth/2 ,icon.y)
+    inventoryImage:translate(icon.x-icon.contentWidth - inventoryImage.contentWidth ,icon.y)
 
+    sceneGroup:insert(inventoryImage)
 end
 
 
@@ -300,13 +305,16 @@ function scene:enterFrame( event )
         return
     end
     if self.startMove then
-        self.offsetX = self.offsetX + 10 * self.moveDir
-        map.x = map.x + 10 * self.moveDir * -1
-        map.offsetX = map.offsetX + 10 * self.moveDir * -1
         print("-人物")
         print(self.offsetX)
         print("=人物")
 
+
+    --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
+        self.offsetX = self.offsetX + 10 * self.moveDir
+        map.x = map.x + 10 * self.moveDir * -1
+        map.offsetX = map.offsetX + 10 * self.moveDir * -1
+    --end
         if map.offsetX < 0 then
             self.startMove = false
             print("start1")
@@ -319,11 +327,15 @@ function scene:enterFrame( event )
             if self.moveDir == 1 then
             composer.gotoScene( "scenes.battle.battle"  ,{effect = "slideLeft", time = 300})
             end
+        else
+
         end
 
 if mapkevin1.clearIcon.alpha ~= 1 then
         print("-food")
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
+    --end
         print(mapkevin1.x)
         print("=food")
         if self.offsetX > mapkevin1.x + 70 then
@@ -342,7 +354,9 @@ if mapkevin1.clearIcon.alpha ~= 1 then
         end
 else
         print("pass food")
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
+    --end
         if self.offsetX > mapkevin1.x + 70 then
 
         end
@@ -350,7 +364,9 @@ end
 
 if mapkevin2.clearIcon.alpha ~= 1 then
         print("-young")
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
+    --end
         print(mapkevin2.x)
         print("=young")
         if self.offsetX > mapkevin2.x + 270 then
@@ -369,7 +385,9 @@ if mapkevin2.clearIcon.alpha ~= 1 then
         end
 else
         print("pass young")
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
+    --end
         if self.offsetX > mapkevin2.x + 70 then
 
         end
@@ -377,7 +395,9 @@ end
 
 if mapkevin3.clearIcon.alpha ~= 1 then
         print("-medicinal")
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
+    --end
         print(mapkevin3.x)
         print("=medicinal")
         if self.offsetX > mapkevin3.x + 470 then
@@ -396,7 +416,9 @@ if mapkevin3.clearIcon.alpha ~= 1 then
         end
 else
         print("pass medicinal")
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
+    --end
         if self.offsetX > mapkevin3.x + 70 then
 
         end

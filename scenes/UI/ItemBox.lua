@@ -112,21 +112,24 @@ ItemBox.new = function (t)
 		--box:addEventListener("touch")
 		--itemBox:insert(box)
 		 --print("1")
-		 blueButton = BlueButton.new(buttonWidth, buttonHeight)
-		 blueButton.x = xCoordinate
-		 blueButton.y = yCoordinate
+		  local blueButton = BlueButton.new(buttonWidth, buttonHeight)
+		   blueButton.x = xCoordinate
+		   blueButton.y = yCoordinate
+		 local closeText = display.newText("Close",xCoordinate,yCoordinate, native.systemFontBold, 26)
 		 --blueButton:addEventListener("touch", onTouch)
 		 itemBox:insert(blueButton)
 		 --print("2")
+		 
+		 function blueButton:onTouch(event)
+        --print("3")
+			if event.phase == "ended" then
+            composer.hideOverlay()
+			end        
+		end	
 	end
 	reflash()
 	
-	function blueButton:onTouch(event)
-        --print("3")
-		if event.phase == "ended" then
-            composer.hideOverlay()
-        end        
-    end	
+	
 	
 		return itemBox
 end

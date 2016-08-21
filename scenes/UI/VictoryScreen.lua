@@ -3,6 +3,7 @@ local widget = require( "widget" )
 local composer = require( "composer" )
 local Explosion = require("effects.Explosion")
 local Scores = require("Scores")
+local sfx = require("sfx")
 
 local scene = composer.newScene()
 
@@ -19,7 +20,7 @@ function scene:show( event )
 
     if ( phase == "will" ) then
         -- Code here runs when the scene is still off screen (but is about to come on screen)
-		local endingsong = audio.loadSound( "ending1.mp3" )
+		sfx:play("ending")
 
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen
