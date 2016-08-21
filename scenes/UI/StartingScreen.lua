@@ -25,9 +25,9 @@ function scene:show( event )
 			
 			--transition.to( background, { time=1500, alpha=0, x=(w-50), y=(h-50), onComplete=revolveScreen } )
 			--print("Hi")
-			deltaAngle = 1
+			deltaAngle = 0.3
 			background:rotate( deltaAngle )
-			timer.performWithDelay( 100, revolveScreen )
+			timer.performWithDelay( 1, revolveScreen )
 	end
 		
 	local function myButtonHandler(event)
