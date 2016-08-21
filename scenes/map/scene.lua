@@ -307,11 +307,11 @@ function scene:enterFrame( event )
         print("=人物")
 
 
-    if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
+    --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         self.offsetX = self.offsetX + 10 * self.moveDir
         map.x = map.x + 10 * self.moveDir * -1
         map.offsetX = map.offsetX + 10 * self.moveDir * -1
-    end
+    --end
         if map.offsetX < 0 then
             self.startMove = false
             print("start1")
@@ -330,9 +330,9 @@ function scene:enterFrame( event )
 
 if mapkevin1.clearIcon.alpha ~= 1 then 
         print("-food")
-        if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
-    end
+    --end
         print(mapkevin1.x)
         print("=food")
         if self.offsetX > mapkevin1.x + 70 then
@@ -351,9 +351,9 @@ if mapkevin1.clearIcon.alpha ~= 1 then
         end
 else
         print("pass food")
-        if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
-    end
+    --end
         if self.offsetX > mapkevin1.x + 70 then
 
         end  
@@ -361,9 +361,9 @@ end
 
 if mapkevin2.clearIcon.alpha ~= 1 then 
         print("-young")
-        if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
-    end
+    --end
         print(mapkevin2.x)
         print("=young")
         if self.offsetX > mapkevin2.x + 270 then
@@ -382,9 +382,9 @@ if mapkevin2.clearIcon.alpha ~= 1 then
         end
 else
         print("pass young")
-        if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
-    end
+    --end
         if self.offsetX > mapkevin2.x + 70 then
 
         end  
@@ -392,9 +392,9 @@ end
 
 if mapkevin3.clearIcon.alpha ~= 1 then 
         print("-medicinal")
-        if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
-    end
+    --end
         print(mapkevin3.x)
         print("=medicinal")
         if self.offsetX > mapkevin3.x + 470 then
@@ -413,9 +413,9 @@ if mapkevin3.clearIcon.alpha ~= 1 then
         end
 else
         print("pass medicinal")
-        if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
+        --if (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
-    end
+    --end
         if self.offsetX > mapkevin3.x + 70 then
 
         end  
