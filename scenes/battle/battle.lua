@@ -66,13 +66,13 @@ local function showWord( s )
         myText.x = display.contentWidth/2
         myText.y = display.contentHeight/5
         myText:setTextColor(255, 0, 0)
-        sceneGroup:insert(myText) 
+        sceneGroup:insert(myText)
         transition.to(myText,{time=500,alpha=0, y=display.contentHeight/7,onComplete= function ()
         if myText.removeSelf ~= nil then
             myText:removeSelf()
         end
     end
-    })  
+    })
 end
 
 local function openInventory( event )
@@ -117,7 +117,7 @@ local function showSequenceWord (ss)
     print("hehe")
     if sequenceCnt > #ss then
         return
-    end    
+    end
     local myText = display.newText( ss[sequenceCnt], 100, 200, native.systemFont, 100 )
         myText.x = display.contentWidth/2
         myText.y = display.contentHeight/5
@@ -131,7 +131,7 @@ local function showSequenceWord (ss)
         end
         showSequenceWord(ss)
     end
-    }) 
+    })
 end
 
 local function openCamera( event )
@@ -148,7 +148,7 @@ local function openCamera( event )
                 local matchCnt = 1
                 local matchFlag = false
                 if isFace then
-                    if feceAttr.gender == "male" then
+                    if faceAttr.gender == "male" then
                         showWord("我現在不需要"..tostring(faceAttr.age).."歲的男性")
                     else
                         showWord("我現在不需要"..tostring(faceAttr.age).."歲的女性")
@@ -182,7 +182,7 @@ local function openCamera( event )
                 else
                     showWord("我現在不需要這項物品")
                 end
-                
+
                 --native.showAlert( "Corona", json.encode(tags), { "OK" } )
             end
             )
@@ -452,7 +452,7 @@ function scene:show( event )
 
         self.requestText = [[你需要一把劍
 才能打敗我!!]]
-        
+
         self.requestItem = "items.Sword"
 
         busy = false
@@ -542,7 +542,7 @@ function scene:show( event )
         bubble.y = enemyY - enemyImage.contentHeight
         sceneGroup:insert(bubble)
 
-        playerHPBar = display.newRect( playerX, playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04 , 
+        playerHPBar = display.newRect( playerX, playerY - playerImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04 ,
             _SCREEN_WIDTH * 0.1, _SCREEN_HEIGHT * 0.033 )
         playerHPBar.strokeWidth = 3
         playerHPBar:setFillColor( 0, 255, 0 )
@@ -551,7 +551,7 @@ function scene:show( event )
 
         playerHPBar.width = playerHPBar.width
 
-        enemyHPBar = display.newRect( enemyX, enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04, 
+        enemyHPBar = display.newRect( enemyX, enemyY - enemyImage.contentHeight*0.5 - _SCREEN_HEIGHT*0.04,
             _SCREEN_WIDTH * 0.1, _SCREEN_HEIGHT * 0.033 )
         enemyHPBar.strokeWidth = 3
         enemyHPBar:setFillColor( 0, 255, 0 )
