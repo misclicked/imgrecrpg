@@ -61,18 +61,18 @@ local function showWord( s )
         myText.x = display.contentWidth/2
         myText.y = display.contentHeight/5
         myText:setTextColor(255, 0, 0)
-        sceneGroup:insert(myText) 
+        sceneGroup:insert(myText)
         transition.to(myText,{time=1000,alpha=0, y=display.contentHeight/7,onComplete= function ()
         if myText.removeSelf ~= nil then
             myText:removeSelf()
         end
     end
-    })  
+    })
 end
 
 -- create()
 function scene:create( event )
-    inventoryOpened = false   
+    inventoryOpened = false
     busy=false
     --local Background = Background.new()
     local sceneGroup = self.view
@@ -131,7 +131,7 @@ function scene:create( event )
     icon = Sprite.new("Items/62")
     icon.x = display.contentWidth - 100
     icon.y = display.contentHeight - 100
-    icon:addEventListener("touch" , 
+    icon:addEventListener("touch" ,
         function(event)
         self.startMove = false
         busy=true
@@ -152,7 +152,7 @@ function scene:create( event )
                         local matchCnt = 1
                         local matchFlag = false
                         if isFace then
-                            if feceAttr.gender == "male" then
+                            if faceAttr.gender == "male" then
                                 if faceAttr.age <= 20 then
                                     showWord("我獲得"..tostring(faceAttr.age).."歲的年輕男性")
                                     inventory:addItem("items.Man")
@@ -202,7 +202,7 @@ function scene:create( event )
                 print("carema began")
             end
         else
-            
+
         end
 
     end)
@@ -217,7 +217,7 @@ function scene:create( event )
     mapkevin1:showBubble()
     sceneGroup:insert(mapkevin1)
     Runtime:addEventListener( "touch", mapkevin1)
-    -- timer.performWithDelay( 99000, 
+    -- timer.performWithDelay( 99000,
     --     function ()
     --         mapkevin1:setClear()
     --     end)
@@ -232,7 +232,7 @@ function scene:create( event )
     mapkevin2:showBubble()
     sceneGroup:insert(mapkevin2)
     Runtime:addEventListener( "touch", mapkevin2)
-    -- timer.performWithDelay( 99000, 
+    -- timer.performWithDelay( 99000,
     --     function ()
     --         mapkevin2:setClear()
     --     end)
@@ -247,7 +247,7 @@ function scene:create( event )
     mapkevin3:showBubble()
     sceneGroup:insert(mapkevin3)
     Runtime:addEventListener( "touch", mapkevin3)
-    -- timer.performWithDelay( 99000, 
+    -- timer.performWithDelay( 99000,
     --     function ()
     --         mapkevin3:setClear()
     --     end)
@@ -325,9 +325,9 @@ function scene:enterFrame( event )
             end
         else
 
-        end    
+        end
 
-if mapkevin1.clearIcon.alpha ~= 1 then 
+if mapkevin1.clearIcon.alpha ~= 1 then
         print("-food")
         if nowNPC == nil or (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin1.x = mapkevin1.x + 10 * self.moveDir * -1
@@ -338,9 +338,9 @@ if mapkevin1.clearIcon.alpha ~= 1 then
             self.startMove = false
             self.character:setSequence("stand")
             self.character:play()
-            
+
             --native.showAlert("需求訊息", "你是否有食物可以交付?", {"交付 食物"})
-            if mapkevin1:isFinishQuest("items.Food") == false then 
+            if mapkevin1:isFinishQuest("items.Food") == false then
                 print("食物:false")
                 --mapkevin1:setClear()
             else
@@ -356,10 +356,10 @@ else
     end
         if self.offsetX > mapkevin1.x + 70 then
 
-        end  
+        end
 end
 
-if mapkevin2.clearIcon.alpha ~= 1 then 
+if mapkevin2.clearIcon.alpha ~= 1 then
         print("-young")
         if nowNPC == nil or (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin2.x = mapkevin2.x + 10 * self.moveDir * -1
@@ -370,9 +370,9 @@ if mapkevin2.clearIcon.alpha ~= 1 then
             self.startMove = false
             self.character:setSequence("stand")
             self.character:play()
-            
+
             --native.showAlert("需求訊息", "你是否有年輕人可以交付?", {"交付 年輕人"})
-            if mapkevin2:isFinishQuest("items.Man") == false and mapkevin2:isFinishQuest("items.Woman") == false then 
+            if mapkevin2:isFinishQuest("items.Man") == false and mapkevin2:isFinishQuest("items.Woman") == false then
                 print("年輕人:false")
                 --mapkevin2:setClear()
             else
@@ -388,10 +388,10 @@ else
     end
         if self.offsetX > mapkevin2.x + 70 then
 
-        end  
+        end
 end
 
-if mapkevin3.clearIcon.alpha ~= 1 then 
+if mapkevin3.clearIcon.alpha ~= 1 then
         print("-medicinal")
         if nowNPC == nil or (self.character.contentBounds.xMax >= (nowNPC.contentBounds.xMin + 70) and self.moveDir == 1) == false then
         mapkevin3.x = mapkevin3.x + 10 * self.moveDir * -1
@@ -402,9 +402,9 @@ if mapkevin3.clearIcon.alpha ~= 1 then
             self.startMove = false
             self.character:setSequence("stand")
             self.character:play()
-            
+
             --native.showAlert("需求訊息", "你是否有藥水可以交付?", {"交付 藥水"})
-            if mapkevin3:isFinishQuest("items.RedPotion") == false then 
+            if mapkevin3:isFinishQuest("items.RedPotion") == false then
                 print("藥水:false")
                 --mapkevin3:setClear()
             else
@@ -420,7 +420,7 @@ else
     end
         if self.offsetX > mapkevin3.x + 70 then
 
-        end  
+        end
 end
 
 
