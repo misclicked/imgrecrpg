@@ -62,7 +62,7 @@ local function showWord( s )
         myText.y = display.contentHeight/5
         myText:setTextColor(255, 0, 0)
         sceneGroup:insert(myText) 
-        transition.to(myText,{time=500,alpha=0, y=display.contentHeight/7,onComplete= function ()
+        transition.to(myText,{time=1000,alpha=0, y=display.contentHeight/7,onComplete= function ()
         if myText.removeSelf ~= nil then
             myText:removeSelf()
         end
