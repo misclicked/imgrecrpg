@@ -1,6 +1,7 @@
 local Sprite = require("Sprite")
 local Bubble = require("ui.GreyPanel")
 local Character = {}
+local inventory = require( "inventory" )
 --
 Character.new = function()
     local character = display.newGroup()
@@ -21,7 +22,7 @@ Character.new = function()
 
         transition.to(self.bubble, {time = 250, alpha = 1})
 
-        if self:isFinishQuest() then
+        if false then
             self:setClear()
         else
             self:setUnClear()
@@ -32,8 +33,10 @@ Character.new = function()
         transition.to(self.bubble, {time = 250, alpha = 0})
     end
 
-    function character:isFinishQuest()
-        return false
+    function character:isFinishQuest(item)
+        print("Edison-----------".. item)
+        return inventory:hasItem(item)
+        --return false
     end
 
     function character:setUnClear()
