@@ -41,7 +41,7 @@ function scene:show( event )
 			}
 
 		local myText = display.newText( options)
-		
+		self.view:insert(myText)
 	
 		myText:setFillColor( 1, 0, 0 )
 
