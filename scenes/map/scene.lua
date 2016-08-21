@@ -153,14 +153,14 @@ function scene:create( event )
                         local matchFlag = false
                         if isFace then
                             if faceAttr.gender == "male" then
-                                if faceAttr.age <= 20 then
+                                if faceAttr.age <= 30 then
                                     showWord("我獲得"..tostring(faceAttr.age).."歲的年輕男性")
                                     inventory:addItem("items.Man")
                                 else
                                     showWord("我現在不需要"..tostring(faceAttr.age).."歲的男性")
                                 end
                             else
-                                if faceAttr.age <= 20 then
+                                if faceAttr.age <= 30 then
                                     showWord("我獲得"..tostring(faceAttr.age).."歲的年輕女性")
                                     inventory:addItem("items.Woman")
                                 else
