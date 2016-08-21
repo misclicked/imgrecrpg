@@ -1,6 +1,7 @@
 local Sprite = require("Sprite")
 local Bubble = require("ui.GreyPanel")
 local Character = {}
+local inventory = require( "inventory" )
 --
 Character.new = function()
     local character = display.newGroup()
